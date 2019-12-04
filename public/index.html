@@ -11,6 +11,22 @@
     <link rel="icon" href="%PUBLIC_URL%/assets/ico/favicon.ico" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/reset.css" />
+
+    <style>
+      html {
+        background-color: #fff;
+        overflow-y: scroll;
+        opacity: 0;
+        transition: opacity 0.5s linear 0.5s;
+      }
+
+      body {
+        min-height: 100vh;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

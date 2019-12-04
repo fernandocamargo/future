@@ -1,16 +1,16 @@
-import { string } from "prop-types";
-import React from "react";
-import { Link } from "react-router-dom";
+import { string } from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import MenuItem from "./menu-item";
-import withStyle from "./style";
+import MenuItem from './menu-item';
+import withStyle from './style';
 
 const menu = [
-  { label: "Home", url: "" },
-  { label: "My CV", url: "/profile" },
-  { label: "Referrals", url: "/referrals" },
-  { label: "Services", url: "/services" },
-  { label: "FAQ", url: "/faq" }
+  { label: 'Home', url: '' },
+  { label: 'My CV', url: '/profile' },
+  { label: 'Referrals', url: '/referrals' },
+  { label: 'Services', url: '/services' },
+  { label: 'FAQ', url: '/faq' },
 ];
 
 const renderMenu = item => <MenuItem key={item.url} {...item} />;
@@ -30,7 +30,7 @@ const Header = ({ className }) => {
 };
 
 Header.propTypes = {
-  className: string.isRequired
+  className: string.isRequired,
 };
 
 Header.defaultProps = {};

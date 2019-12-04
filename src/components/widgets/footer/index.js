@@ -1,7 +1,7 @@
-import { string } from "prop-types";
-import React from "react";
+import { string } from 'prop-types';
+import React from 'react';
 
-import withStyle from "./style";
+import withStyle from './style';
 
 const Footer = ({ className }) => (
   <footer className={className}>
@@ -10,7 +10,7 @@ const Footer = ({ className }) => (
 );
 
 Footer.propTypes = {
-  className: string.isRequired
+  className: string.isRequired,
 };
 
 Footer.defaultProps = {};

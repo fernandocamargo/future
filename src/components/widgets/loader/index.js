@@ -1,12 +1,12 @@
-import { string } from "prop-types";
-import React from "react";
+import { string } from 'prop-types';
+import React from 'react';
 
-import withStyle from "./style";
+import withStyle from './style';
 
 const Loader = ({ className }) => <p className={className}>Loading...</p>;
 
 Loader.propTypes = {
-  className: string.isRequired
+  className: string.isRequired,
 };
 
 Loader.defaultProps = {};

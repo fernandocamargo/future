@@ -1,11 +1,11 @@
-import { string } from "prop-types";
-import React, { Suspense } from "react";
-import { Route, Switch } from "react-router-dom";
+import { string } from 'prop-types';
+import React, { Suspense } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import { Account, Home, NotFound, Profile, Referrals } from "components/pages";
-import { Footer, Header, Loader } from "components/widgets";
+import { Account, Home, NotFound, Profile, Referrals } from 'components/pages';
+import { Footer, Header, Loader } from 'components/widgets';
 
-import withStyle from "./style.js";
+import withStyle from './style.js';
 
 const App = ({ className }) => (
   <div className={className}>
@@ -26,7 +26,7 @@ const App = ({ className }) => (
 );
 
 App.propTypes = {
-  className: string.isRequired
+  className: string.isRequired,
 };
 
 App.defaultProps = {};

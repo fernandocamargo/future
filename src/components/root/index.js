@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import { HashRouter as Router } from "react-router-dom";
-import { ThemeProvider as Theming } from "styled-components";
+import React, { Fragment } from 'react';
+import { HashRouter as Router } from 'react-router-dom';
+import { ThemeProvider as Theming } from 'styled-components';
 
-import { default as theme } from "themes";
-import { App, Style } from "components";
+import { default as theme } from 'themes';
+import { App, Style } from 'components';
 
 const Root = () => (
   <Router>
