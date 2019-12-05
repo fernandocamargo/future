@@ -1,4 +1,4 @@
-import { elementType } from 'prop-types';
+import { string, elementType, bool } from 'prop-types';
 import React, { createElement, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
@@ -8,11 +8,13 @@ import selector from './selector';
 const Restricted = ({ component, ...route }) => {
   const { logged } = useSelector(selector);
   const render = useCallback(
-    ({ location, ...props }) =>
+    props =>
       logged ? (
         createElement(component, props)
       ) : (
-        <Redirect to={{ state: { from: location }, pathname: '/login' }} />
+        <Redirect
+          to={{ state: { from: props.location }, pathname: '/login' }}
+        />
       ),
     [logged, component]
   );
@@ -21,9 +23,13 @@ const Restricted = ({ component, ...route }) => {
 };
 
 Restricted.propTypes = {
+  path: string.isRequired,
   component: elementType.isRequired,
+  exact: bool,
 };
 
-Restricted.defaultProps = {};
+Restricted.defaultProps = {
+  exact: false,
+};
 
 export default Restricted;
