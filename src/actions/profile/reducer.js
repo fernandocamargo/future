@@ -2,7 +2,7 @@ import update from 'immutability-helper';
 
 import { FETCH, FETCH_SUCCEED, FETCH_FAIL } from './constants';
 
-export const initialState = { loading: false, items: [], error: null };
+export const initialState = { loading: false, details: {}, error: null };
 
 export default (state = initialState, { type, items, error }) => {
   switch (type) {

@@ -21,3 +21,7 @@ export const Profile = lazy(() =>
 export const Referrals = lazy(() =>
   import(/* webpackChunkName: "referrals" */ './referrals')
 );
+
+export const Registration = lazy(() =>
+  import(/* webpackChunkName: "registration" */ './registration')
+);

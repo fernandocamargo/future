@@ -16,6 +16,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-observable": "^1.2.0",
     "redux-persist": "^6.0.0",
+    "reselect": "^4.0.0",
     "rxjs": "^6.5.3",
     "styled-components": "^4.4.1"
   },

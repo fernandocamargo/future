@@ -1,8 +1,17 @@
 import { string } from 'prop-types';
 import React, { Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
-import { Account, Home, NotFound, Profile, Referrals } from 'components/pages';
+import { Restricted, Public } from 'components/routes';
+import {
+  Account,
+  Home,
+  Login,
+  NotFound,
+  Profile,
+  Referrals,
+  Registration,
+} from 'components/pages';
 import { Footer, Header, Loader } from 'components/widgets';
 
 import withStyle from './style.js';
@@ -13,11 +22,13 @@ const App = ({ className }) => (
     <main>
       <Suspense fallback={<Loader />}>
         <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/account" component={Account} exact />
-          <Route path="/profile" component={Profile} exact />
-          <Route path="/referrals" component={Referrals} exact />
-          <Route path="*" component={NotFound} />
+          <Public path="/" component={Home} exact />
+          <Public path="/registration" component={Registration} exact />
+          <Public path="/login" component={Login} exact />
+          <Restricted path="/account" component={Account} exact />
+          <Restricted path="/profile" component={Profile} exact />
+          <Restricted path="/referrals" component={Referrals} exact />
+          <Public path="*" component={NotFound} />
         </Switch>
       </Suspense>
     </main>
