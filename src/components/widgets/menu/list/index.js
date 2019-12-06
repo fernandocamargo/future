@@ -1,6 +1,8 @@
 import { string } from 'prop-types';
 import React from 'react';
 
+import { items as menuItemsPropTypes } from 'prop-types/menu';
+
 import Item from '../item';
 import withStyle from './style';
 
@@ -14,8 +16,11 @@ const List = ({ className, items }) => (
 
 List.propTypes = {
   className: string.isRequired,
+  items: menuItemsPropTypes,
 };
 
-List.defaultProps = {};
+List.defaultProps = {
+  items: [],
+};
 
 export default withStyle(List);

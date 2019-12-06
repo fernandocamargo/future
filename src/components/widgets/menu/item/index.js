@@ -1,5 +1,5 @@
 import isString from 'lodash/isString';
-import { string } from 'prop-types';
+import { checkPropTypes, shape, string } from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -34,9 +34,23 @@ const Item = ({ className, id, label, url, items }) => {
   );
 };
 
-Item.propTypes = {
-  className: string.isRequired,
+const log = something => console.log({ something }) || something;
+
+const compose = function(...shapes) {
+  console.log({ shapes });
+
+  return function() {
+    log(
+      shapes.reduce((stack, shape) => {
+        return console.log({ shape }) || stack;
+      }, {})
+    );
+  };
 };
+
+Item.propTypes = compose({
+  className: string.isRequired,
+});
 
 Item.defaultProps = {
   items: [],
