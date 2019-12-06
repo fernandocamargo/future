@@ -1,30 +1,27 @@
-import { arrayOf, func, node, oneOfType, shape, string } from 'prop-types';
+import { node, string } from 'prop-types';
 import React from 'react';
+
+import * as PropTypes from 'prop-types/menu';
 
 import List from './list';
 import withStyle from './style';
 
-const Menu = ({ className, items }) =>
+const Menu = ({ className, title, items }) =>
   !!items.length && (
     <nav className={className}>
-      <h4>Browse through:</h4>
+      <h4>{title}</h4>
       <List items={items} />
     </nav>
   );
 
 Menu.propTypes = {
   className: string.isRequired,
-  items: arrayOf(
-    shape({
-      id: string.isRequired,
-      label: node.isRequired,
-      url: oneOfType([string.isRequired, func.isRequired]).isRequired,
-      children: arrayOf(shape({})),
-    })
-  ),
+  title: node,
+  items: PropTypes.items,
 };
 
 Menu.defaultProps = {
+  title: 'Browse through:',
   items: [],
 };
 

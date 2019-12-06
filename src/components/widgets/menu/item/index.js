@@ -1,10 +1,12 @@
 import isString from 'lodash/isString';
+import { string } from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import List from '../list';
+import withStyle from './style';
 
-const Item = ({ id, label, url, items }) => {
+const Item = ({ className, id, label, url, items }) => {
   const history = useHistory();
   const { click, href } = useMemo(() => {
     const plain = isString(url);
@@ -23,7 +25,7 @@ const Item = ({ id, label, url, items }) => {
   );
 
   return (
-    <li className={id}>
+    <li className={className} itemProp={id}>
       <a href={href} title={label} onClick={onClick}>
         {label}
       </a>
@@ -32,10 +34,12 @@ const Item = ({ id, label, url, items }) => {
   );
 };
 
-Item.propTypes = {};
+Item.propTypes = {
+  className: string.isRequired,
+};
 
 Item.defaultProps = {
   items: [],
 };
 
-export default Item;
+export default withStyle(Item);
