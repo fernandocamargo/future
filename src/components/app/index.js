@@ -5,6 +5,7 @@ import { Switch } from 'react-router-dom';
 import { Restricted, Public } from 'components/routes';
 import {
   Account,
+  Dashboard,
   Home,
   Login,
   NotFound,
@@ -25,9 +26,10 @@ const App = ({ className }) => (
           <Public path="/" component={Home} exact />
           <Public path="/registration" component={Registration} exact />
           <Public path="/login" component={Login} exact />
-          <Restricted path="/account" component={Account} exact />
+          <Restricted path="/dashboard" component={Dashboard} exact />
           <Restricted path="/profile" component={Profile} exact />
           <Restricted path="/referrals" component={Referrals} exact />
+          <Restricted path="/account" component={Account} exact />
           <Public path="*" component={NotFound} />
         </Switch>
       </Suspense>

@@ -1,30 +1,61 @@
 import { string } from 'prop-types';
-import React from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import MenuItem from './menu-item';
+import { useAuthentication } from 'hooks';
+import { Menu } from 'components/widgets';
+
 import withStyle from './style';
 
-const menu = [
-  { label: 'Home', url: '' },
-  { label: 'My CV', url: '/profile' },
-  { label: 'Referrals', url: '/referrals' },
-  { label: 'Services', url: '/services' },
-  { label: 'FAQ', url: '/faq' },
+const PUBLIC = [
+  { id: 'registration', label: 'Registration', url: '/registration' },
+  { id: 'about-us', label: 'About us', url: '/about-us' },
+  { id: 'why-expertlead', label: 'Why expertlead', url: '/why-expertlead' },
 ];
 
-const renderMenu = item => <MenuItem key={item.url} {...item} />;
-
 const Header = ({ className }) => {
+  const { logged } = useAuthentication();
+  const [expanded, setExpanded] = useState(false);
+  const toggleExpanded = useCallback(
+    () => setExpanded(current => !current),
+    []
+  );
+  const RESTRICTED = useMemo(
+    () => [
+      { id: 'dashboard', label: 'Dashboard', url: '/dashboard' },
+      { id: 'profile', label: 'My CV', url: '/profile' },
+      { id: 'referrals', label: 'Referrals', url: '/referrals' },
+      { id: 'services', label: 'Services', url: '/services' },
+      { id: 'faq', label: 'FAQ', url: '/faq' },
+      {
+        id: 'user',
+        label: 'Developer name',
+        url: toggleExpanded,
+        items: [
+          { id: 'account', label: 'My account', url: '/account' },
+          {
+            id: 'sign-out',
+            label: 'Sign-Out',
+            url: () => console.log('sign-out();'),
+          },
+        ],
+      },
+    ],
+    [toggleExpanded]
+  );
+  const menu = useMemo(() => (!logged ? RESTRICTED : PUBLIC), [
+    logged,
+    RESTRICTED,
+  ]);
+
   return (
     <header className={className}>
       <h2>
         <Link to="/">expertlead</Link>
+        <span> proudly presents:</span>
       </h2>
-      <nav>
-        <h4>Browse through:</h4>
-        <ul>{menu.map(renderMenu)}</ul>
-      </nav>
+      <pre>{JSON.stringify({ expanded }, null, 2)}</pre>
+      <Menu items={menu} />
     </header>
   );
 };

@@ -4,6 +4,10 @@ export const Account = lazy(() =>
   import(/* webpackChunkName: "account" */ './account')
 );
 
+export const Dashboard = lazy(() =>
+  import(/* webpackChunkName: "dashboard" */ './dashboard')
+);
+
 export const Home = lazy(() => import(/* webpackChunkName: "home" */ './home'));
 
 export const Login = lazy(() =>

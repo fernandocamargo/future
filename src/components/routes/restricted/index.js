@@ -1,12 +1,11 @@
 import { string, elementType, bool } from 'prop-types';
 import React, { createElement, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-import selector from './selector';
+import { useAuthentication } from 'hooks';
 
 const Restricted = ({ component, ...route }) => {
-  const { logged } = useSelector(selector);
+  const { logged } = useAuthentication();
   const render = useCallback(
     props =>
       logged ? (

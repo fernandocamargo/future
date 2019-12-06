@@ -6,6 +6,12 @@ const selectDetails = ({ details }) => details;
 
 const selectLogged = details => ({ logged: !!Object.keys(details).length });
 
-const selectProfileDetails = createSelector(selectProfile, selectDetails);
+const selectProfileDetails = createSelector(
+  selectProfile,
+  selectDetails
+);
 
-export default createSelector(selectProfileDetails, selectLogged);
+export default createSelector(
+  selectProfileDetails,
+  selectLogged
+);
