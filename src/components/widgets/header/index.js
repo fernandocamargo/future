@@ -2,6 +2,7 @@ import { string } from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { invert } from 'helpers/boolean';
 import { useAuthentication } from 'hooks';
 import { Menu } from 'components/widgets';
 
@@ -16,10 +17,7 @@ const PUBLIC = [
 const Header = ({ className }) => {
   const { logged } = useAuthentication();
   const [expanded, setExpanded] = useState(false);
-  const toggleExpanded = useCallback(
-    () => setExpanded(current => !current),
-    []
-  );
+  const toggleExpanded = useCallback(() => setExpanded(invert), []);
   const RESTRICTED = useMemo(
     () => [
       { id: 'dashboard', label: 'Dashboard', url: '/dashboard' },

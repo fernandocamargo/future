@@ -1,7 +1,10 @@
 import isString from 'lodash/isString';
-import { checkPropTypes, shape, string } from 'prop-types';
+import { string } from 'prop-types';
 import React, { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { items as menuItemsPropTypes } from 'prop-types/menu';
+import { item as menuItemPropTypes } from 'prop-types/menu/item';
 
 import List from '../list';
 import withStyle from './style';
@@ -34,23 +37,11 @@ const Item = ({ className, id, label, url, items }) => {
   );
 };
 
-const log = something => console.log({ something }) || something;
-
-const compose = function(...shapes) {
-  console.log({ shapes });
-
-  return function() {
-    log(
-      shapes.reduce((stack, shape) => {
-        return console.log({ shape }) || stack;
-      }, {})
-    );
-  };
-};
-
-Item.propTypes = compose({
+Item.propTypes = {
   className: string.isRequired,
-});
+  items: menuItemsPropTypes,
+  ...menuItemPropTypes,
+};
 
 Item.defaultProps = {
   items: [],
