@@ -5,7 +5,7 @@ import { items } from '..';
 export const item = {
   id: string.isRequired,
   label: node.isRequired,
-  url: oneOfType([string.isRequired, func.isRequired]).isRequired,
+  url: oneOfType([string, func]),
 };
 
 export default function() {

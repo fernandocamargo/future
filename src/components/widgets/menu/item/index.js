@@ -1,37 +1,32 @@
-import isString from 'lodash/isString';
 import { string } from 'prop-types';
-import React, { useCallback, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 
 import { items as menuItemsPropTypes } from 'prop-types/menu';
 import { item as menuItemPropTypes } from 'prop-types/menu/item';
 
+import { useNavigation } from './hooks';
 import List from '../list';
 import withStyle from './style';
 
-const Item = ({ className, id, label, url, items }) => {
-  const history = useHistory();
-  const { click, href } = useMemo(() => {
-    const plain = isString(url);
-
-    return {
-      href: plain ? url : '/',
-      click: plain ? () => history.push(url) : url,
-    };
-  }, [url, history]);
-  const onClick = useCallback(
-    event => {
-      event.preventDefault();
-      click();
-    },
-    [click]
-  );
+const Item = ({ className, id, label, url, target, items, ...props }) => {
+  const { href, onClick } = useNavigation({ url, target });
+  const title = label.length && label;
 
   return (
     <li className={className} itemProp={id}>
-      <a href={href} title={label} onClick={onClick}>
-        {label}
-      </a>
+      {!url ? (
+        <span>{label}</span>
+      ) : (
+        <a
+          href={href}
+          target={target}
+          title={title}
+          onClick={onClick}
+          {...props}
+        >
+          {label}
+        </a>
+      )}
       {!!items.length && <List items={items} />}
     </li>
   );

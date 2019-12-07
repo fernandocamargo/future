@@ -6,12 +6,26 @@ import { invert } from 'helpers/boolean';
 import { useAuthentication } from 'hooks';
 import { Menu } from 'components/widgets';
 
+import Phone from './phone';
 import withStyle from './style';
 
 const PUBLIC = [
   { id: 'registration', label: 'Registration', url: '/registration' },
   { id: 'about-us', label: 'About us', url: '/about-us' },
   { id: 'why-expertlead', label: 'Why expertlead', url: '/why-expertlead' },
+  {
+    id: 'contact',
+    label: 'Contact',
+    items: [
+      {
+        id: 'phone',
+        label: <Phone />,
+        url: 'tel:+4930209663144',
+        target: '_blank',
+        title: 'Click to call us',
+      },
+    ],
+  },
 ];
 
 const Header = ({ className }) => {
