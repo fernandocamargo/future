@@ -1,36 +1,35 @@
+import { string } from 'prop-types';
 import React from 'react';
 
-const Registration = () => (
-  <section>
-    <form>
-      <fieldset>
-        <legend>Registration</legend>
-        <dl>
-          <dt>
-            <label htmlFor="email">E-mail</label>
-          </dt>
-          <dd>
-            <input type="email" id="email" />
-          </dd>
-        </dl>
-        <dl>
-          <dt>
-            <label htmlFor="password">Password</label>
-          </dt>
-          <dd>
-            <input type="password" id="password" />
-          </dd>
-        </dl>
-        <div>
-          <button type="submit">Login</button>
-        </div>
-      </fieldset>
-    </form>
-  </section>
-);
+import { useForm } from 'hooks';
+import { Form } from 'components/widgets';
 
-Registration.propTypes = {};
+import schema from './schema';
+import withStyle from './style';
+
+import FormRender from './form';
+
+const Registration = ({ className }) => {
+  const { props: form } = useForm(schema);
+
+  return (
+    <section className={className}>
+      <article>
+        <h2>Welcome</h2>
+        <p>
+          You have chosenn an excellent moment to join. Now let us make your
+          journey comfortable...
+        </p>
+      </article>
+      <Form {...form} title="Registration" render={FormRender} />
+    </section>
+  );
+};
+
+Registration.propTypes = {
+  className: string.isRequired,
+};
 
 Registration.defaultProps = {};
 
-export default Registration;
+export default withStyle(Registration);

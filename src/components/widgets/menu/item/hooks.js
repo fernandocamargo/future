@@ -1,11 +1,13 @@
+import merge from 'lodash/merge';
 import isString from 'lodash/isString';
 import { useCallback, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 export const useNavigation = ({ url, target }) => {
   const history = useHistory();
+  const matched = !!useRouteMatch({ path: url });
   const navigate = useCallback(() => history.push(url), [history, url]);
-  const { click, ...props } = useMemo(() => {
+  const { click, ...attributes } = useMemo(() => {
     const route = isString(url);
 
     return {
@@ -20,7 +22,6 @@ export const useNavigation = ({ url, target }) => {
     },
     [click]
   );
-  const link = !target ? { ...props, onClick } : props;
 
-  return link;
+  return merge(attributes, !target && { onClick }, { matched });
 };

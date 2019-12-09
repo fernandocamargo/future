@@ -8,22 +8,18 @@ import { useNavigation } from './hooks';
 import List from '../list';
 import withStyle from './style';
 
-const Item = ({ className, id, label, url, target, items, ...props }) => {
-  const { href, onClick } = useNavigation({ url, target });
-  const title = label.length && label;
+const Item = ({ className, ...props }) => {
+  const { matched, ...navigation } = useNavigation(props);
+  const { id, label, url, items, ...link } = props;
+  const title = !!label.length && label;
+  const current = matched && 'page';
 
   return (
     <li className={className} itemProp={id}>
       {!url ? (
         <span>{label}</span>
       ) : (
-        <a
-          href={href}
-          target={target}
-          title={title}
-          onClick={onClick}
-          {...props}
-        >
+        <a title={title} aria-current={current} {...link} {...navigation}>
           {label}
         </a>
       )}

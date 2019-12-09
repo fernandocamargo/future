@@ -1,4 +1,4 @@
-import { func, node, oneOfType, shape, string } from 'prop-types';
+import { func, node, oneOf, oneOfType, shape, string } from 'prop-types';
 
 import { items } from '..';
 
@@ -6,6 +6,7 @@ export const item = {
   id: string.isRequired,
   label: node.isRequired,
   url: oneOfType([string, func]),
+  target: oneOf(['_blank']),
 };
 
 export default function() {

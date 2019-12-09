@@ -5,6 +5,14 @@ const Style = createGlobalStyle`
     opacity: 1;
   }
 
+  body {
+    font-family: ${({
+      theme: {
+        typography: { main },
+      },
+    }) => main};
+  }
+
   figure {
     margin: 0;
   }
