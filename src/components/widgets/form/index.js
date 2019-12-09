@@ -7,7 +7,7 @@ import withStyle from './style';
 const renderField = field => <Field key={field.name} {...field} />;
 
 const Form = ({ className, onSubmit, title, fields }) => (
-  <form className={className} onSubmit={onSubmit}>
+  <form className={className} autoComplete="off" noValidate onSubmit={onSubmit}>
     <fieldset>
       <legend>{title}</legend>
       {fields.map(renderField)}

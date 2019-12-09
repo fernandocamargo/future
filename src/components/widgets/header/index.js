@@ -13,7 +13,9 @@ const Header = ({ className }) => {
   return (
     <header className={className} aria-expanded={expanded}>
       <h2>
-        <Link to="/">expertlead</Link>
+        <Link to="/" title="expertlead">
+          expertlead
+        </Link>
         <span> proudly presents:</span>
       </h2>
       <Menu items={items} />

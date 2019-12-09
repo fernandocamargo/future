@@ -1,28 +1,45 @@
 import styled from 'styled-components';
 
 export default component => styled(component)`
-  color: #000;
-  font-weight: 500;
-  position: relative;
+  align-items: center;
+  color: #4a4a4a;
+  display: flex;
+  font-size: 0.875rem;
   text-decoration: none;
 
   &:before {
-    color: #666666;
+    color: #666;
     content: '\\e311';
-    display: block;
+    display: inline-block;
     font-family: ${({
       theme: {
         typography: { icons },
       },
     }) => icons};
-    font-size: 175%;
-    position: absolute;
-    right: calc(100% + 0.5rem);
-    top: 50%;
-    transform: translateY(-50%);
+    font-size: 200%;
+    margin-right: 0;
+    transition: font-size 0.1s linear, margin-right 0.1s linear;
   }
 
   em {
     display: none;
+  }
+
+  strong {
+    font-size: 0;
+    opacity: 0;
+    transition: font-size 0.1s linear, opacity 0.1s linear;
+  }
+
+  @media (min-width: 960px) {
+    &:before {
+      font-size: 150%;
+      margin-right: 0.875rem;
+    }
+
+    strong {
+      font-size: 0.875rem;
+      opacity: 1;
+    }
   }
 `;

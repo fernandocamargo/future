@@ -15,9 +15,9 @@ const Registration = ({ className }) => {
   return (
     <section className={className}>
       <article>
-        <h2>Welcome</h2>
+        <h2>Welcome!</h2>
         <p>
-          You have chosenn an excellent moment to join. Now let us make your
+          You have chosen an excellent moment to join. Now let us make your
           journey comfortable...
         </p>
       </article>

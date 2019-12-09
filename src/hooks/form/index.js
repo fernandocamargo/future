@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useFormik } from 'formik';
 
 const getInitialValuesFrom = fields =>
@@ -15,20 +15,25 @@ export default useSettings => {
     values: data,
     handleChange: onChange,
     handleSubmit: onSubmit,
-  } = useFormik({ initialValues, ...settings });
-  const getField = useCallback(
-    field => {
-      const { name } = field;
-      const { [name]: value } = data;
-
-      return { ...field, value, onChange };
-    },
-    [data, onChange]
-  );
+    errors,
+  } = useFormik({
+    initialValues,
+    validateOnChange: false,
+    validateOnBlur: false,
+    validate: (value, values) =>
+      console.log({ value, values }) || { email: 'Invalid email address' },
+    ...settings,
+  });
 
   return {
     props: {
-      fields: fields.map(getField),
+      fields: fields.map(field => {
+        const { name } = field;
+        const { [name]: value } = data;
+        const { [name]: error } = errors;
+
+        return { ...field, value, onChange, error };
+      }),
       onSubmit,
     },
     data,

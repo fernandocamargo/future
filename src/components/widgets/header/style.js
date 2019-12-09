@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import logo from 'assets/svg/logo.svg';
 import Menu from 'components/widgets/menu';
 import MenuList from 'components/widgets/menu/list';
 import MenuItem from 'components/widgets/menu/item';
@@ -27,17 +28,22 @@ export default component => styled(component)`
   }
 
   h2 {
-    left: 1rem;
+    align-items: center;
+    border-right: solid 1px #e5e5e5;
+    display: flex;
+    height: 100%;
+    left: 0;
+    padding: 0 1.35rem;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
 
     a {
-      background-color: #cda;
+      background: url(${logo}) no-repeat;
+      background-size: cover;
       display: block;
       font-size: 0;
-      height: 50px;
-      width: 50px;
+      height: 28px;
+      width: 31px;
     }
 
     span {
@@ -63,7 +69,12 @@ export default component => styled(component)`
         align-items: center;
         justify-content: center;
 
-        ${MenuItem} {
+        & > ${MenuItem} {
+          a {
+            display: block;
+            text-decoration: none;
+          }
+
           &:not(:first-child) {
             margin-left: 2rem;
           }
@@ -82,18 +93,18 @@ export default component => styled(component)`
           }
 
           &:last-child {
+            align-items: center;
+            border-left: solid 1px #e5e5e5;
+            display: flex;
+            height: 100%;
+            padding: 0 1.35rem;
             position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-
-          & > a {
-            display: block;
-            text-decoration: none;
+            right: 0;
+            top: 0;
           }
 
           &:not(:last-child) > a {
+            font-size: 1rem;
             padding: 1.5rem 0.5rem;
             position: relative;
 
@@ -112,7 +123,7 @@ export default component => styled(component)`
             &[aria-current='page'],
             &:hover {
               &:after {
-                height: 5px;
+                height: 4px;
               }
             }
           }

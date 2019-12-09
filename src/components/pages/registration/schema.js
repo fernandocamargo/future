@@ -10,10 +10,6 @@ export default () => ({
       name: 'name',
       label: 'Name',
       value: '',
-      validation: compose(
-        minimumLength(3),
-        maxLength(100)
-      ),
     },
     {
       field: Text,
@@ -21,7 +17,6 @@ export default () => ({
       label: 'E-mail',
       settings: { type: 'email' },
       value: 'camargodelbuono@gmail.com',
-      validation: compose(validEmail()),
     },
     {
       field: Text,
@@ -39,5 +34,5 @@ export default () => ({
     },
     { field: Checkbox, name: 'agreement', label: <Agreement />, value: false },
   ],
-  onSubmit: data => console.log('onSubmit(!);', data),
+  onSubmit: data => console.log('onSubmit();', data),
 });
