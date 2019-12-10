@@ -5,7 +5,7 @@ import Field from './field';
 export default component => styled(component)`
   ${Field} {
     &:not(:last-of-type) {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
   }
 `;

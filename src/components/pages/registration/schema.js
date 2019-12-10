@@ -1,7 +1,11 @@
 import React from 'react';
+
+import * as string from 'validations/string';
 import { Checkbox, Text } from 'components/widgets/fields';
 
 import Agreement from './agreement';
+
+const compose = () => () => {};
 
 export default () => ({
   fields: [
@@ -10,6 +14,11 @@ export default () => ({
       name: 'name',
       label: 'Name',
       value: '',
+      validation: compose(
+        string.required(),
+        string.minLength(3),
+        string.maxLength(20)
+      ),
     },
     {
       field: Text,

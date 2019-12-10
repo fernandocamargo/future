@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { arrayOf, func, node, shape, string } from 'prop-types';
 import React from 'react';
 
 import Field from './field';
@@ -6,7 +6,7 @@ import withStyle from './style';
 
 const renderField = field => <Field key={field.name} {...field} />;
 
-const Form = ({ className, onSubmit, title, fields }) => (
+const Form = ({ className, title, fields, onSubmit }) => (
   <form className={className} autoComplete="off" noValidate onSubmit={onSubmit}>
     <fieldset>
       <legend>{title}</legend>
@@ -18,8 +18,13 @@ const Form = ({ className, onSubmit, title, fields }) => (
 
 Form.propTypes = {
   className: string.isRequired,
+  title: node,
+  fields: arrayOf(shape()),
+  onSubmit: func.isRequired,
 };
 
-Form.defaultProps = {};
+Form.defaultProps = {
+  fields: [],
+};
 
 export default withStyle(Form);

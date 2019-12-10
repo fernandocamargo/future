@@ -7,7 +7,6 @@ export default component => styled(component)`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 2rem 0;
   position: relative;
 
   &:before {
@@ -22,7 +21,8 @@ export default component => styled(component)`
   }
 
   & > * {
-    width: 50%;
+    padding: 0 2rem;
+    width: calc(50% - 4rem);
   }
 
   article {

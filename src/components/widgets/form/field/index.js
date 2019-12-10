@@ -1,13 +1,18 @@
-import React from 'react';
+import { elementType, object } from 'prop-types';
+import { createElement } from 'react';
 
 import withStyle from './style';
 
-const Field = ({ field: Field, settings, ...props }) => (
-  <Field {...settings} {...props} />
-);
+const Field = ({ field, settings, ...props }) =>
+  createElement(field, { ...settings, ...props });
 
-Field.propTypes = {};
+Field.propTypes = {
+  field: elementType.isRequired,
+  settings: object,
+};
 
-Field.defaultProps = {};
+Field.defaultProps = {
+  settings: {},
+};
 
 export default withStyle(Field);
