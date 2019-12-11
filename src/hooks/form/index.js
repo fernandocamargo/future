@@ -1,27 +1,33 @@
 import update from 'immutability-helper';
+import { object } from 'yup';
 import { useMemo } from 'react';
 import { useFormik } from 'formik';
 
-const getInitialValuesFrom = fields =>
+const getFrom = fields =>
   fields.reduce(
-    (stack, { name, value = '' }) => update(stack, { [name]: { $set: value } }),
-    {}
+    (stack, { value = '', name, validation }) =>
+      update(stack, {
+        initialValues: { [name]: { $set: value } },
+        validationSchema: { [name]: { $set: validation } },
+      }),
+    { initialValues: {}, validationSchema: {} }
   );
 
 export default useSettings => {
   const { fields, ...settings } = useSettings();
-  const initialValues = useMemo(() => getInitialValuesFrom(fields), [fields]);
+  const { initialValues, validationSchema } = useMemo(() => getFrom(fields), [
+    fields,
+  ]);
   const {
     values: data,
     handleChange: onChange,
     handleSubmit: onSubmit,
     errors,
   } = useFormik({
-    initialValues,
+    validationSchema: object().shape(validationSchema),
     validateOnChange: false,
     validateOnBlur: false,
-    validate: (value, values) =>
-      console.log({ value, values }) || { email: 'Invalid email address' },
+    initialValues,
     ...settings,
   });
 

@@ -1,11 +1,15 @@
 import React from 'react';
 
-import * as string from 'validations/string';
+import {
+  email,
+  fullName,
+  password,
+  passwordConfirmation,
+  truthy,
+} from 'validations';
 import { Checkbox, Text } from 'components/widgets/fields';
 
 import Agreement from './agreement';
-
-const compose = () => () => {};
 
 export default () => ({
   fields: [
@@ -14,11 +18,7 @@ export default () => ({
       name: 'name',
       label: 'Name',
       value: '',
-      validation: compose(
-        string.required(),
-        string.minLength(3),
-        string.maxLength(20)
-      ),
+      validation: fullName().required(),
     },
     {
       field: Text,
@@ -26,13 +26,15 @@ export default () => ({
       label: 'E-mail',
       settings: { type: 'email' },
       value: 'camargodelbuono@gmail.com',
+      validation: email().required(),
     },
     {
       field: Text,
       name: 'password',
       label: 'Password',
       settings: { type: 'password' },
-      value: 'elf030501',
+      value: '',
+      validation: password().required(),
     },
     {
       field: Text,
@@ -40,8 +42,15 @@ export default () => ({
       label: 'Repeat password',
       settings: { type: 'password' },
       value: '',
+      validation: passwordConfirmation({ name: 'password' }).required(),
     },
-    { field: Checkbox, name: 'agreement', label: <Agreement />, value: false },
+    {
+      field: Checkbox,
+      name: 'agreement',
+      label: <Agreement />,
+      value: false,
+      validation: truthy().required(),
+    },
   ],
   onSubmit: data => console.log('onSubmit();', data),
 });
