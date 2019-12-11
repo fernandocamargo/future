@@ -8,8 +8,8 @@ const Text = ({ className, error, ...props }) => (
   <div className={className}>
     <TextField
       variant="outlined"
-      error={!!error}
       helperText={error}
+      error={!!error}
       {...props}
     />
   </div>

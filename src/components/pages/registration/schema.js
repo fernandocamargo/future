@@ -7,7 +7,7 @@ import {
   passwordConfirmation,
   truthy,
 } from 'validations';
-import { Checkbox, Text } from 'components/widgets/fields';
+import { Checkbox, Password, Text } from 'components/widgets/fields';
 
 import Agreement from './agreement';
 
@@ -29,7 +29,7 @@ export default () => ({
       validation: email().required(),
     },
     {
-      field: Text,
+      field: Password,
       name: 'password',
       label: 'Password',
       settings: { type: 'password' },
@@ -37,7 +37,7 @@ export default () => ({
       validation: password().required(),
     },
     {
-      field: Text,
+      field: Password,
       name: 'password-confirmation',
       label: 'Repeat password',
       settings: { type: 'password' },
