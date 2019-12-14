@@ -1,27 +1,26 @@
 import { string } from 'prop-types';
 import React from 'react';
 
-import { useForm } from 'hooks';
+import { useI18n, useForm } from 'hooks';
 import { Form } from 'components/widgets';
 
+import messages from './messages';
 import schema from './schema';
 import withStyle from './style';
 
 import FormRender from './form';
 
 const Registration = ({ className }) => {
+  const { description, registration, title } = useI18n(messages);
   const { props: form } = useForm(schema);
 
   return (
     <section className={className}>
       <article>
-        <h2>Welcome!</h2>
-        <p>
-          You have chosen an excellent moment to join. Now let us make your
-          journey comfortable...
-        </p>
+        <h1>{title}</h1>
+        <p>{description}</p>
       </article>
-      <Form {...form} title="Registration" render={FormRender} />
+      <Form {...form} title={registration} render={FormRender} />
     </section>
   );
 };
