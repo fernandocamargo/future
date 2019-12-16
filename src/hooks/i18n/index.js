@@ -1,17 +1,18 @@
-import update from 'immutability-helper';
+import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
-const traverse = object => ({
-  map: transform =>
-    Object.entries(object).reduce(
-      (stack, [key, value]) =>
-        update(stack, { [key]: { $set: transform({ id: key, value }) } }),
-      {}
-    ),
-});
+import { traverse } from 'helpers/object';
 
 export default messages => {
   const { formatMessage } = useIntl();
+  const translate = useCallback(
+    // message => console.log({ message }) || formatMessage(message),
+    (...params) => console.log({ params }) || params[0],
+    [formatMessage]
+  );
 
-  return traverse(messages).map(formatMessage);
+  console.log(123, JSON.stringify({ messages }, null, 2));
+  console.log(456, traverse(messages).map(translate));
+
+  return messages;
 };

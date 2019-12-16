@@ -11,7 +11,11 @@ import withStyle from './style';
 import FormRender from './form';
 
 const Registration = ({ className }) => {
-  const { description, registration, title } = useI18n(messages);
+  const {
+    form: { title },
+    description,
+    registration,
+  } = useI18n(messages);
   const { props: form } = useForm(schema);
 
   return (

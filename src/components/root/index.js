@@ -11,7 +11,7 @@ import { default as theme } from 'themes';
 import { App, Style } from 'components';
 import { Loader } from 'components/widgets';
 
-const normalize = string => String(string).replace(/[^a-zA-Z]+/g, '');
+import { normalize } from './helpers';
 
 const Root = () => {
   const {

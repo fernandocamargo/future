@@ -1,20 +1,8 @@
-import { defineMessages } from 'react-intl';
+import { using } from 'i18n';
 
-export default defineMessages({
-  title: {
-    id: 'title',
-    defaultMessage: 'Welcome!',
-    description: '',
-  },
-  description: {
-    id: 'description',
-    defaultMessage:
-      'You have chosen an excellent moment to join. Now let us make your journey comfortable...',
-    description: '',
-  },
-  registration: {
-    id: 'registration',
-    defaultMessage: 'Registration',
-    description: '',
-  },
+export default using(module).defineMessages({
+  form: { title: 'Registration' },
+  title: 'Welcome!',
+  description:
+    'You have chosen an excellent moment to join. Now let us make your journey comfortable...',
 });
