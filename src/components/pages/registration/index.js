@@ -12,9 +12,9 @@ import FormRender from './form';
 
 const Registration = ({ className }) => {
   const {
-    form: { title },
+    form: { title: formTitle },
+    title,
     description,
-    registration,
   } = useI18n(messages);
   const { props: form } = useForm(schema);
 
@@ -24,7 +24,7 @@ const Registration = ({ className }) => {
         <h1>{title}</h1>
         <p>{description}</p>
       </article>
-      <Form {...form} title={registration} render={FormRender} />
+      <Form {...form} title={formTitle} render={FormRender} />
     </section>
   );
 };
