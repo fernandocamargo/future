@@ -6,9 +6,9 @@ import withStyle from './style';
 const Form = ({
   components: { Form },
   elements: { unordered: fields },
-  classNames,
+  className,
 }) => (
-  <Form classNames={classNames}>
+  <Form className={className}>
     <h1>Registration</h1>
     <p>We are expecting a strong password from you!</p>
     {fields}

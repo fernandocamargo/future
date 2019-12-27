@@ -1,9 +1,13 @@
+import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
-
-import { traverse } from 'helpers/collection';
 
 export default messages => {
   const { formatMessage } = useIntl();
+  const format = useCallback(
+    (stack, [key, message]) =>
+      Object.assign(stack, { [key]: formatMessage(message) }),
+    [formatMessage]
+  );
 
-  return traverse(messages).map(definition => formatMessage(definition.get()));
+  return Object.entries(messages).reduce(format, {});
 };

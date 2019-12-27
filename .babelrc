@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    [
+      "react-intl-auto",
+      {
+        "removePrefix": "src",
+        "separator": "/"
+      }
+    ]
+  ]
+}

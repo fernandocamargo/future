@@ -4,19 +4,14 @@ import React from 'react';
 import { useI18n, useForm } from 'hooks';
 import { Form } from 'components/widgets';
 
-import messages from './messages';
 import schema from './schema';
+import messages from './messages';
+import FormRender from './form';
 import withStyle from './style';
 
-import FormRender from './form';
-
 const Registration = ({ className }) => {
-  const {
-    form: { title: formTitle },
-    title,
-    description,
-  } = useI18n(messages);
-  const { props: form } = useForm(schema);
+  const { title, description } = useI18n(messages);
+  const { props } = useForm(schema);
 
   return (
     <section className={className}>
@@ -24,7 +19,7 @@ const Registration = ({ className }) => {
         <h1>{title}</h1>
         <p>{description}</p>
       </article>
-      <Form {...form} title={formTitle} render={FormRender} />
+      <Form render={FormRender} {...props} />
     </section>
   );
 };

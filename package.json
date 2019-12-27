@@ -25,12 +25,12 @@
     "yup": "^0.27.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook:build": "build-storybook -s public",
+    "i18n:extract": "node ./scripts/i18n/extract"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,6 +51,11 @@
     "@storybook/addon-actions": "^5.2.8",
     "@storybook/addon-links": "^5.2.8",
     "@storybook/addons": "^5.2.8",
-    "@storybook/react": "^5.2.8"
+    "@storybook/react": "^5.2.8",
+    "babel-plugin-react-intl-auto": "^3.1.0",
+    "chalk": "^3.0.0",
+    "customize-cra": "^0.9.1",
+    "extract-react-intl-messages": "^2.3.5",
+    "react-app-rewired": "^2.1.5"
   }
 }

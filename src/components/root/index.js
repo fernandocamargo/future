@@ -21,20 +21,20 @@ const Root = () => {
   const { [normalized]: messages } = translations;
 
   return (
-    <StateManager store={store}>
-      <StatePersistence persistor={persistor} loading={<Loader />}>
-        <Router>
-          <I18n locale={locale} messages={messages}>
+    <I18n locale={locale} messages={messages}>
+      <StateManager store={store}>
+        <StatePersistence persistor={persistor} loading={<Loader />}>
+          <Router>
             <Theming theme={theme}>
               <Fragment>
                 <Style />
                 <App />
               </Fragment>
             </Theming>
-          </I18n>
-        </Router>
-      </StatePersistence>
-    </StateManager>
+          </Router>
+        </StatePersistence>
+      </StateManager>
+    </I18n>
   );
 };
 
