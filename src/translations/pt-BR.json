@@ -1,5 +1,20 @@
 {
+  "components/app/account": "/minha-conta",
+  "components/app/dashboard": "/painel",
+  "components/app/login": "/entrar",
+  "components/app/profile": "/meu-perfil",
+  "components/app/referrals": "/indicacoes",
+  "components/app/registration": "/fazer-parte",
+  "components/pages/404/title": "404 - Página não encontrada",
+  "components/pages/account/title": "Minha conta",
+  "components/pages/dashboard/title": "Painel",
+  "components/pages/home/title": "Página inicial",
+  "components/pages/profile/title": "Meu perfil",
+  "components/pages/referrals/title": "Indicações",
   "components/pages/registration/description": "Você escolheu um excelente momento para se juntar-se a nós. Agora vamos fazer sua jornada confortável...",
+  "components/pages/registration/form/action": "Criar conta",
+  "components/pages/registration/form/description": "Estamos esperando que você crie uma senha forte e segura!",
+  "components/pages/registration/form/title": "Fazer parte",
   "components/pages/registration/title": "Bem-vindo(a)!",
   "components/widgets/loader/content": "Aguarde, estamos cuidando de tudo para você..."
 }

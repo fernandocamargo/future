@@ -2,20 +2,20 @@ import { string, elementType, bool } from 'prop-types';
 import React, { createElement, useCallback } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-import { useAuthentication } from 'hooks';
+import { useAuthentication, useI18n } from 'hooks';
+import messages from 'components/app/messages';
 
 const Restricted = ({ component, ...route }) => {
   const { logged } = useAuthentication();
+  const { login } = useI18n(messages);
   const render = useCallback(
     props =>
       logged ? (
         createElement(component, props)
       ) : (
-        <Redirect
-          to={{ state: { from: props.location }, pathname: '/login' }}
-        />
+        <Redirect to={{ state: { from: props.location }, pathname: login }} />
       ),
-    [logged, component]
+    [logged, component, login]
   );
 
   return <Route render={render} {...route} />;

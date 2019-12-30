@@ -1,10 +1,18 @@
 import React from 'react';
 
-const Account = () => (
-  <section>
-    <h1>Account</h1>
-  </section>
-);
+import { useI18n } from 'hooks';
+
+import messages from './messages';
+
+const Account = () => {
+  const { title } = useI18n(messages);
+
+  return (
+    <section>
+      <h1>{title}</h1>
+    </section>
+  );
+};
 
 Account.propTypes = {};
 

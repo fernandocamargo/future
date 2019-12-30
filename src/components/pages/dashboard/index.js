@@ -1,10 +1,18 @@
 import React from 'react';
 
-const Dashboard = () => (
-  <section>
-    <h1>Dashboard</h1>
-  </section>
-);
+import { useI18n } from 'hooks';
+
+import messages from './messages';
+
+const Dashboard = () => {
+  const { title } = useI18n(messages);
+
+  return (
+    <section>
+      <h1>{title}</h1>
+    </section>
+  );
+};
 
 Dashboard.propTypes = {};
 

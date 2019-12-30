@@ -1,25 +1,41 @@
-import { arrayOf, func, node, shape, string } from 'prop-types';
-import React from 'react';
+import { arrayOf, func, shape, string } from 'prop-types';
+import update from 'immutability-helper';
+import React, { createElement, useCallback, useMemo } from 'react';
 
+import Container from './container';
 import Field from './field';
 import withStyle from './style';
 
-const renderField = field => <Field key={field.name} {...field} />;
+const Form = ({ fields, onSubmit, render }) => {
+  const Form = useCallback(
+    props => <Container {...props} onSubmit={onSubmit} />,
+    [onSubmit]
+  );
+  const components = useMemo(() => ({ Form }), [Form]);
+  const elements = useMemo(
+    () => ({
+      fields: fields.reduce(
+        (stack, field) => {
+          const { name } = field;
+          const element = createElement(Field, { key: name, ...field });
 
-const Form = ({ className, title, fields, onSubmit }) => (
-  <form className={className} autoComplete="off" noValidate onSubmit={onSubmit}>
-    <fieldset>
-      <legend>{title}</legend>
-      {fields.map(renderField)}
-    </fieldset>
-    <button type="submit">Submit</button>
-  </form>
-);
+          return update(stack, {
+            ordered: { $push: [element] },
+            unordered: { [name]: { $set: element } },
+          });
+        },
+        { ordered: [], unordered: {} }
+      ),
+    }),
+    [fields]
+  );
+
+  return createElement(render, { components, elements });
+};
 
 Form.propTypes = {
   className: string.isRequired,
-  title: node,
-  fields: arrayOf(shape()),
+  fields: arrayOf(shape({}).isRequired),
   onSubmit: func.isRequired,
 };
 

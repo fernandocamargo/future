@@ -1,47 +1,25 @@
-import update from 'immutability-helper';
 import { object } from 'yup';
 import { useMemo } from 'react';
 import { useFormik } from 'formik';
 
-const getFrom = fields =>
-  fields.reduce(
-    (stack, { value = '', name, validation }) =>
-      update(stack, {
-        initialValues: { [name]: { $set: value } },
-        validationSchema: { [name]: { $set: validation } },
-      }),
-    { initialValues: {}, validationSchema: {} }
-  );
+import { getFormikSettingsFrom, connectTo } from './helpers';
 
-export default useSettings => {
-  const { fields, ...settings } = useSettings();
-  const { initialValues, validationSchema } = useMemo(() => getFrom(fields), [
-    fields,
-  ]);
-  const {
-    values: data,
-    handleChange: onChange,
-    handleSubmit: onSubmit,
-    errors,
-  } = useFormik({
+export default ({ fields, render }) => {
+  const { initialValues, validationSchema } = useMemo(
+    () => getFormikSettingsFrom({ fields }),
+    [fields]
+  );
+  const { handleSubmit, ...formik } = useFormik({
     validationSchema: object().shape(validationSchema),
     validateOnChange: false,
     validateOnBlur: false,
     initialValues,
-    ...settings,
   });
+  const formatField = useMemo(() => connectTo(formik), [formik]);
+  const settings = useMemo(
+    () => ({ fields: fields.map(formatField), onSubmit: handleSubmit }),
+    [fields, formatField, handleSubmit]
+  );
 
-  return {
-    props: {
-      fields: fields.map(field => {
-        const { name } = field;
-        const { [name]: value } = data;
-        const { [name]: error } = errors;
-
-        return { ...field, value, onChange, error };
-      }),
-      onSubmit,
-    },
-    data,
-  };
+  return { render, ...settings };
 };

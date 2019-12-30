@@ -1,5 +1,20 @@
 {
+  "components/app/account": "",
+  "components/app/dashboard": "",
+  "components/app/login": "",
+  "components/app/profile": "",
+  "components/app/referrals": "",
+  "components/app/registration": "",
+  "components/pages/404/title": "",
+  "components/pages/account/title": "",
+  "components/pages/dashboard/title": "",
+  "components/pages/home/title": "",
+  "components/pages/profile/title": "",
+  "components/pages/referrals/title": "",
   "components/pages/registration/description": "",
+  "components/pages/registration/form/action": "",
+  "components/pages/registration/form/description": "",
+  "components/pages/registration/form/title": "",
   "components/pages/registration/title": "",
   "components/widgets/loader/content": ""
 }

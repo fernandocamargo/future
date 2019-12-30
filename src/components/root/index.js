@@ -5,23 +5,17 @@ import { HashRouter as Router } from 'react-router-dom';
 import { ThemeProvider as Theming } from 'styled-components';
 import { IntlProvider as I18n } from 'react-intl';
 
-import store, { persistor } from 'store';
-import * as translations from 'translations';
 import { default as theme } from 'themes';
 import { App, Style } from 'components';
 import { Loader } from 'components/widgets';
 
-import { normalize } from './helpers';
+import { useI18n } from './hooks';
 
 const Root = () => {
-  const {
-    settings: { locale },
-  } = store.getState();
-  const normalized = normalize(locale);
-  const { [normalized]: messages } = translations;
+  const { store, persistor, ...i18n } = useI18n();
 
   return (
-    <I18n locale={locale} messages={messages}>
+    <I18n {...i18n}>
       <StateManager store={store}>
         <StatePersistence persistor={persistor} loading={<Loader />}>
           <Router>

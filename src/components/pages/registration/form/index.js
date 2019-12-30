@@ -1,22 +1,33 @@
 import { string } from 'prop-types';
 import React from 'react';
 
+import { useI18n } from 'hooks';
+
+import messages from './messages';
 import withStyle from './style';
 
 const Form = ({
+  elements: {
+    fields: { ordered: fields },
+  },
   components: { Form },
-  elements: { unordered: fields },
   className,
-}) => (
-  <Form className={className}>
-    <h1>Registration</h1>
-    <p>We are expecting a strong password from you!</p>
-    {fields}
-    <div>
-      <button type="submit">Create account</button>
-    </div>
-  </Form>
-);
+}) => {
+  const { title, description, action } = useI18n(messages);
+
+  return (
+    <Form className={className}>
+      <fieldset>
+        <legend>{title}</legend>
+        <p>{description}</p>
+        <div>{fields}</div>
+        <div>
+          <button type="submit">{action}</button>
+        </div>
+      </fieldset>
+    </Form>
+  );
+};
 
 Form.propTypes = {
   className: string.isRequired,

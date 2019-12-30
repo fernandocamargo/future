@@ -1,5 +1,20 @@
 {
+  "components/app/account": "/account",
+  "components/app/dashboard": "/dashboard",
+  "components/app/login": "/login",
+  "components/app/profile": "/profile",
+  "components/app/referrals": "/referrals",
+  "components/app/registration": "/registration",
+  "components/pages/404/title": "404 - Not found",
+  "components/pages/account/title": "Account",
+  "components/pages/dashboard/title": "Painel",
+  "components/pages/home/title": "Página inicial",
+  "components/pages/profile/title": "Profile",
+  "components/pages/referrals/title": "Indicações",
   "components/pages/registration/description": "You have chosen an excellent moment to join. Now let us make your journey comfortable...",
+  "components/pages/registration/form/action": "Create account",
+  "components/pages/registration/form/description": "We are expecting a strong password from you!",
+  "components/pages/registration/form/title": "Registration",
   "components/pages/registration/title": "Welcome!",
   "components/widgets/loader/content": "Wait, we are making things up for you..."
 }

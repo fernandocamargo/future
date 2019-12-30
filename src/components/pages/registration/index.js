@@ -1,17 +1,17 @@
 import { string } from 'prop-types';
 import React from 'react';
 
-import { useI18n, useForm } from 'hooks';
+import { useI18n } from 'hooks';
 import { Form } from 'components/widgets';
 
-import schema from './schema';
+import { useRegistration } from './hooks';
+import render from './form';
 import messages from './messages';
-import FormRender from './form';
 import withStyle from './style';
 
 const Registration = ({ className }) => {
   const { title, description } = useI18n(messages);
-  const { props } = useForm(schema);
+  const registration = useRegistration({ render });
 
   return (
     <section className={className}>
@@ -19,7 +19,7 @@ const Registration = ({ className }) => {
         <h1>{title}</h1>
         <p>{description}</p>
       </article>
-      <Form render={FormRender} {...props} />
+      <Form {...registration} />
     </section>
   );
 };
