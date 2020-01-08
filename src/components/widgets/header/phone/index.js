@@ -1,14 +1,24 @@
 import { string } from 'prop-types';
 import React from 'react';
 
+import { useI18n } from 'hooks';
+
+import messages from './messages';
 import withStyle from './style';
 
-const Phone = ({ className }) => (
-  <span className={className}>
-    <em>Call us: </em>
-    <strong>+49 30 209 663 144</strong>
-  </span>
-);
+const Phone = ({ className }) => {
+  const {
+    'call-to-action': callToAction,
+    'phone-number': phoneNumber,
+  } = useI18n(messages);
+
+  return (
+    <span className={className}>
+      <em>{callToAction} </em>
+      <strong>{phoneNumber}</strong>
+    </span>
+  );
+};
 
 Phone.propTypes = {
   className: string.isRequired,

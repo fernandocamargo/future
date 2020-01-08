@@ -1,10 +1,4 @@
 {
-  "components/app/account": "/account",
-  "components/app/dashboard": "/dashboard",
-  "components/app/login": "/login",
-  "components/app/profile": "/profile",
-  "components/app/referrals": "/referrals",
-  "components/app/registration": "/registration",
   "components/pages/404/title": "404 - Not found",
   "components/pages/account/title": "Account",
   "components/pages/dashboard/title": "Painel",
@@ -16,5 +10,15 @@
   "components/pages/registration/form/description": "We are expecting a strong password from you!",
   "components/pages/registration/form/title": "Registration",
   "components/pages/registration/title": "Welcome!",
-  "components/widgets/loader/content": "Wait, we are making things up for you..."
+  "components/widgets/header/action": "proudly presents",
+  "components/widgets/header/name": "expertlead",
+  "components/widgets/header/phone/call-to-action": "Call us:",
+  "components/widgets/header/phone/phone-number": "+49 30 209 663 144",
+  "components/widgets/loader/content": "Wait, we are making things up for you...",
+  "hooks/routes/account": "/account",
+  "hooks/routes/dashboard": "/dashboard",
+  "hooks/routes/login": "/login",
+  "hooks/routes/profile": "/profile",
+  "hooks/routes/referrals": "/referrals",
+  "hooks/routes/registration": "/registration"
 }

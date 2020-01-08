@@ -2,12 +2,11 @@ import { string, elementType, bool } from 'prop-types';
 import React, { createElement, useCallback } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-import { useAuthentication, useI18n } from 'hooks';
-import messages from 'components/app/messages';
+import { useAuthentication, useRoutes } from 'hooks';
 
 const Restricted = ({ component, ...route }) => {
   const { logged } = useAuthentication();
-  const { login } = useI18n(messages);
+  const { login } = useRoutes();
   const render = useCallback(
     props =>
       logged ? (

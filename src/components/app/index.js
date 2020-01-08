@@ -2,7 +2,7 @@ import { string } from 'prop-types';
 import React, { Suspense as OnDemand } from 'react';
 import { Switch as Routes } from 'react-router-dom';
 
-import { useI18n } from 'hooks';
+import { useRoutes } from 'hooks';
 import { Restricted, Public } from 'components/routes';
 import {
   Account,
@@ -16,7 +16,6 @@ import {
 } from 'components/pages';
 import { Footer, Header, Loader } from 'components/widgets';
 
-import messages from './messages';
 import withStyle from './style.js';
 
 const App = ({ className }) => {
@@ -27,7 +26,7 @@ const App = ({ className }) => {
     profile,
     referrals,
     registration,
-  } = useI18n(messages);
+  } = useRoutes();
 
   return (
     <div className={className}>

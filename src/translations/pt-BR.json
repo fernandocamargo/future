@@ -1,10 +1,4 @@
 {
-  "components/app/account": "/minha-conta",
-  "components/app/dashboard": "/painel",
-  "components/app/login": "/entrar",
-  "components/app/profile": "/meu-perfil",
-  "components/app/referrals": "/indicacoes",
-  "components/app/registration": "/fazer-parte",
   "components/pages/404/title": "404 - Página não encontrada",
   "components/pages/account/title": "Minha conta",
   "components/pages/dashboard/title": "Painel",
@@ -14,7 +8,17 @@
   "components/pages/registration/description": "Você escolheu um excelente momento para se juntar-se a nós. Agora vamos fazer sua jornada confortável...",
   "components/pages/registration/form/action": "Criar conta",
   "components/pages/registration/form/description": "Estamos esperando que você crie uma senha forte e segura!",
-  "components/pages/registration/form/title": "Fazer parte",
+  "components/pages/registration/form/title": "Cadastro",
   "components/pages/registration/title": "Bem-vindo(a)!",
-  "components/widgets/loader/content": "Aguarde, estamos cuidando de tudo para você..."
+  "components/widgets/header/action": "orgulhosamente apresenta:",
+  "components/widgets/header/name": "expertlead",
+  "components/widgets/header/phone/call-to-action": "Fale conosco:",
+  "components/widgets/header/phone/phone-number": "+49 30 209 663 144",
+  "components/widgets/loader/content": "Aguarde, estamos cuidando de tudo para você...",
+  "hooks/routes/account": "/minha-conta",
+  "hooks/routes/dashboard": "/painel",
+  "hooks/routes/login": "/entrar",
+  "hooks/routes/profile": "/meu-perfil",
+  "hooks/routes/referrals": "/indicacoes",
+  "hooks/routes/registration": "/cadastro"
 }

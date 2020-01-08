@@ -1,10 +1,4 @@
 {
-  "components/app/account": "",
-  "components/app/dashboard": "",
-  "components/app/login": "",
-  "components/app/profile": "",
-  "components/app/referrals": "",
-  "components/app/registration": "",
   "components/pages/404/title": "",
   "components/pages/account/title": "",
   "components/pages/dashboard/title": "",
@@ -16,5 +10,15 @@
   "components/pages/registration/form/description": "",
   "components/pages/registration/form/title": "",
   "components/pages/registration/title": "",
-  "components/widgets/loader/content": ""
+  "components/widgets/header/action": "",
+  "components/widgets/header/name": "",
+  "components/widgets/header/phone/call-to-action": "",
+  "components/widgets/header/phone/phone-number": "",
+  "components/widgets/loader/content": "",
+  "hooks/routes/account": "",
+  "hooks/routes/dashboard": "",
+  "hooks/routes/login": "",
+  "hooks/routes/profile": "",
+  "hooks/routes/referrals": "",
+  "hooks/routes/registration": ""
 }
