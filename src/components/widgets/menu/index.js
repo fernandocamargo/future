@@ -1,28 +1,30 @@
 import { node, string } from 'prop-types';
 import React from 'react';
 
-import { items as menuItemsPropTypes } from 'prop-types/menu';
+import { useI18n } from 'hooks';
 
-import List from './list';
+import messages from './messages';
 import withStyle from './style';
 
-const Menu = ({ className, title, items }) =>
-  !!items.length && (
-    <nav className={className}>
-      <h4>{title}</h4>
-      <List items={items} />
-    </nav>
+const Menu = ({ className, title, children }) => {
+  const { title: defaultTitle } = useI18n(messages);
+
+  return (
+    !!children && (
+      <nav className={className}>
+        <h4>{title || defaultTitle}</h4>
+        <ul itemScope>{children}</ul>
+      </nav>
+    )
   );
+};
 
 Menu.propTypes = {
   className: string.isRequired,
   title: node,
-  items: menuItemsPropTypes,
+  children: node,
 };
 
-Menu.defaultProps = {
-  title: 'Browse through:',
-  items: [],
-};
+Menu.defaultProps = {};
 
 export default withStyle(Menu);

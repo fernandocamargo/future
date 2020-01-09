@@ -4,7 +4,7 @@ import { items } from '..';
 
 export const item = {
   id: string.isRequired,
-  label: node.isRequired,
+  children: node.isRequired,
   url: oneOfType([string, func]),
   target: oneOf(['_blank']),
 };

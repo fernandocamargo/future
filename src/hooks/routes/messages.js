@@ -1,6 +1,8 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
+  'about-us': '/about-us',
+  'why-expertlead': '/why-expertlead',
   registration: '/registration',
   login: '/login',
   dashboard: '/dashboard',

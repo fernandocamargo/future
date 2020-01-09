@@ -1,3 +1,4 @@
+/*
 import { string } from 'prop-types';
 import React from 'react';
 
@@ -37,5 +38,43 @@ Item.propTypes = {
 Item.defaultProps = {
   items: [],
 };
+
+export default withStyle(Item);
+*/
+
+import isString from 'lodash/isString';
+import { node, string } from 'prop-types';
+import React from 'react';
+
+import { useNavigation } from './hooks';
+import withStyle from './style';
+
+const Item = ({ className, children, ...props }) => {
+  const { matched, ...navigation } = useNavigation(props);
+  const { id, url, ...link } = props;
+  const attributes = isString(children) && { title: children };
+  const current = matched && 'page';
+
+  return (
+    <li className={className} itemProp={id}>
+      {!url ? (
+        children
+      ) : (
+        <a aria-current={current} {...attributes} {...link} {...navigation}>
+          {children}
+        </a>
+      )}
+    </li>
+  );
+};
+
+Item.propTypes = {
+  className: string.isRequired,
+  id: string.isRequired,
+  url: string,
+  children: node,
+};
+
+Item.defaultProps = {};
 
 export default withStyle(Item);

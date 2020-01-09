@@ -1,27 +1,27 @@
 import { string } from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useI18n } from 'hooks';
-import { Menu } from 'components/widgets';
+import { useAuthentication, useI18n } from 'hooks';
 
-import { useMenu } from './hooks';
+import { Public, Restricted } from './menu';
 import messages from './messages';
 import withStyle from './style';
 
 const Header = ({ className }) => {
-  const { expanded, items } = useMenu();
+  const { logged } = useAuthentication();
+  const Menu = useMemo(() => (logged ? Restricted : Public), [logged]);
   const { name, action } = useI18n(messages);
 
   return (
-    <header className={className} aria-expanded={expanded}>
+    <header className={className}>
       <h2>
         <Link to="/" title={name}>
           {name}
         </Link>
         <span> {action}</span>
       </h2>
-      <Menu items={items} />
+      <Menu />
     </header>
   );
 };
