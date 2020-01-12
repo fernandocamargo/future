@@ -8,5 +8,8 @@ export default defineMessages({
   dashboard: '/dashboard',
   profile: '/profile',
   referrals: '/referrals',
+  services: '/services',
+  faq: '/faq',
   account: '/account',
+  settings: '/settings',
 });

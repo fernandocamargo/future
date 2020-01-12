@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-import logo from 'assets/svg/logo.svg';
 import Menu from 'components/widgets/menu';
-import MenuList from 'components/widgets/menu/list';
-import MenuItem from 'components/widgets/menu/item';
+import Item from 'components/widgets/menu/item';
+import logo from 'assets/svg/logo.svg';
 
 export default component => styled(component)`
   background-color: #fff;
@@ -60,16 +59,16 @@ export default component => styled(component)`
   & > {
     ${Menu} {
       &,
-      & > ${MenuList} {
+      & > ul {
         width: 100%;
       }
 
-      & > ${MenuList} {
+      & > ul {
         display: flex;
         align-items: center;
         justify-content: center;
 
-        & > ${MenuItem} {
+        & > ${Item} {
           a {
             display: block;
             text-decoration: none;
