@@ -2,7 +2,7 @@ import { string } from 'prop-types';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FormControl, InputLabel, OutlinedInput } from '@material-ui/core';
 
-import { invert } from 'helpers/boolean';
+import { reverse } from 'helpers/boolean';
 
 import Toggler from './toggler';
 import withStyle from './style';
@@ -12,7 +12,7 @@ const Password = ({ className, label, error, ...props }) => {
   const [visible, setVisible] = useState(false);
   const type = useMemo(() => (visible ? 'text' : 'password'), [visible]);
   const toggle = useCallback(() => {
-    setVisible(invert);
+    setVisible(reverse);
     ref.current.focus();
   }, []);
 

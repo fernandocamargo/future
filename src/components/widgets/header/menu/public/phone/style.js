@@ -1,3 +1,4 @@
+import property from 'lodash/property';
 import styled from 'styled-components';
 
 export default component => styled(component)`
@@ -11,11 +12,7 @@ export default component => styled(component)`
     color: #666;
     content: '\\e311';
     display: inline-block;
-    font-family: ${({
-      theme: {
-        typography: { icons },
-      },
-    }) => icons};
+    font-family: ${property('theme.typography.icons')};
     font-size: 200%;
     margin-right: 0;
     transition: font-size 0.1s linear, margin-right 0.1s linear;

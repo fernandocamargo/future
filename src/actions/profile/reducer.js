@@ -2,7 +2,11 @@ import update from 'immutability-helper';
 
 import { FETCH, FETCH_SUCCEED, FETCH_FAIL } from './constants';
 
-export const initialState = { loading: false, details: {}, error: null };
+export const initialState = {
+  loading: false,
+  details: { avatar: `${process.env.PUBLIC_URL}/assets/png/trash/profile.png` },
+  error: null,
+};
 
 export default (state = initialState, { type, details, error }) => {
   switch (type) {

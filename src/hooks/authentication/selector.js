@@ -4,7 +4,10 @@ const selectProfile = ({ profile }) => profile;
 
 const selectDetails = ({ details }) => details;
 
-const selectLogged = details => ({ logged: !!Object.keys(details).length });
+const selectLogged = details => ({
+  logged: !!Object.keys(details).length,
+  ...details,
+});
 
 const selectProfileDetails = createSelector(
   selectProfile,

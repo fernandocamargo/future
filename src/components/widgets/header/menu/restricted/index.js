@@ -1,14 +1,19 @@
-import React from 'react';
+import { string } from 'prop-types';
+import React, { useCallback, useState } from 'react';
 
+import { reverse } from 'helpers/boolean';
 import { useAuthentication, useI18n, useRoutes } from 'hooks';
-import { Menu } from 'components/widgets';
-import Item from 'components/widgets/menu/item';
+import { Link, Menu } from 'components/widgets';
+import Option from 'components/widgets/menu/option';
 
 import messages from './messages';
+import withStyle from './style';
 
-const Restricted = () => {
+const Restricted = ({ className }) => {
   const { logout: leave } = useAuthentication();
   const routes = useRoutes();
+  const [expanded, setExpanded] = useState(false);
+  const toggleExpanded = useCallback(() => setExpanded(reverse), []);
   const {
     dashboard,
     profile,
@@ -22,42 +27,44 @@ const Restricted = () => {
   } = useI18n(messages);
 
   return (
-    <Menu>
-      <Item id="dashboard" url={routes.dashboard}>
-        {dashboard}
-      </Item>
-      <Item id="profile" url={routes.profile}>
-        {profile}
-      </Item>
-      <Item id="referrals" url={routes.referrals}>
-        {referrals}
-      </Item>
-      <Item id="services" url={routes.services}>
-        {services}
-      </Item>
-      <Item id="faq" url={routes.faq}>
-        {faq}
-      </Item>
-      <Item id="you">
-        <span>{you}</span>
+    <Menu className={className} aria-expanded={expanded}>
+      <Option id="dashboard">
+        <Link to={routes.dashboard}>{dashboard}</Link>
+      </Option>
+      <Option id="profile">
+        <Link to={routes.profile}>{profile}</Link>
+      </Option>
+      <Option id="referrals">
+        <Link to={routes.referrals}>{referrals}</Link>
+      </Option>
+      <Option id="services">
+        <Link to={routes.services}>{services}</Link>
+      </Option>
+      <Option id="faq">
+        <Link to={routes.faq}>{faq}</Link>
+      </Option>
+      <Option id="you">
+        <Link to={toggleExpanded}>{you}</Link>
         <Menu>
-          <Item id="account" url={routes.account}>
-            {account}
-          </Item>
-          <Item id="settings" url={routes.settings}>
-            {settings}
-          </Item>
-          <Item id="logout" url={leave}>
-            {logout}
-          </Item>
+          <Option id="account">
+            <Link to={routes.account}>{account}</Link>
+          </Option>
+          <Option id="settings">
+            <Link to={routes.settings}>{settings}</Link>
+          </Option>
+          <Option id="logout">
+            <Link to={leave}>{logout}</Link>
+          </Option>
         </Menu>
-      </Item>
+      </Option>
     </Menu>
   );
 };
 
-Restricted.propTypes = {};
+Restricted.propTypes = {
+  className: string.isRequired,
+};
 
 Restricted.defaultProps = {};
 
-export default Restricted;
+export default withStyle(Restricted);

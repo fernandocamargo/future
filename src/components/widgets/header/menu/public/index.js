@@ -1,13 +1,15 @@
+import { string } from 'prop-types';
 import React from 'react';
 
 import { useI18n, useRoutes } from 'hooks';
-import { Menu } from 'components/widgets';
-import Item from 'components/widgets/menu/item';
+import { Link, Menu } from 'components/widgets';
+import Option from 'components/widgets/menu/option';
 
 import Phone from './phone';
 import messages from './messages';
+import withStyle from './style';
 
-const Public = () => {
+const Public = ({ className }) => {
   const routes = useRoutes();
   const {
     'about-us': aboutUs,
@@ -17,30 +19,32 @@ const Public = () => {
   } = useI18n(messages);
 
   return (
-    <Menu>
-      <Item id="registration" url={routes.registration}>
-        {registration}
-      </Item>
-      <Item id="about-us" url={routes['about-us']}>
-        {aboutUs}
-      </Item>
-      <Item id="why-expertlead" url={routes['why-expertlead']}>
-        {whyExpertlead}
-      </Item>
-      <Item id="contact">
+    <Menu className={className}>
+      <Option id="registration">
+        <Link to={routes.registration}>{registration}</Link>
+      </Option>
+      <Option id="about-us">
+        <Link to={routes['about-us']}>{aboutUs}</Link>
+      </Option>
+      <Option id="why-expertlead">
+        <Link to={routes['why-expertlead']}>{whyExpertlead}</Link>
+      </Option>
+      <Option id="contact">
         <span>{contact}</span>
         <Menu>
-          <Item id="phone" url="tel:+4930209663144" target="_blank">
+          <Option id="phone">
             <Phone />
-          </Item>
+          </Option>
         </Menu>
-      </Item>
+      </Option>
     </Menu>
   );
 };
 
-Public.propTypes = {};
+Public.propTypes = {
+  className: string.isRequired,
+};
 
 Public.defaultProps = {};
 
-export default Public;
+export default withStyle(Public);

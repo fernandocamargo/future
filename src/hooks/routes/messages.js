@@ -12,4 +12,5 @@ export default defineMessages({
   faq: '/faq',
   account: '/account',
   settings: '/settings',
+  phone: 'tel:+4930209663144',
 });

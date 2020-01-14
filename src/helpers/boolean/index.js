@@ -1,1 +1,1 @@
-export { default as invert } from './invert';
+export { default as reverse } from './reverse';

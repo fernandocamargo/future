@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Menu from 'components/widgets/menu';
-import Item from 'components/widgets/menu/item';
+import Option from 'components/widgets/menu/option';
 import logo from 'assets/svg/logo.svg';
 
 export default component => styled(component)`
@@ -26,30 +26,6 @@ export default component => styled(component)`
     z-index: -1;
   }
 
-  h2 {
-    align-items: center;
-    border-right: solid 1px #e5e5e5;
-    display: flex;
-    height: 100%;
-    left: 0;
-    padding: 0 1.35rem;
-    position: absolute;
-    top: 0;
-
-    a {
-      background: url(${logo}) no-repeat;
-      background-size: cover;
-      display: block;
-      font-size: 0;
-      height: 28px;
-      width: 31px;
-    }
-
-    span {
-      display: none;
-    }
-  }
-
   ${Menu} {
     h4 {
       display: none;
@@ -57,6 +33,31 @@ export default component => styled(component)`
   }
 
   & > {
+    h2 {
+      align-items: center;
+      border-right: solid 1px #e5e5e5;
+      display: flex;
+      height: 100%;
+      left: 0;
+      padding: 0 1.35rem;
+      position: absolute;
+      top: 0;
+      z-index: 1;
+
+      a {
+        background: url(${logo}) no-repeat;
+        background-size: cover;
+        display: block;
+        font-size: 0;
+        height: 28px;
+        width: 31px;
+      }
+
+      span {
+        display: none;
+      }
+    }
+
     ${Menu} {
       &,
       & > ul {
@@ -68,38 +69,14 @@ export default component => styled(component)`
         align-items: center;
         justify-content: center;
 
-        & > ${Item} {
-          a {
+        & > ${Option} {
+          & > a {
             display: block;
             text-decoration: none;
           }
 
-          &:not(:first-child) {
+          &:not(:first-child):not(:last-child) {
             margin-left: 2rem;
-          }
-
-          &[itemprop='contact'] {
-            & > span {
-              display: none;
-            }
-          }
-
-          &[itemprop='phone'] {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 500;
-            white-space: nowrap;
-          }
-
-          &:last-child {
-            align-items: center;
-            border-left: solid 1px #e5e5e5;
-            display: flex;
-            height: 100%;
-            padding: 0 1.35rem;
-            position: absolute;
-            right: 0;
-            top: 0;
           }
 
           &:not(:last-child) > a {
