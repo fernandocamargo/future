@@ -2,7 +2,13 @@ import { string } from 'prop-types';
 import React, { useCallback, useState } from 'react';
 
 import { reverse } from 'helpers/boolean';
-import { useAuthentication, useI18n, useRoutes } from 'hooks';
+import {
+  useAuthentication,
+  useI18n,
+  useOutsideClick,
+  useRoutes,
+  useHotkeys,
+} from 'hooks';
 import { Link, Menu } from 'components/widgets';
 import Option from 'components/widgets/menu/option';
 
@@ -13,7 +19,8 @@ const Restricted = ({ className }) => {
   const { logout: leave } = useAuthentication();
   const routes = useRoutes();
   const [expanded, setExpanded] = useState(false);
-  const toggleExpanded = useCallback(() => setExpanded(reverse), []);
+  const toggle = useCallback(() => setExpanded(reverse), []);
+  const collapse = useCallback(() => setExpanded(false), []);
   const {
     dashboard,
     profile,
@@ -25,6 +32,9 @@ const Restricted = ({ className }) => {
     settings,
     logout,
   } = useI18n(messages);
+  const { ref } = useOutsideClick(collapse, [expanded]);
+
+  useHotkeys({ Escape: collapse }, [expanded]);
 
   return (
     <Menu className={className} aria-expanded={expanded}>
@@ -44,7 +54,7 @@ const Restricted = ({ className }) => {
         <Link to={routes.faq}>{faq}</Link>
       </Option>
       <Option id="you">
-        <Link to={toggleExpanded}>{you}</Link>
+        <Link to={toggle}>{you}</Link>
         <Menu>
           <Option id="account">
             <Link to={routes.account}>{account}</Link>

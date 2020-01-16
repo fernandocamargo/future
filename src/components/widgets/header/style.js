@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import Menu from 'components/widgets/menu';
 import Option from 'components/widgets/menu/option';
+import Link from 'components/widgets/link';
 import logo from 'assets/svg/logo.svg';
 
 export default component => styled(component)`
@@ -44,7 +45,7 @@ export default component => styled(component)`
       top: 0;
       z-index: 1;
 
-      a {
+      ${Link} {
         background: url(${logo}) no-repeat;
         background-size: cover;
         display: block;

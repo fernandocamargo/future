@@ -23,7 +23,7 @@ export const useNavigation = (path = '') => {
   }, [external, history, path]);
   const href = useMemo(() => {
     switch (true) {
-      case !path:
+      case !path || isFunction(path):
         return '/';
       case external:
         return path;
