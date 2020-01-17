@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Option from 'components/widgets/menu/option';
 
-export default component => styled(component)`
+/*
   & > ul {
     & > ${Option} {
       &[itemprop='contact'] {
@@ -30,4 +30,6 @@ export default component => styled(component)`
       }
     }
   }
-`;
+*/
+
+export default component => styled(component)``;

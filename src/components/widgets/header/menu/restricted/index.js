@@ -53,7 +53,7 @@ const Restricted = ({ className }) => {
       <Option id="faq">
         <Link to={routes.faq}>{faq}</Link>
       </Option>
-      <Option id="you">
+      <Option id="you" ref={console.log({ ref })}>
         <Link to={toggle}>{you}</Link>
         <Menu>
           <Option id="account">
