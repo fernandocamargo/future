@@ -1,5 +1,6 @@
-import property from 'lodash/property';
 import styled from 'styled-components';
+
+import headset from 'assets/svg/headset.svg';
 
 export default component => styled(component)`
   align-items: center;
@@ -9,13 +10,15 @@ export default component => styled(component)`
   text-decoration: none;
 
   &:before {
-    color: #666;
-    content: '\\e311';
+    background-color: #4a4a4a;
+    content: '';
     display: inline-block;
-    font-family: ${property('theme.typography.icons')};
-    font-size: 200%;
+    fill: red;
+    height: 24px;
     margin-right: 0;
+    mask-image: url(${headset});
     transition: font-size 0.1s linear, margin-right 0.1s linear;
+    width: 24px;
   }
 
   em {

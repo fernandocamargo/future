@@ -1,75 +1,8 @@
 import styled from 'styled-components';
 
 import Menu from 'components/widgets/menu';
-import Option from 'components/widgets/menu/option';
 import Link from 'components/widgets/link';
 import logo from 'assets/svg/logo.svg';
-
-/*
-  &:before {
-    background-color: #e5e5e5;
-    content: '';
-    display: block;
-    height: 1px;
-    left: 0;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    z-index: -1;
-  }
-
-  & > {
-
-    ${Menu} {
-      &,
-      & > ul {
-        width: 100%;
-      }
-
-      & > ul {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        & > ${Option} {
-          & > a {
-            display: block;
-            text-decoration: none;
-          }
-
-          &:not(:first-child):not(:last-child) {
-            margin-left: 2rem;
-          }
-
-          &:not(:last-child) > a {
-            font-size: 1rem;
-            padding: 1.5rem 0.5rem;
-            position: relative;
-
-            &:after {
-              background-color: #3c26de;
-              bottom: 0;
-              content: '';
-              display: block;
-              height: 0;
-              left: 0;
-              position: absolute;
-              transition: height 0.1s linear;
-              width: 100%;
-            }
-
-            &[aria-current='page'],
-            &:hover {
-              &:after {
-                height: 4px;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  */
 
 export default component => styled(component)`
   align-items: center;
@@ -108,10 +41,16 @@ export default component => styled(component)`
 
   & > {
     ${Menu} {
+      width: 100%;
+
       & > ul {
         align-items: center;
         display: flex;
       }
     }
+  }
+
+  & + * {
+    --margin-top: 64px;
   }
 `;

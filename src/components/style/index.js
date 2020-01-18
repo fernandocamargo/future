@@ -1,3 +1,4 @@
+import property from 'lodash/property';
 import { createGlobalStyle } from 'styled-components';
 
 const Style = createGlobalStyle`
@@ -7,11 +8,7 @@ const Style = createGlobalStyle`
   }
 
   body {
-    font-family: ${({
-      theme: {
-        typography: { main },
-      },
-    }) => main};
+    font-family: ${property('theme.typography.main')};
   }
 
   figure {
