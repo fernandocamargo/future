@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Menu from 'components/widgets/menu';
+import Option from 'components/widgets/menu/option';
 import Link from 'components/widgets/link';
 import logo from 'assets/svg/logo.svg';
 
@@ -39,13 +40,54 @@ export default component => styled(component)`
     }
   }
 
-  & > {
-    ${Menu} {
-      width: 100%;
+  & > ${Menu} {
+    width: 100%;
 
-      & > ul {
-        align-items: center;
-        display: flex;
+    & > ul {
+      align-items: center;
+      display: flex;
+
+      & > ${Option} {
+        &:last-child {
+          margin: 0 24px 0 auto;
+        }
+
+        &:not(:last-child) {
+          margin-left: 40px;
+
+          ${Link} {
+            color: #353336;
+            display: block;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 19px;
+            padding: 22.5px 0;
+            position: relative;
+            text-decoration: none;
+
+            &:after {
+              background-color: #3c26de;
+              bottom: 0;
+              height: 0;
+              content: '';
+              display: block;
+              left: 0;
+              position: absolute;
+              transition: height 0.15s linear;
+              width: 100%;
+            }
+
+            &[aria-current],
+            &:hover {
+              color: #3c26de;
+
+              &:after {
+                height: 4px;
+              }
+            }
+          }
+        }
       }
     }
   }

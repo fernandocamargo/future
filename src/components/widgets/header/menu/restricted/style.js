@@ -4,78 +4,95 @@ import styled from 'styled-components';
 import Menu from 'components/widgets/menu';
 import Option from 'components/widgets/menu/option';
 import Link from 'components/widgets/link';
-import arrow from 'assets/svg/arrow-down.svg';
 
 export default component => styled(component)`
+  margin-left: 47.5px;
+
   & > ul {
     & > ${Option} {
-      &:not([itemprop='you']) {
-        z-index: 1;
-      }
-
       &[itemprop='you'] {
-        height: 100%;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: 0;
+        align-items: center;
+        display: flex;
+        position: relative;
 
-        &:before {
-          background-color: #fff;
-          content: '';
-          display: block;
-          height: 100%;
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 100vw;
-          z-index: 1;
-        }
+        & > ${Link} {
+          font-size: 0;
+          position: relative;
 
-        & > {
-          * {
-            position: absolute;
-            right: 0;
+          &:before,
+          &:after {
+            content: '';
+            display: block;
           }
 
-          ${Menu} {
-            background-color: #fff;
-            border-radius: 0 0 4px 4px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            opacity: 0;
-            padding: 0 20px;
-            right: 30px;
-            top: 100%;
-            transform: translateY(-25vh);
-            transition: opacity 0.15s linear, transform 0.15s linear;
+          &:before {
+            background-color: #eee;
+            border-radius: 50%;
+            height: 100%;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: height 0.15s linear, width 0.15s linear;
+            width: 100%;
+          }
+
+          &:after {
+            background: url(${property('avatar')}) no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            height: 48px;
+            position: relative;
+            width: 48px;
+            z-index: 1;
+          }
+
+          &:hover:before {
+            height: calc(100% + 8px);
+            width: calc(100% + 8px);
+          }
+        }
+
+        & > ${Menu} {
+          background: #fff;
+          border-radius: 4px;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          display: none;
+          padding-top: 13.5px;
+          position: absolute;
+          right: 0;
+          top: calc(100% + 12px);
+          width: 200px;
+
+          ${Option} {
+            &[itemprop='logout'] {
+              border-top: solid 1px rgba(0, 0, 0, 0.1);
+              margin-top: 11.5px;
+              padding: 4.5px 0 6.5px 0;
+            }
+
+            &:last-child {
+              ${Link} {
+                border-radius: 0 0 4px 4px;
+              }
+            }
           }
 
           ${Link} {
-            display: flex;
-            font-size: 0;
-            height: 100%;
-            top: 0;
-            z-index: 1;
+            color: #353336;
+            display: block;
+            font-size: 0.875rem;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 16px;
+            padding: 11.5px 0 11.5px 20px;
+            text-decoration: none;
+            transition: background-color 0.075s linear, color 0.075s linear;
 
-            &:before,
-            &:after {
-              content: '';
-              display: block;
-              height: 100%;
-            }
-
-            &:before {
-              background: url(${property('avatar')}) no-repeat;
-              background-size: cover;
-              border-left: 1px solid rgba(0, 0, 0, 0.1);
-              width: 70px;
-            }
-
-            &:after {
-              background: center center url(${arrow}) no-repeat;
-              background-size: 10px 5px;
-              transition: transform 0.15s linear;
-              width: 60px;
+            &[aria-current],
+            &:hover {
+              background-color: #3c26de;
+              color: #fff;
             }
           }
         }
@@ -87,17 +104,8 @@ export default component => styled(component)`
     & > ul {
       & > ${Option} {
         &[itemprop='you'] {
-          & > {
-            ${Menu} {
-              opacity: 1;
-              transform: translateY(0);
-            }
-
-            ${Link} {
-              &:after {
-                transform: rotate(180deg);
-              }
-            }
+          & > ${Menu} {
+            display: block;
           }
         }
       }
