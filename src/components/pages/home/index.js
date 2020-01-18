@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
-import { useI18n } from 'hooks';
-
-import messages from './messages';
+import { useAuthentication, useRoutes } from 'hooks';
+import { Redirect } from 'components/routes';
 
 const Home = () => {
-  const { title } = useI18n(messages);
+  const { logged } = useAuthentication();
+  const { dashboard, registration } = useRoutes();
+  const to = useMemo(() => (logged ? dashboard : registration), [
+    logged,
+    dashboard,
+    registration,
+  ]);
 
-  return (
-    <section>
-      <h1>{title}</h1>
-    </section>
-  );
+  return <Redirect to={to} />;
 };
 
 Home.propTypes = {};
