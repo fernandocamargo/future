@@ -3,19 +3,30 @@ import styled from 'styled-components';
 import Menu from 'components/widgets/menu';
 import Option from 'components/widgets/menu/option';
 import Link from 'components/widgets/link';
+import { pulse } from 'style/animations';
 import logo from 'assets/svg/logo.svg';
 
 export default component => styled(component)`
   align-items: center;
-  background-color: #fff;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 1px rgba(0, 0, 0, 0.12),
-    0px 2px 2px rgba(0, 0, 0, 0.14);
   display: flex;
   left: 0;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1;
+
+  &:before {
+    background-color: #fff;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 1px rgba(0, 0, 0, 0.12),
+      0px 2px 2px rgba(0, 0, 0, 0.14);
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 
   ${Menu} {
     h4 {
@@ -32,7 +43,27 @@ export default component => styled(component)`
       display: block;
       font-size: 0;
       height: 28px;
+      outline: 0;
+      position: relative;
       width: 31px;
+
+      &:after {
+        background: inherit;
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: left 0.25s linear, opacity 0.25s linear, top 0.25s linear,
+          transform 0.25s linear;
+        width: 100%;
+      }
+
+      &:hover,
+      &:focus {
+        &:after {
+          animation: ${pulse()} 1s infinite;
+        }
+      }
     }
 
     span {
@@ -41,6 +72,7 @@ export default component => styled(component)`
   }
 
   & > ${Menu} {
+    position: relative;
     width: 100%;
 
     & > ul {
@@ -62,6 +94,7 @@ export default component => styled(component)`
             font-style: normal;
             font-weight: normal;
             line-height: 19px;
+            outline: 0;
             padding: 22.5px 0;
             position: relative;
             text-decoration: none;
@@ -79,7 +112,8 @@ export default component => styled(component)`
             }
 
             &[aria-current],
-            &:hover {
+            &:hover,
+            &:focus {
               color: #3c26de;
 
               &:after {

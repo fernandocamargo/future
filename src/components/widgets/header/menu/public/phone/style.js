@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { pulse } from 'style/animations';
 import headset from 'assets/svg/headset.svg';
 
 export default component => styled(component)`
@@ -7,18 +8,41 @@ export default component => styled(component)`
   color: #4a4a4a;
   display: flex;
   font-size: 0.875rem;
+  outline: 0;
+  position: relative;
   text-decoration: none;
+  transition: color 0.15s linear;
 
-  &:before {
+  &:before,
+  &:after {
     background-color: #4a4a4a;
     content: '';
-    display: inline-block;
     fill: red;
     height: 24px;
-    margin-right: 0;
     mask-image: url(${headset});
-    transition: font-size 0.1s linear, margin-right 0.1s linear;
+    transition: background-color 0.15s linear;
     width: 24px;
+  }
+
+  &:before {
+    display: inline-block;
+    margin-right: 0;
+    transition: font-size 0.1s linear, margin-right 0.1s linear;
+  }
+
+  &:after {
+    display: block;
+    position: absolute;
+  }
+
+  &:hover,
+  &:focus {
+    color: #3c26de;
+
+    &:before,
+    &:after {
+      background-color: #3c26de;
+    }
   }
 
   em {
@@ -29,6 +53,15 @@ export default component => styled(component)`
     font-size: 0;
     opacity: 0;
     transition: font-size 0.1s linear, opacity 0.1s linear;
+  }
+
+  @media (max-width: 960px) {
+    &:hover,
+    &:focus {
+      &:after {
+        animation: ${pulse()} 1s infinite;
+      }
+    }
   }
 
   @media (min-width: 960px) {

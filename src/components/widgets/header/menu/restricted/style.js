@@ -17,6 +17,7 @@ export default component => styled(component)`
 
         & > ${Link} {
           font-size: 0;
+          outline: 0;
           position: relative;
 
           &:before,
@@ -47,9 +48,12 @@ export default component => styled(component)`
             z-index: 1;
           }
 
-          &:hover:before {
-            height: calc(100% + 8px);
-            width: calc(100% + 8px);
+          &:hover,
+          &:focus {
+            &:before {
+              height: calc(100% + 8px);
+              width: calc(100% + 8px);
+            }
           }
         }
 
@@ -57,24 +61,21 @@ export default component => styled(component)`
           background: #fff;
           border-radius: 4px;
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          display: none;
+          opacity: 0;
           padding-top: 13.5px;
           position: absolute;
           right: 0;
           top: calc(100% + 12px);
+          transform: translateY(-50vh);
+          transition: opacity 0.2s linear, transform 0.2s linear;
           width: 200px;
+          z-index: -1;
 
           ${Option} {
             &[itemprop='logout'] {
               border-top: solid 1px rgba(0, 0, 0, 0.1);
               margin-top: 11.5px;
               padding: 4.5px 0 6.5px 0;
-            }
-
-            &:last-child {
-              ${Link} {
-                border-radius: 0 0 4px 4px;
-              }
             }
           }
 
@@ -90,7 +91,8 @@ export default component => styled(component)`
             transition: background-color 0.075s linear, color 0.075s linear;
 
             &[aria-current],
-            &:hover {
+            &:hover,
+            &:focus {
               background-color: #3c26de;
               color: #fff;
             }
@@ -104,8 +106,16 @@ export default component => styled(component)`
     & > ul {
       & > ${Option} {
         &[itemprop='you'] {
+          & > ${Link} {
+            &:before {
+              height: calc(100% + 8px);
+              width: calc(100% + 8px);
+            }
+          }
+
           & > ${Menu} {
-            display: block;
+            opacity: 1;
+            transform: translateY(0);
           }
         }
       }
