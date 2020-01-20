@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { func } from 'prop-types';
 import React, { useMemo } from 'react';
 
 import { useAuthentication, useI18n } from 'hooks';
@@ -8,13 +8,14 @@ import { Public, Restricted } from './menu';
 import messages from './messages';
 import withStyle from './style';
 
-const Header = ({ className }) => {
+const Header = ({ useStyle }) => {
   const { logged, profile } = useAuthentication();
   const Menu = useMemo(() => (!logged ? Restricted : Public), [logged]);
   const { name, action } = useI18n(messages);
+  const style = useStyle();
 
   return (
-    <header className={className}>
+    <header {...style}>
       <h2>
         <Link to="/" title={name}>
           {name}
@@ -27,7 +28,7 @@ const Header = ({ className }) => {
 };
 
 Header.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
 };
 
 Header.defaultProps = {};

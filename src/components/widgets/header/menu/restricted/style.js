@@ -1,11 +1,11 @@
 import property from 'lodash/property';
-import styled from 'styled-components';
 
+import style from 'style';
 import Menu from 'components/widgets/menu';
 import Option from 'components/widgets/menu/option';
 import Link from 'components/widgets/link';
 
-export default component => styled(component)`
+export default style`
   margin-left: 47.5px;
 
   & > ul {

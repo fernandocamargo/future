@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-
+import style from 'style';
 import splash from 'assets/png/splashes/loading.png';
 
-export default component => styled(component)`
+export default style`
   align-items: center;
   background-color: #fff;
   color: #333;

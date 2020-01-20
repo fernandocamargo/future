@@ -1,21 +1,25 @@
-import { node, string } from 'prop-types';
+import { func, node } from 'prop-types';
 import React from 'react';
 import { Checkbox as Input, FormControlLabel } from '@material-ui/core';
 
 import withStyle from './style';
 
-const Checkbox = ({ className, label, error, ...props }) => (
-  <div className={className}>
-    <FormControlLabel label={label} control={<Input {...props} />} />
-    {!!error && <p>{error}</p>}
-  </div>
-);
+const Checkbox = ({ useStyle, label, error, ...props }) => {
+  const style = useStyle();
 
-Text.propTypes = {
-  className: string.isRequired,
+  return (
+    <div {...style}>
+      <FormControlLabel label={label} control={<Input {...props} />} />
+      {!!error && <p>{error}</p>}
+    </div>
+  );
+};
+
+Checkbox.propTypes = {
+  useStyle: func.isRequired,
   label: node.isRequired,
 };
 
-Text.defaultProps = {};
+Checkbox.defaultProps = {};
 
 export default withStyle(Checkbox);

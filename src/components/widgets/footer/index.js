@@ -1,16 +1,20 @@
-import { string } from 'prop-types';
+import { func } from 'prop-types';
 import React from 'react';
 
 import withStyle from './style';
 
-const Footer = ({ className }) => (
-  <footer className={className}>
-    <p>All rights reserved.</p>
-  </footer>
-);
+const Footer = ({ useStyle }) => {
+  const style = useStyle();
+
+  return (
+    <footer {...style}>
+      <p>All rights reserved.</p>
+    </footer>
+  );
+};
 
 Footer.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
 };
 
 Footer.defaultProps = {};

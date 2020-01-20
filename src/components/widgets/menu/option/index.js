@@ -1,17 +1,20 @@
-import { node, string } from 'prop-types';
-import React, { forwardRef } from 'react';
+import { func, node } from 'prop-types';
+import React from 'react';
 
 import withStyle from './style';
 
-const Option = forwardRef(({ className, id, children }, ref) => (
-  <li className={className} itemProp={id} ref={ref}>
-    {children}
-  </li>
-));
+const Option = ({ useStyle, children, ...props }) => {
+  const style = useStyle();
+
+  return (
+    <li {...style} {...props}>
+      {children}
+    </li>
+  );
+};
 
 Option.propTypes = {
-  className: string.isRequired,
-  id: string.isRequired,
+  useStyle: func.isRequired,
   children: node.isRequired,
 };
 

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import style from 'style';
 
-export default component => styled(component)`
+export default style`
   bottom: 0;
   display: none;
   left: 0;

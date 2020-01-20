@@ -1,12 +1,11 @@
-import styled from 'styled-components';
-
+import style from 'style';
+import { pulse } from 'style/animations';
 import Menu from 'components/widgets/menu';
 import Option from 'components/widgets/menu/option';
 import Link from 'components/widgets/link';
-import { pulse } from 'style/animations';
 import logo from 'assets/svg/logo.svg';
 
-export default component => styled(component)`
+export default style`
   align-items: center;
   display: flex;
   left: 0;

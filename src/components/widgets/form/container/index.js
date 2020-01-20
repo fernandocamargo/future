@@ -1,16 +1,20 @@
-import { func, node, string } from 'prop-types';
+import { func, node } from 'prop-types';
 import React from 'react';
 
 import withStyle from './style';
 
-const Container = ({ className, onSubmit, children }) => (
-  <form className={className} autoComplete="off" noValidate onSubmit={onSubmit}>
-    {children}
-  </form>
-);
+const Container = ({ useStyle, onSubmit, children }) => {
+  const style = useStyle();
+
+  return (
+    <form autoComplete="off" noValidate onSubmit={onSubmit} {...style}>
+      {children}
+    </form>
+  );
+};
 
 Container.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
   onSubmit: func.isRequired,
   children: node.isRequired,
 };

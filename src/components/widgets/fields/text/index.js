@@ -1,22 +1,26 @@
-import { node, oneOf, string } from 'prop-types';
+import { func, node, oneOf } from 'prop-types';
 import React from 'react';
 import { TextField } from '@material-ui/core';
 
 import withStyle from './style';
 
-const Text = ({ className, error, ...props }) => (
-  <div className={className}>
-    <TextField
-      variant="outlined"
-      helperText={error}
-      error={!!error}
-      {...props}
-    />
-  </div>
-);
+const Text = ({ useStyle, error, ...props }) => {
+  const style = useStyle();
+
+  return (
+    <div {...style}>
+      <TextField
+        variant="outlined"
+        helperText={error}
+        error={!!error}
+        {...props}
+      />
+    </div>
+  );
+};
 
 Text.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
   label: node.isRequired,
   type: oneOf(['text', 'email', 'password']),
 };

@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { func } from 'prop-types';
 import React, { useCallback, useState } from 'react';
 
 import { reverse } from 'helpers/boolean';
@@ -15,7 +15,7 @@ import Option from 'components/widgets/menu/option';
 import messages from './messages';
 import withStyle from './style';
 
-const Restricted = ({ className }) => {
+const Restricted = ({ useStyle }) => {
   const { logout: leave } = useAuthentication();
   const routes = useRoutes();
   const [expanded, setExpanded] = useState(false);
@@ -33,11 +33,12 @@ const Restricted = ({ className }) => {
     logout,
   } = useI18n(messages);
   const { ref } = useOutsideClick(collapse, [expanded]);
+  const style = useStyle();
 
   useHotkeys({ Escape: collapse }, [expanded]);
 
   return (
-    <Menu className={className} aria-expanded={expanded}>
+    <Menu {...style} aria-expanded={expanded}>
       <Option id="dashboard">
         <Link to={routes.dashboard}>{dashboard}</Link>
       </Option>
@@ -72,7 +73,7 @@ const Restricted = ({ className }) => {
 };
 
 Restricted.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
 };
 
 Restricted.defaultProps = {};

@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { func } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
@@ -11,12 +11,13 @@ const Form = ({
     fields: { ordered: fields },
   },
   components: { Form },
-  className,
+  useStyle,
 }) => {
   const { title, description, action } = useI18n(messages);
+  const style = useStyle();
 
   return (
-    <Form className={className}>
+    <Form {...style}>
       <fieldset>
         <legend>{title}</legend>
         <p>{description}</p>
@@ -30,7 +31,7 @@ const Form = ({
 };
 
 Form.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
 };
 
 Form.defaultProps = {};

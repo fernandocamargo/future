@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-
+import style from 'style';
 import Option from 'components/widgets/menu/option';
 
-export default component => styled(component)`
+export default style`
   margin-left: 44px;
 
   & > ul {

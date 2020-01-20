@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import style from 'style';
 
-export default component => styled(component)`
+export default style`
   font-size: 0.75rem;
 
   &,

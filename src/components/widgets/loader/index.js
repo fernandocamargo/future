@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { func } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
@@ -6,14 +6,15 @@ import { useI18n } from 'hooks';
 import messages from './messages';
 import withStyle from './style';
 
-const Loader = ({ className }) => {
+const Loader = ({ useStyle }) => {
   const { content } = useI18n(messages);
+  const style = useStyle();
 
-  return <p className={className}>{content}</p>;
+  return <p {...style}>{content}</p>;
 };
 
 Loader.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
 };
 
 Loader.defaultProps = {};

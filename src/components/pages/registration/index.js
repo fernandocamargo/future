@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { func } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
@@ -9,12 +9,13 @@ import render from './form';
 import messages from './messages';
 import withStyle from './style';
 
-const Registration = ({ className }) => {
+const Registration = ({ useStyle }) => {
   const { title, description } = useI18n(messages);
   const registration = useRegistration({ render });
+  const style = useStyle();
 
   return (
-    <section className={className}>
+    <section {...style}>
       <article>
         <h1>{title}</h1>
         <p>{description}</p>
@@ -25,7 +26,7 @@ const Registration = ({ className }) => {
 };
 
 Registration.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
 };
 
 Registration.defaultProps = {};

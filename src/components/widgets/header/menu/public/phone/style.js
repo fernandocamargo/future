@@ -1,9 +1,8 @@
-import styled from 'styled-components';
-
+import style from 'style';
 import { pulse } from 'style/animations';
 import headset from 'assets/svg/headset.svg';
 
-export default component => styled(component)`
+export default style`
   align-items: center;
   color: #4a4a4a;
   display: flex;

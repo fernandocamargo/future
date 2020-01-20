@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { func } from 'prop-types';
 import React from 'react';
 
 import { useI18n, useRoutes } from 'hooks';
@@ -9,7 +9,7 @@ import Phone from './phone';
 import messages from './messages';
 import withStyle from './style';
 
-const Public = ({ className }) => {
+const Public = ({ useStyle }) => {
   const routes = useRoutes();
   const {
     'about-us': aboutUs,
@@ -17,9 +17,10 @@ const Public = ({ className }) => {
     registration,
     contact,
   } = useI18n(messages);
+  const style = useStyle();
 
   return (
-    <Menu className={className}>
+    <Menu {...style}>
       <Option id="registration">
         <Link to={routes.registration}>{registration}</Link>
       </Option>
@@ -42,7 +43,7 @@ const Public = ({ className }) => {
 };
 
 Public.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
 };
 
 Public.defaultProps = {};

@@ -1,7 +1,8 @@
-import styled from 'styled-components';
 import { OutlinedInput } from '@material-ui/core';
 
-export default component => styled(component)`
+import style from 'style';
+
+export default style`
   ${OutlinedInput.type} {
     .MuiFormControl-root {
       width: 100%;

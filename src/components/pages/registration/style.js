@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-
+import style from 'style';
 import splash from 'assets/png/splashes/registration.png';
 
-export default component => styled(component)`
+export default style`
   align-items: center;
   display: flex;
   flex-direction: row;

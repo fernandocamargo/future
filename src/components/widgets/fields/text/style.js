@@ -1,7 +1,8 @@
-import styled from 'styled-components';
 import { TextField } from '@material-ui/core';
 
-export default component => styled(component)`
+import style from 'style';
+
+export default style`
   ${TextField.type} {
     .MuiTextField-root {
       width: 100%;

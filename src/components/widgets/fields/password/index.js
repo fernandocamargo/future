@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { func } from 'prop-types';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FormControl, InputLabel, OutlinedInput } from '@material-ui/core';
 
@@ -7,7 +7,7 @@ import { reverse } from 'helpers/boolean';
 import Toggler from './toggler';
 import withStyle from './style';
 
-const Password = ({ className, label, error, ...props }) => {
+const Password = ({ useStyle, label, error, ...props }) => {
   const ref = useRef();
   const [visible, setVisible] = useState(false);
   const type = useMemo(() => (visible ? 'text' : 'password'), [visible]);
@@ -15,9 +15,10 @@ const Password = ({ className, label, error, ...props }) => {
     setVisible(reverse);
     ref.current.focus();
   }, []);
+  const style = useStyle();
 
   return (
-    <div className={className}>
+    <div {...style}>
       <FormControl variant="outlined" error={!!error}>
         <InputLabel>Password</InputLabel>
         <OutlinedInput
@@ -33,7 +34,7 @@ const Password = ({ className, label, error, ...props }) => {
 };
 
 Password.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
 };
 
 Password.defaultProps = {};

@@ -1,26 +1,31 @@
-import { node, string } from 'prop-types';
-import React, { forwardRef } from 'react';
+import { func, node } from 'prop-types';
+import React, { useMemo } from 'react';
 
 import { useI18n } from 'hooks';
 
 import messages from './messages';
 import withStyle from './style';
 
-const Menu = forwardRef(({ className, title, children, ...props }, ref) => {
+const Menu = ({ title: customTitle, useStyle, children, ...props }) => {
   const { title: defaultTitle } = useI18n(messages);
+  const title = useMemo(() => customTitle || defaultTitle, [
+    customTitle,
+    defaultTitle,
+  ]);
+  const style = useStyle();
 
   return (
     !!children && (
-      <nav className={className} {...props} ref={ref}>
-        <h4>{title || defaultTitle}</h4>
+      <nav {...style} {...props}>
+        <h4>{title}</h4>
         <ul itemScope>{children}</ul>
       </nav>
     )
   );
-});
+};
 
 Menu.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
   title: node,
   children: node,
 };

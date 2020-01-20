@@ -5,7 +5,7 @@ import React, { useCallback } from 'react';
 import { useNavigation } from './hooks';
 import withStyle from './style';
 
-const Link = ({ to, children, ...props }) => {
+const Link = ({ useStyle, to, children, ...props }) => {
   const { href, current, external, navigate } = useNavigation(to);
   const onClick = useCallback(
     event => {
@@ -20,16 +20,17 @@ const Link = ({ to, children, ...props }) => {
     ...(current && { 'aria-current': 'page' }),
     ...props,
   };
+  const style = useStyle();
 
   return (
-    <a {...attributes} href={href} onClick={onClick}>
+    <a {...attributes} href={href} onClick={onClick} {...style}>
       {children}
     </a>
   );
 };
 
 Link.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
   to: oneOfType([func.isRequired, string.isRequired]).isRequired,
   children: node.isRequired,
 };

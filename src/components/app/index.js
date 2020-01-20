@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { func } from 'prop-types';
 import React, { Suspense as OnDemand } from 'react';
 import { Switch as Routes } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ import { Footer, Header, Loader } from 'components/widgets';
 
 import withStyle from './style.js';
 
-const App = ({ className }) => {
+const App = ({ useStyle }) => {
   const {
     account,
     dashboard,
@@ -27,9 +27,10 @@ const App = ({ className }) => {
     referrals,
     registration,
   } = useRoutes();
+  const style = useStyle();
 
   return (
-    <div className={className}>
+    <div {...style}>
       <Header />
       <main>
         <OnDemand fallback={<Loader />}>
@@ -51,7 +52,7 @@ const App = ({ className }) => {
 };
 
 App.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
 };
 
 App.defaultProps = {};

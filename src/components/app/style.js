@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import style from 'style';
 
-export default component => styled(component)`
+export default style`
   margin: 0 auto;
   min-height: calc(100vh - var(--margin-top));
   position: relative;
