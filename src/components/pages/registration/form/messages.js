@@ -2,6 +2,7 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   title: 'Registration',
-  description: 'We are expecting a strong password from you!',
+  description:
+    'Your creativity is needed! Please come up with a strong password',
   action: 'Create account',
 });

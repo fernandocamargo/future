@@ -5,12 +5,11 @@ import { useI18n } from 'hooks';
 import { Form } from 'components/widgets';
 
 import { useRegistration } from './hooks';
-import render from './form';
 import messages from './messages';
 import withStyle from './style';
 
 const Registration = ({ useStyle }) => {
-  const registration = useRegistration({ render });
+  const registration = useRegistration();
   const { title, description } = useI18n(messages);
   const style = useStyle();
 

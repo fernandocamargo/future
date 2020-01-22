@@ -2,6 +2,8 @@ import property from 'lodash/property';
 
 import style from 'style';
 
+const gap = property('theme.grid.gap');
+
 export default style`
   margin: 0 auto;
   position: relative;
@@ -9,9 +11,7 @@ export default style`
   main {
     margin-top: var(--margin-top);
     min-height: calc(100vh - var(--margin-top));
-    padding: 0 ${property('theme.grid.gap')} var(--margin-top) ${property(
-  'theme.grid.gap'
-)};
+    padding: 0 ${gap} var(--margin-top) ${gap};
 
     ${({
       theme: {
@@ -23,7 +23,7 @@ export default style`
   section {
     & > * {
       &:not(:first-child) {
-        margin-left: ${property('theme.grid.gap')};
+        margin-left: ${gap};
       }
     }
   }
