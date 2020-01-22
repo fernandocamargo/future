@@ -12,7 +12,7 @@ export default style`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 10;
 
   &:before {
     background-color: #fff;

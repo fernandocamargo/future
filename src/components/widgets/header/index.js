@@ -10,7 +10,7 @@ import withStyle from './style';
 
 const Header = ({ useStyle }) => {
   const { logged, profile } = useAuthentication();
-  const Menu = useMemo(() => (!logged ? Restricted : Public), [logged]);
+  const Menu = useMemo(() => (logged ? Restricted : Public), [logged]);
   const { name, action } = useI18n(messages);
   const style = useStyle();
 

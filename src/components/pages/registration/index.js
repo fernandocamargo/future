@@ -10,8 +10,8 @@ import messages from './messages';
 import withStyle from './style';
 
 const Registration = ({ useStyle }) => {
-  const { title, description } = useI18n(messages);
   const registration = useRegistration({ render });
+  const { title, description } = useI18n(messages);
   const style = useStyle();
 
   return (

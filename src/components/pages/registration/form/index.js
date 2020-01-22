@@ -2,6 +2,7 @@ import { func } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
+import { Button } from 'components/widgets';
 
 import messages from './messages';
 import withStyle from './style';
@@ -23,7 +24,7 @@ const Form = ({
         <p>{description}</p>
         <div>{fields}</div>
         <div>
-          <button type="submit">{action}</button>
+          <Button type="submit">{action}</Button>
         </div>
       </fieldset>
     </Form>

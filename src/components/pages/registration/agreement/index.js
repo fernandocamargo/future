@@ -1,6 +1,8 @@
 import { func } from 'prop-types';
 import React from 'react';
 
+import { Link } from 'components/widgets';
+
 import withStyle from './style';
 
 const Agreement = ({ useStyle }) => {
@@ -9,13 +11,13 @@ const Agreement = ({ useStyle }) => {
   return (
     <span {...style}>
       <span>You agree to expertlead </span>
-      <a href="/user-agreement" title="User Agreement">
+      <Link to="/user-agreement" title="User Agreement">
         User Agreement
-      </a>
+      </Link>
       <span> and </span>
-      <a href="/privacy-policy" title="Privacy Policy">
+      <Link to="/privacy-policy" title="Privacy Policy">
         Privacy Policy
-      </a>
+      </Link>
     </span>
   );
 };

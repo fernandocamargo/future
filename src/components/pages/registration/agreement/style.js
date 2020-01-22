@@ -1,10 +1,16 @@
 import style from 'style';
 
-export default style`
-  font-size: 0.75rem;
+import { Link } from 'components/widgets';
 
-  &,
-  a {
-    color: inherit;
+export default style`
+  color: #353336;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 24px;
+
+  ${Link} {
+    color: #4130db;
+    display: inline-block;
   }
 `;
