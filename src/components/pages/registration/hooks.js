@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 
 import {
-  email as validEmail,
-  password as strongPassword,
-  passwordConfirmation as strongPasswordConfirmation,
   fullName,
+  email,
+  password,
+  passwordConfirmation,
   truthy,
 } from 'validations';
 import { useForm, useI18n } from 'hooks';
@@ -15,41 +15,36 @@ import Agreement from './agreement';
 import messages from './messages';
 
 export const useRegistration = () => {
-  const {
-    'password-confirmation': passwordConfirmation,
-    name,
-    email,
-    password,
-  } = useI18n(messages);
+  const i18n = useI18n(messages);
   const fields = [
     {
       field: Text,
       name: 'name',
-      label: name,
+      label: i18n.name,
       value: '',
       validation: fullName().required(),
     },
     {
       field: Text,
       name: 'email',
-      label: email,
+      label: i18n.email,
       settings: { type: 'email' },
       value: '',
-      validation: validEmail().required(),
+      validation: email().required(),
     },
     {
       field: Password,
       name: 'password',
-      label: password,
+      label: i18n.password,
       value: '',
-      validation: strongPassword().required(),
+      validation: password().required(),
     },
     {
       field: Password,
       name: 'password-confirmation',
-      label: passwordConfirmation,
+      label: i18n['password-confirmation'],
       value: '',
-      validation: strongPasswordConfirmation({ name: 'password' }).required(),
+      validation: passwordConfirmation({ name: 'password' }).required(),
     },
     {
       field: Checkbox,
@@ -63,6 +58,7 @@ export const useRegistration = () => {
     data => console.log('registration.onSubmit();', data),
     []
   );
+  const onError = useCallback(() => console.log('onError();'), []);
 
-  return useForm({ render: Form, onSubmit, fields });
+  return useForm({ render: Form, fields, onSubmit, onError });
 };

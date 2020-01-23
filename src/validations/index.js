@@ -13,15 +13,11 @@ export const email = () =>
 
 export const password = () =>
   string()
-    .trim()
-    .min(3)
-    .max(50);
+    .min(6)
+    .max(50)
+    .matches(/[a-zA-Z0-9]/);
 
 export const passwordConfirmation = ({ name }) =>
-  string()
-    .trim()
-    .min(3)
-    .max(50)
-    .oneOf([ref(name)]);
+  string().oneOf([ref(name), null]);
 
 export const truthy = () => boolean().oneOf([true]);

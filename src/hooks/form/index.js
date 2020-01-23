@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 
 import { getFormikSettingsFrom, connectTo } from './helpers';
 
-export default ({ fields, render }) => {
+export default ({ fields, render, onSubmit }) => {
   const { initialValues, validationSchema } = useMemo(
     () => getFormikSettingsFrom({ fields }),
     [fields]
@@ -14,6 +14,7 @@ export default ({ fields, render }) => {
     validateOnChange: false,
     validateOnBlur: false,
     initialValues,
+    onSubmit,
   });
   const formatField = useMemo(() => connectTo(formik), [formik]);
   const settings = useMemo(

@@ -1,6 +1,11 @@
 import { func } from 'prop-types';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { FormControl, InputLabel, OutlinedInput } from '@material-ui/core';
+import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  OutlinedInput,
+} from '@material-ui/core';
 
 import { reverse } from 'helpers/boolean';
 
@@ -28,6 +33,7 @@ const Password = ({ useStyle, label, error, ...props }) => {
           labelWidth={100}
           inputRef={ref}
         />
+        {!!error && <FormHelperText>{error}</FormHelperText>}
       </FormControl>
     </div>
   );
