@@ -47,5 +47,8 @@
   "hooks/routes/registration": "/registration",
   "hooks/routes/services": "/services",
   "hooks/routes/settings": "/settings",
-  "hooks/routes/why-expertlead": "/why-expertlead"
+  "hooks/routes/why-expertlead": "/why-expertlead",
+  "hooks/yup/locales/mixed/required": "no one deserves",
+  "hooks/yup/locales/string/max": "This field must have at least ${max} characters.",
+  "hooks/yup/locales/string/min": "This field must have at least ${min} characters."
 }

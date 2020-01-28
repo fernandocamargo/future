@@ -27,11 +27,11 @@ const Password = ({ useStyle, label, error, ...props }) => {
       <FormControl variant="outlined" error={!!error}>
         <InputLabel>Password</InputLabel>
         <OutlinedInput
+          inputRef={ref}
           type={type}
           endAdornment={<Toggler visible={visible} onClick={toggle} />}
           error={!!error}
-          labelWidth={100}
-          inputRef={ref}
+          {...props}
         />
         {!!error && <FormHelperText>{error}</FormHelperText>}
       </FormControl>

@@ -47,5 +47,8 @@
   "hooks/routes/registration": "",
   "hooks/routes/services": "",
   "hooks/routes/settings": "",
-  "hooks/routes/why-expertlead": ""
+  "hooks/routes/why-expertlead": "",
+  "hooks/yup/locales/mixed/required": "",
+  "hooks/yup/locales/string/max": "",
+  "hooks/yup/locales/string/min": ""
 }

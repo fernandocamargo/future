@@ -47,5 +47,8 @@
   "hooks/routes/registration": "/cadastro",
   "hooks/routes/services": "/servicos",
   "hooks/routes/settings": "/configuracoes",
-  "hooks/routes/why-expertlead": "/porque-expertlead"
+  "hooks/routes/why-expertlead": "/porque-expertlead",
+  "hooks/yup/locales/mixed/required": "Esse campo é obrigatório.",
+  "hooks/yup/locales/string/max": "Esse campo precisa ter no máximo {max} caracteres.",
+  "hooks/yup/locales/string/min": "Esse campo precisa ter um mínimo de {min} caracteres."
 }
