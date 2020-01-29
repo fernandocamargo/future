@@ -25,25 +25,21 @@ export const useRegistration = () => {
         label: i18n.email,
         settings: { type: 'email' },
         value: '',
-        // validation: validation.email.required(),
+        validation: validation.email.required(),
       },
       {
         field: Password,
         name: 'password',
         label: i18n.password,
         value: '',
-        // validation: validation.password.required(),
+        validation: validation.password.required(),
       },
       {
         field: Password,
         name: 'password-confirmation',
         label: i18n['password-confirmation'],
         value: '',
-        /*
-        validation: validation
-          .passwordConfirmation({ name: 'password' })
-          .required(),
-        */
+        validation: validation.password.equal('password').required(),
       },
       {
         field: Checkbox,

@@ -5,5 +5,7 @@ export default () => {
 
   return string()
     .trim()
+    .min(3)
+    .max(255)
     .email();
 };

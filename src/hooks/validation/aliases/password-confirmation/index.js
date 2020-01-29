@@ -1,7 +1,11 @@
+// import { useI18n, useYup } from 'hooks';
 import { useYup } from 'hooks';
 
-export default ({ name }) => () => {
-  const { ref, string } = useYup();
+// import messages from './messages';
 
-  return string().oneOf([ref(name), null]);
+export default () => {
+  const { string } = useYup();
+  // const { valid } = useI18n(messages);
+
+  return string().trim();
 };

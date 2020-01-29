@@ -1,5 +1,5 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  required: 'This field is required.',
+  valid: 'This field must be a valid name.',
 });
