@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 
-import { useForm, useI18n, useValidation } from 'hooks';
+import { useForm, useI18n, useNotification, useValidation } from 'hooks';
 import { Checkbox, Password, Text } from 'components/widgets/fields';
 
 import Form from './form';
@@ -8,6 +8,7 @@ import Agreement from './agreement';
 import messages from './messages';
 
 export const useRegistration = () => {
+  const { show } = useNotification({ content: 'LOL' });
   const validation = useValidation();
   const i18n = useI18n(messages);
   const fields = useMemo(
@@ -54,8 +55,8 @@ export const useRegistration = () => {
     [i18n, validation]
   );
   const onSubmit = useCallback(
-    data => console.log('registration.onSubmit();', data),
-    []
+    data => show('registration.onSubmit();', JSON.stringify(data, null, 2)),
+    [show]
   );
   const onError = useCallback(errors => console.log('onError();', errors), []);
 

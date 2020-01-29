@@ -7,6 +7,7 @@ import { IntlProvider as I18n } from 'react-intl';
 
 import { default as theme } from 'themes';
 import { App, Style } from 'components';
+import { Notifications } from 'components/providers';
 import { Loader } from 'components/widgets';
 
 import { useI18n } from './hooks';
@@ -22,7 +23,9 @@ const Root = () => {
             <Theming theme={theme}>
               <Fragment>
                 <Style />
-                <App />
+                <Notifications>
+                  <App />
+                </Notifications>
               </Fragment>
             </Theming>
           </Router>
