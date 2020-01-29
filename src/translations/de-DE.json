@@ -49,11 +49,10 @@
   "hooks/routes/settings": "",
   "hooks/routes/why-expertlead": "",
   "hooks/validation/aliases/full-name/valid": "",
-  "hooks/validation/aliases/password-confirmation/valid": "",
   "hooks/validation/aliases/password/valid": "",
   "hooks/yup/locales/mixed/required": "",
   "hooks/yup/locales/string/email": "",
   "hooks/yup/locales/string/max": "",
   "hooks/yup/locales/string/min": "",
-  "hooks/yup/methods/equal/error": ""
+  "hooks/yup/methods/equal/message": ""
 }

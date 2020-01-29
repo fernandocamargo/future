@@ -1,25 +1,27 @@
 import isEqual from 'lodash/isEqual';
+import { useCallback } from 'react';
 
 import { useI18n } from 'hooks';
 
 import messages from './messages';
 
 export default yup => {
-  const { error } = useI18n(messages);
-
-  return [
-    yup.mixed,
-    function(name) {
+  const { message } = useI18n(messages);
+  const method = useCallback(
+    function({ field, ...params }) {
       const test = function(value) {
-        return isEqual(value, this.resolve(yup.ref(name)));
+        return !value || isEqual(value, this.resolve(yup.ref(field)));
       };
 
       return this.test({
-        params: { name },
-        message: error,
+        params: { field, ...params },
         name: 'equal',
         test,
+        message,
       });
     },
-  ];
+    [yup, message]
+  );
+
+  return [yup.mixed, method];
 };

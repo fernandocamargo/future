@@ -39,7 +39,9 @@ export const useRegistration = () => {
         name: 'password-confirmation',
         label: i18n['password-confirmation'],
         value: '',
-        validation: validation.password.equal('password').required(),
+        validation: validation.password
+          .equal({ field: 'password', label: i18n.password })
+          .required(),
       },
       {
         field: Checkbox,

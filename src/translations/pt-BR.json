@@ -49,11 +49,10 @@
   "hooks/routes/settings": "/configuracoes",
   "hooks/routes/why-expertlead": "/porque-expertlead",
   "hooks/validation/aliases/full-name/valid": "Esse campo precisa ser um nome válido.",
-  "hooks/validation/aliases/password-confirmation/valid": "",
   "hooks/validation/aliases/password/valid": "Esse campo precisa ser uma senha forte, ter entre 6 e 50 caracteres e conter uma letra maiúscula, uma minúscula, um número e um caracter especial (!@#$%^&*).",
   "hooks/yup/locales/mixed/required": "Esse campo é obrigatório.",
   "hooks/yup/locales/string/email": "Esse campo precisa ser um endereço de e-mail válido.",
   "hooks/yup/locales/string/max": "Esse campo precisa ter no máximo $'{max}' caracteres.",
   "hooks/yup/locales/string/min": "Esse campo precisa ter um mínimo de $'{min}' caracteres.",
-  "hooks/yup/methods/equal/error": "404nup ($'{name}')"
+  "hooks/yup/methods/equal/message": "Esse campo precisa ter exatamente o mesmo valor de \"$'{label}'\"."
 }

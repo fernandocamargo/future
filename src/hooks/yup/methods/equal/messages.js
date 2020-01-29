@@ -1,5 +1,5 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  error: "404nup ($'{name}')",
+  message: 'This field must have exactly the same value as "$\'{label}\'".',
 });
