@@ -48,7 +48,7 @@ export const useRegistration = () => {
         name: 'agreement',
         label: <Agreement />,
         value: false,
-        // validation: validation.truthy.required(),
+        validation: validation.agreement.required(),
       },
     ],
     [i18n, validation]

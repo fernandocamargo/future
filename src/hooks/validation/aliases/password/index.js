@@ -6,11 +6,11 @@ const VALID_PASSWORD = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$
 
 export default () => {
   const { string } = useYup();
-  const { valid } = useI18n(messages);
+  const { message } = useI18n(messages);
 
   return string()
     .trim()
     .min(6)
     .max(50)
-    .matches(VALID_PASSWORD, valid);
+    .matches(VALID_PASSWORD, message);
 };
