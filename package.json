@@ -23,6 +23,7 @@
     "rxjs": "^6.5.4",
     "styled-components": "^5.0.0",
     "url-parse": "^1.4.7",
+    "uuid": "^3.4.0",
     "yup": "^0.28.0"
   },
   "scripts": {

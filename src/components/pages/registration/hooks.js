@@ -8,9 +8,9 @@ import Agreement from './agreement';
 import messages from './messages';
 
 export const useRegistration = () => {
-  const { show } = useNotification({ content: 'LOL' });
   const validation = useValidation();
   const i18n = useI18n(messages);
+  const { show } = useNotification({ content: 'LOL' });
   const fields = useMemo(
     () => [
       {
@@ -54,11 +54,7 @@ export const useRegistration = () => {
     ],
     [i18n, validation]
   );
-  const onSubmit = useCallback(
-    data => show('registration.onSubmit();', JSON.stringify(data, null, 2)),
-    [show]
-  );
-  const onError = useCallback(errors => console.log('onError();', errors), []);
+  const onSubmit = useCallback(data => show(JSON.stringify(data)), [show]);
 
-  return useForm({ render: Form, fields, onSubmit, onError });
+  return useForm({ render: Form, fields, onSubmit });
 };
