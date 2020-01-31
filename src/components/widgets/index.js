@@ -5,4 +5,3 @@ export { default as Header } from './header';
 export { default as Link } from './link';
 export { default as Loader } from './loader';
 export { default as Menu } from './menu';
-export { default as Notification } from './notification';
