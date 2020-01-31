@@ -1,3 +1,4 @@
+import random from 'lodash/random';
 import React, { useMemo, useCallback } from 'react';
 
 import { useForm, useI18n, useNotification, useValidation } from 'hooks';
@@ -10,14 +11,14 @@ import messages from './messages';
 export const useRegistration = () => {
   const validation = useValidation();
   const i18n = useI18n(messages);
-  const { show } = useNotification({ content: 'LOL' });
+  const { notify, succeed, fail } = useNotification();
   const fields = useMemo(
     () => [
       {
         field: Text,
         name: 'name',
         label: i18n.name,
-        value: '',
+        value: 'Fernando Camargo',
         validation: validation.fullName.required(),
       },
       {
@@ -25,21 +26,21 @@ export const useRegistration = () => {
         name: 'email',
         label: i18n.email,
         settings: { type: 'email' },
-        value: '',
+        value: 'camargodelbuono@gmail.com',
         validation: validation.email.required(),
       },
       {
         field: Password,
         name: 'password',
         label: i18n.password,
-        value: '',
+        value: 'Elf030501!',
         validation: validation.password.required(),
       },
       {
         field: Password,
         name: 'password-confirmation',
         label: i18n['password-confirmation'],
-        value: '',
+        value: 'Elf030501!',
         validation: validation.password
           .equal({ field: 'password', label: i18n.password })
           .required(),
@@ -48,13 +49,24 @@ export const useRegistration = () => {
         field: Checkbox,
         name: 'agreement',
         label: <Agreement />,
-        value: false,
+        value: true,
         validation: validation.agreement.required(),
       },
     ],
     [i18n, validation]
   );
-  const onSubmit = useCallback(data => show(JSON.stringify(data)), [show]);
+  const onSubmit = useCallback(
+    data => {
+      notify(JSON.stringify(data, null, 2));
+
+      return new Promise((resolve, reject) =>
+        window.setTimeout(() => (!!random() ? resolve() : reject()), 1000)
+      )
+        .then(() => succeed('All good mate!'))
+        .catch(() => fail('U suck! :('));
+    },
+    [notify, succeed, fail]
+  );
 
   return useForm({ render: Form, fields, onSubmit });
 };

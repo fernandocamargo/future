@@ -1,11 +1,46 @@
+import update from 'immutability-helper';
 import { v4 as useUUID } from 'uuid';
-import { useCallback } from 'react';
+import { useEffect, useState } from 'react';
 
-// import { Notifications as Context } from 'contexts';
+class Instances {
+  constructor() {
+    this.state = {
+      items: {},
+    };
+  }
 
-export default props => {
+  register = uuid => {
+    const { state } = this;
+
+    this.state = update(state, { items: { [uuid]: { $set: [] } } });
+
+    console.log('register();', { uuid });
+  };
+
+  deregister = uuid => {
+    const { state } = this;
+
+    this.state = update(state, { items: { $unset: [uuid] } });
+
+    console.log('deregister();', { uuid });
+  };
+}
+
+const instances = new Instances();
+
+export default () => {
   const uuid = useUUID();
-  const show = useCallback(content => console.log({ uuid, content }), [uuid]);
+  const [, refresh] = useState();
 
-  return { show };
+  useEffect(() => {
+    instances.register(uuid);
+    refresh();
+
+    return () => {
+      instances.deregister(uuid);
+      refresh();
+    };
+  }, [uuid]);
+
+  return {};
 };
