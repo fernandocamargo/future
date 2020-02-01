@@ -13,12 +13,12 @@ import Toggler from './toggler';
 import withStyle from './style';
 
 const Password = ({ useStyle, label, error, ...props }) => {
-  const ref = useRef();
+  const inputRef = useRef();
   const [visible, setVisible] = useState(false);
   const type = useMemo(() => (visible ? 'text' : 'password'), [visible]);
   const toggle = useCallback(() => {
     setVisible(reverse);
-    ref.current.focus();
+    inputRef.current.focus();
   }, []);
   const style = useStyle();
 
@@ -27,7 +27,7 @@ const Password = ({ useStyle, label, error, ...props }) => {
       <FormControl variant="outlined" error={!!error}>
         <InputLabel>Password</InputLabel>
         <OutlinedInput
-          inputRef={ref}
+          inputRef={inputRef}
           type={type}
           endAdornment={<Toggler visible={visible} onClick={toggle} />}
           error={!!error}
