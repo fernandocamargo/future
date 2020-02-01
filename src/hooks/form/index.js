@@ -1,12 +1,13 @@
 import { object } from 'yup';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useFormik } from 'formik';
 
-import { getFormikSettingsFrom, connectTo } from './helpers';
+import { getFormikSettingsFrom, getRefsFrom, connectTo } from './helpers';
 
 export default ({ fields, render, onSubmit }) => {
+  const { current: refs } = useRef(getRefsFrom(fields));
   const { initialValues, validationSchema } = useMemo(
-    () => getFormikSettingsFrom({ fields }),
+    () => getFormikSettingsFrom(fields),
     [fields]
   );
   const { handleSubmit, dirty, ...formik } = useFormik({
@@ -16,7 +17,10 @@ export default ({ fields, render, onSubmit }) => {
     initialValues,
     onSubmit,
   });
-  const formatField = useMemo(() => connectTo(formik), [formik]);
+  const formatField = useMemo(() => connectTo({ ...formik, refs }), [
+    formik,
+    refs,
+  ]);
   const settings = useMemo(
     () => ({
       fields: fields.map(formatField),
@@ -25,6 +29,15 @@ export default ({ fields, render, onSubmit }) => {
     }),
     [fields, formatField, handleSubmit, dirty]
   );
+
+  useEffect(() => {
+    const {
+      email: { current: first },
+    } = refs;
+
+    first.focus();
+    first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [refs]);
 
   return { render, ...settings };
 };

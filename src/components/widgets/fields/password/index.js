@@ -12,7 +12,7 @@ import { reverse } from 'helpers/boolean';
 import Toggler from './toggler';
 import withStyle from './style';
 
-const Password = ({ useStyle, label, error, ...props }) => {
+const Password = ({ fieldRef, useStyle, label, error, ...props }) => {
   const inputRef = useRef();
   const [visible, setVisible] = useState(false);
   const type = useMemo(() => (visible ? 'text' : 'password'), [visible]);

@@ -5,7 +5,14 @@ import { FormControl, FormHelperText } from '@material-ui/core';
 
 import withStyle from './style';
 
-const Checkbox = ({ useStyle, label, value, error, ...props }) => {
+const Checkbox = ({
+  fieldRef: inputRef,
+  useStyle,
+  label,
+  value,
+  error,
+  ...props
+}) => {
   const style = useStyle();
 
   return (
@@ -13,7 +20,14 @@ const Checkbox = ({ useStyle, label, value, error, ...props }) => {
       <FormControl error={!!error}>
         <FormControlLabel
           label={label}
-          control={<Input {...props} checked={value} value={true} />}
+          control={
+            <Input
+              {...props}
+              checked={value}
+              value={true}
+              inputRef={inputRef}
+            />
+          }
         />
         {!!error && <FormHelperText>{error}</FormHelperText>}
       </FormControl>

@@ -4,7 +4,7 @@ import { TextField } from '@material-ui/core';
 
 import withStyle from './style';
 
-const Text = ({ useStyle, error, ...props }) => {
+const Text = ({ fieldRef: inputRef, useStyle, error, ...props }) => {
   const style = useStyle();
 
   return (
@@ -13,6 +13,7 @@ const Text = ({ useStyle, error, ...props }) => {
         variant="outlined"
         helperText={error}
         error={!!error}
+        inputRef={inputRef}
         {...props}
       />
     </div>
