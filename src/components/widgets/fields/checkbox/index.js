@@ -1,16 +1,22 @@
 import { func, node } from 'prop-types';
 import React from 'react';
 import { Checkbox as Input, FormControlLabel } from '@material-ui/core';
+import { FormControl, FormHelperText } from '@material-ui/core';
 
 import withStyle from './style';
 
-const Checkbox = ({ useStyle, label, error, ...props }) => {
+const Checkbox = ({ useStyle, label, value, error, ...props }) => {
   const style = useStyle();
 
   return (
     <div {...style}>
-      <FormControlLabel label={label} control={<Input {...props} />} />
-      {!!error && <p>{error}</p>}
+      <FormControl error={!!error}>
+        <FormControlLabel
+          label={label}
+          control={<Input {...props} checked={value} value={true} />}
+        />
+        {!!error && <FormHelperText>{error}</FormHelperText>}
+      </FormControl>
     </div>
   );
 };
