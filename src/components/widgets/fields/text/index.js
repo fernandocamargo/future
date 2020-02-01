@@ -22,7 +22,7 @@ const Text = ({ useStyle, error, ...props }) => {
 Text.propTypes = {
   useStyle: func.isRequired,
   label: node.isRequired,
-  type: oneOf(['text', 'email', 'password']),
+  type: oneOf(['text', 'email']),
 };
 
 Text.defaultProps = {
