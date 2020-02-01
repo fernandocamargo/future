@@ -17,6 +17,7 @@
   "components/pages/registration/password": "Senha",
   "components/pages/registration/password-confirmation": "Confirmação da senha",
   "components/pages/registration/title": "Bem-vindo(a)!",
+  "components/widgets/form/confirmation": "Você tem certeza que quer sair? Você tem alterações que não foram salvas.",
   "components/widgets/header/action": "orgulhosamente apresenta:",
   "components/widgets/header/menu/public/about-us": "Sobre nós",
   "components/widgets/header/menu/public/contact": "Contato",

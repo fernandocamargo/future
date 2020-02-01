@@ -17,6 +17,7 @@
   "components/pages/registration/password": "",
   "components/pages/registration/password-confirmation": "",
   "components/pages/registration/title": "",
+  "components/widgets/form/confirmation": "",
   "components/widgets/header/action": "",
   "components/widgets/header/menu/public/about-us": "",
   "components/widgets/header/menu/public/contact": "",

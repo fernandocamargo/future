@@ -9,7 +9,7 @@ export default ({ fields, render, onSubmit }) => {
     () => getFormikSettingsFrom({ fields }),
     [fields]
   );
-  const { handleSubmit, ...formik } = useFormik({
+  const { handleSubmit, dirty, ...formik } = useFormik({
     validationSchema: object().shape(validationSchema),
     validateOnChange: false,
     validateOnBlur: false,
@@ -18,8 +18,12 @@ export default ({ fields, render, onSubmit }) => {
   });
   const formatField = useMemo(() => connectTo(formik), [formik]);
   const settings = useMemo(
-    () => ({ fields: fields.map(formatField), onSubmit: handleSubmit }),
-    [fields, formatField, handleSubmit]
+    () => ({
+      fields: fields.map(formatField),
+      onSubmit: handleSubmit,
+      original: !dirty,
+    }),
+    [fields, formatField, handleSubmit, dirty]
   );
 
   return { render, ...settings };

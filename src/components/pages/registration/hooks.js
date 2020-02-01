@@ -18,7 +18,7 @@ export const useRegistration = () => {
         field: Text,
         name: 'name',
         label: i18n.name,
-        value: 'Fernando Camargo',
+        value: '',
         validation: validation.fullName.required(),
       },
       {
@@ -26,21 +26,21 @@ export const useRegistration = () => {
         name: 'email',
         label: i18n.email,
         settings: { type: 'email' },
-        value: 'camargodelbuono@gmail.com',
+        value: '',
         validation: validation.email.required(),
       },
       {
         field: Password,
         name: 'password',
         label: i18n.password,
-        value: 'Elf030501!',
+        value: '',
         validation: validation.password.required(),
       },
       {
         field: Password,
         name: 'password-confirmation',
         label: i18n['password-confirmation'],
-        value: 'Elf030501!',
+        value: '',
         validation: validation.password
           .equal({ field: 'password', label: i18n.password })
           .required(),
@@ -49,7 +49,7 @@ export const useRegistration = () => {
         field: Checkbox,
         name: 'agreement',
         label: <Agreement />,
-        value: true,
+        value: false,
         validation: validation.agreement.required(),
       },
     ],

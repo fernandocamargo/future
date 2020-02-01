@@ -12,6 +12,7 @@ const Form = ({
     fields: { ordered: fields },
   },
   components: { Form },
+  original,
   useStyle,
 }) => {
   const { title, description, action } = useI18n(messages);
@@ -24,7 +25,9 @@ const Form = ({
         <p>{description}</p>
         <div>{fields}</div>
         <div>
-          <Button type="submit">{action}</Button>
+          <Button type="submit" disabled={original}>
+            {action}
+          </Button>
         </div>
       </fieldset>
     </Form>

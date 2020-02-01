@@ -1,12 +1,16 @@
-import { arrayOf, func, shape, string } from 'prop-types';
+import { arrayOf, func, shape } from 'prop-types';
 import update from 'immutability-helper';
-import React, { createElement, useCallback, useMemo } from 'react';
+import React, { createElement, Fragment, useCallback, useMemo } from 'react';
+
+import { useI18n } from 'hooks';
+import { Prompt } from 'components/routes';
 
 import Container from './container';
 import Field from './field';
+import messages from './messages';
 import withStyle from './style';
 
-const Form = ({ fields, onSubmit, render }) => {
+const Form = ({ useStyle, fields, onSubmit, original, render }) => {
   const Form = useCallback(
     props => <Container {...props} onSubmit={onSubmit} />,
     [onSubmit]
@@ -29,12 +33,25 @@ const Form = ({ fields, onSubmit, render }) => {
     }),
     [fields]
   );
+  const { confirmation } = useI18n(messages);
+  const style = useStyle();
+  const element = createElement(render, {
+    components,
+    elements,
+    original,
+    ...style,
+  });
 
-  return createElement(render, { components, elements });
+  return (
+    <Fragment>
+      <Prompt message={confirmation} when={!original} />
+      {element}
+    </Fragment>
+  );
 };
 
 Form.propTypes = {
-  className: string.isRequired,
+  useStyle: func.isRequired,
   fields: arrayOf(shape({}).isRequired),
   onSubmit: func.isRequired,
 };
