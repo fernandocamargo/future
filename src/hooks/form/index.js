@@ -32,7 +32,7 @@ export default ({ fields, render, onSubmit }) => {
 
   useEffect(() => {
     const {
-      agreement: { current: first },
+      name: { current: first },
     } = refs;
 
     first.focus();

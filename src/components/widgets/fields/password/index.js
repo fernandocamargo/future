@@ -24,7 +24,7 @@ const Password = ({ fieldRef: inputRef, useStyle, label, error, ...props }) => {
   return (
     <div {...style}>
       <FormControl variant="outlined" error={!!error}>
-        <InputLabel>Password</InputLabel>
+        <InputLabel>{label}</InputLabel>
         <OutlinedInput
           inputRef={inputRef}
           type={type}
