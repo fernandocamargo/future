@@ -1,5 +1,5 @@
 import { func } from 'prop-types';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   FormControl,
   FormHelperText,
@@ -12,14 +12,13 @@ import { reverse } from 'helpers/boolean';
 import Toggler from './toggler';
 import withStyle from './style';
 
-const Password = ({ fieldRef, useStyle, label, error, ...props }) => {
-  const inputRef = useRef();
+const Password = ({ fieldRef: inputRef, useStyle, label, error, ...props }) => {
   const [visible, setVisible] = useState(false);
   const type = useMemo(() => (visible ? 'text' : 'password'), [visible]);
   const toggle = useCallback(() => {
     setVisible(reverse);
     inputRef.current.focus();
-  }, []);
+  }, [inputRef]);
   const style = useStyle();
 
   return (
