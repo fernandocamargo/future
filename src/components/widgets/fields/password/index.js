@@ -9,6 +9,7 @@ import {
 
 import { reverse } from 'helpers/boolean';
 
+import { measure } from './helpers';
 import Toggler from './toggler';
 import withStyle from './style';
 
@@ -19,6 +20,7 @@ const Password = ({ fieldRef: inputRef, useStyle, label, error, ...props }) => {
     setVisible(reverse);
     inputRef.current.focus();
   }, [inputRef]);
+  const labelWidth = useMemo(() => measure(label), [label]);
   const style = useStyle();
 
   return (
@@ -30,6 +32,7 @@ const Password = ({ fieldRef: inputRef, useStyle, label, error, ...props }) => {
           type={type}
           endAdornment={<Toggler visible={visible} onClick={toggle} />}
           error={!!error}
+          labelWidth={labelWidth}
           {...props}
         />
         {!!error && <FormHelperText>{error}</FormHelperText>}
