@@ -2,14 +2,14 @@ import { object } from 'yup';
 import { useEffect, useMemo, useRef } from 'react';
 import { useFormik } from 'formik';
 
-import { getFormikSettingsFrom, getRefsFrom, connectTo } from './helpers';
+import { getFormikSettingsFrom, connectTo } from './helpers';
 
 export default ({ fields, render, onSubmit }) => {
-  const { current: refs } = useRef(getRefsFrom(fields));
-  const { initialValues, validationSchema } = useMemo(
+  const { initialValues, validationSchema, ref } = useMemo(
     () => getFormikSettingsFrom(fields),
     [fields]
   );
+  const { current: refs } = useRef(ref);
   const { handleSubmit, dirty, ...formik } = useFormik({
     validationSchema: object().shape(validationSchema),
     validateOnChange: false,

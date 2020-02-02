@@ -11,7 +11,7 @@ import messages from './messages';
 export const useRegistration = () => {
   const validation = useValidation();
   const i18n = useI18n(messages);
-  const { notify, succeed, fail } = useNotification();
+  const { succeed, fail } = useNotification();
   const fields = useMemo(
     () => [
       {
@@ -56,16 +56,13 @@ export const useRegistration = () => {
     [i18n, validation]
   );
   const onSubmit = useCallback(
-    data => {
-      notify(JSON.stringify(data, null, 2));
-
-      return new Promise((resolve, reject) =>
-        window.setTimeout(() => (!!random() ? resolve() : reject()), 1000)
+    data =>
+      new Promise((resolve, reject) =>
+        window.setTimeout(() => (!!random() ? resolve() : reject()), 500)
       )
         .then(() => succeed('All good mate!'))
-        .catch(() => fail('U suck! :('));
-    },
-    [notify, succeed, fail]
+        .catch(() => fail('U suck! :(')),
+    [succeed, fail]
   );
 
   return useForm({ render: Form, fields, onSubmit });

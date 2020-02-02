@@ -1,20 +1,15 @@
 import update from 'immutability-helper';
 import { createRef } from 'react';
 
-export const getRefsFrom = fields =>
-  fields.reduce(
-    (stack, { name }) => update(stack, { [name]: { $set: createRef() } }),
-    {}
-  );
-
 export const getFormikSettingsFrom = fields =>
   fields.reduce(
     (stack, { value = '', name, validation }) =>
       update(stack, {
         initialValues: { [name]: { $set: value } },
         validationSchema: { [name]: { $set: validation } },
+        ref: { [name]: { $set: createRef() } },
       }),
-    { initialValues: {}, validationSchema: {} }
+    { initialValues: {}, validationSchema: {}, ref: {} }
   );
 
 export const connectTo = ({
