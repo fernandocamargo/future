@@ -1,4 +1,12 @@
-import { func } from 'prop-types';
+import {
+  func,
+  instanceOf,
+  node,
+  number,
+  oneOfType,
+  shape,
+  string,
+} from 'prop-types';
 import React, { useCallback, useMemo, useState } from 'react';
 import {
   FormControl,
@@ -13,7 +21,15 @@ import { measure } from './helpers';
 import Toggler from './toggler';
 import withStyle from './style';
 
-const Password = ({ fieldRef: inputRef, useStyle, label, error, ...props }) => {
+const Password = ({
+  fieldRef: inputRef,
+  useStyle,
+  name,
+  label,
+  value,
+  onChange,
+  error,
+}) => {
   const [visible, setVisible] = useState(false);
   const type = useMemo(() => (visible ? 'text' : 'password'), [visible]);
   const toggle = useCallback(() => {
@@ -28,12 +44,14 @@ const Password = ({ fieldRef: inputRef, useStyle, label, error, ...props }) => {
       <FormControl variant="outlined" error={!!error}>
         <InputLabel>{label}</InputLabel>
         <OutlinedInput
-          inputRef={inputRef}
           type={type}
-          endAdornment={<Toggler visible={visible} onClick={toggle} />}
+          name={name}
+          value={value}
+          onChange={onChange}
           error={!!error}
           labelWidth={labelWidth}
-          {...props}
+          endAdornment={<Toggler visible={visible} onClick={toggle} />}
+          inputRef={inputRef}
         />
         {!!error && <FormHelperText>{error}</FormHelperText>}
       </FormControl>
@@ -43,8 +61,16 @@ const Password = ({ fieldRef: inputRef, useStyle, label, error, ...props }) => {
 
 Password.propTypes = {
   useStyle: func.isRequired,
+  name: string.isRequired,
+  label: node.isRequired,
+  value: oneOfType([string, number]),
+  onChange: func.isRequired,
+  error: node,
+  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
 };
 
-Password.defaultProps = {};
+Password.defaultProps = {
+  type: '',
+};
 
 export default withStyle(Password);

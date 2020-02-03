@@ -1,4 +1,12 @@
-import { func, node } from 'prop-types';
+import {
+  bool,
+  func,
+  instanceOf,
+  node,
+  oneOfType,
+  shape,
+  string,
+} from 'prop-types';
 import React from 'react';
 import { Checkbox as Input, FormControlLabel } from '@material-ui/core';
 import { FormControl, FormHelperText } from '@material-ui/core';
@@ -8,10 +16,11 @@ import withStyle from './style';
 const Checkbox = ({
   fieldRef: inputRef,
   useStyle,
+  name,
   label,
   value,
+  onChange,
   error,
-  ...props
 }) => {
   const style = useStyle();
 
@@ -22,9 +31,10 @@ const Checkbox = ({
           label={label}
           control={
             <Input
-              {...props}
-              checked={value}
+              name={name}
               value={true}
+              onChange={onChange}
+              checked={value}
               inputRef={inputRef}
             />
           }
@@ -37,9 +47,16 @@ const Checkbox = ({
 
 Checkbox.propTypes = {
   useStyle: func.isRequired,
+  name: string.isRequired,
   label: node.isRequired,
+  value: bool,
+  onChange: func.isRequired,
+  error: node,
+  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
 };
 
-Checkbox.defaultProps = {};
+Checkbox.defaultProps = {
+  value: false,
+};
 
 export default withStyle(Checkbox);
