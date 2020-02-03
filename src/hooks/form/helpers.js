@@ -3,13 +3,17 @@ import { createRef } from 'react';
 
 export const getFormikSettingsFrom = fields =>
   fields.reduce(
-    (stack, { value = '', name, validation }) =>
-      update(stack, {
+    (stack, { value = '', name, validation }) => {
+      const ref = createRef();
+
+      return update(stack, {
         initialValues: { [name]: { $set: value } },
         validationSchema: { [name]: { $set: validation } },
-        ref: { [name]: { $set: createRef() } },
-      }),
-    { initialValues: {}, validationSchema: {}, ref: {} }
+        DOM: { [name]: { $set: ref } },
+        names: { $push: [name] },
+      });
+    },
+    { DOM: {}, initialValues: {}, validationSchema: {}, names: [] }
   );
 
 export const connectTo = ({
