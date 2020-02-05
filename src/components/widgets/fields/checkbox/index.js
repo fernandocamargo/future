@@ -8,8 +8,12 @@ import {
   string,
 } from 'prop-types';
 import React from 'react';
-import { Checkbox as Input, FormControlLabel } from '@material-ui/core';
-import { FormControl, FormHelperText } from '@material-ui/core';
+import {
+  Checkbox as Input,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+} from '@material-ui/core';
 
 import withStyle from './style';
 
