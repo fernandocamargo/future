@@ -3,12 +3,7 @@ import { object } from 'yup';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useFormik } from 'formik';
 
-import { getFormikSettingsFrom, connectTo } from './helpers';
-
-const focus = element => {
-  element.focus();
-  element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-};
+import { getFormikSettingsFrom, connectTo, focus } from './helpers';
 
 export default ({ fields, render, onSubmit }) => {
   const { initialValues, validationSchema, DOM, names } = useMemo(

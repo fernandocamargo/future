@@ -29,3 +29,8 @@ export const connectTo = ({
 
   return { ...field, value, onChange, error, fieldRef };
 };
+
+export const focus = element => {
+  element.focus();
+  element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+};
