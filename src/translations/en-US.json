@@ -1,7 +1,7 @@
 {
   "components/pages/404/title": "404 - Not found",
   "components/pages/account/title": "Account",
-  "components/pages/dashboard/title": "Painel",
+  "components/pages/dashboard/title": "Dashboard",
   "components/pages/profile/title": "Profile",
   "components/pages/referrals/title": "Indicações",
   "components/pages/registration/agreement/agreement": "User Agreement",
