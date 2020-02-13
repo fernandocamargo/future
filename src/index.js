@@ -3,6 +3,6 @@ import { render } from 'react-dom';
 
 import { Root } from 'components';
 
-export default document.fonts.ready.then(() =>
-  render(<Root />, document.getElementById('root'))
-);
+const initialize = () => render(<Root />, document.getElementById('root'));
+
+export default document.fonts.ready.then(initialize).catch(console.warn);
