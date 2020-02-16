@@ -1,4 +1,5 @@
 import {
+  bool,
   func,
   instanceOf,
   node,
@@ -28,6 +29,7 @@ const Password = ({
   label,
   value,
   onChange,
+  disabled,
   error,
 }) => {
   const [visible, setVisible] = useState(false);
@@ -52,6 +54,7 @@ const Password = ({
           labelWidth={labelWidth}
           endAdornment={<Toggler visible={visible} onClick={toggle} />}
           inputRef={inputRef}
+          disabled={disabled}
         />
         {!!error && <FormHelperText>{error}</FormHelperText>}
       </FormControl>
@@ -67,10 +70,12 @@ Password.propTypes = {
   onChange: func.isRequired,
   error: node,
   fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
+  disabled: bool,
 };
 
 Password.defaultProps = {
   type: '',
+  disabled: false,
 };
 
 export default withStyle(Password);

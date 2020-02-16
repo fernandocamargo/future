@@ -1,27 +1,26 @@
 import { func } from 'prop-types';
 import React from 'react';
 
-import { useI18n } from 'hooks';
-import { Form } from 'components/widgets';
+import { Loader } from 'components/widgets';
 
-import { useRegistration } from './hooks';
-import messages from './messages';
+import { useCondition } from './hooks';
+import Valid from './valid';
+import Invalid from './invalid';
 import withStyle from './style';
 
 const Registration = ({ useStyle }) => {
-  const registration = useRegistration();
-  const { title, description } = useI18n(messages);
+  const { condition, profile } = useCondition();
   const style = useStyle();
 
-  return (
-    <section {...style}>
-      <article>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </article>
-      <Form {...registration} />
-    </section>
-  );
+  switch (condition) {
+    case 'valid':
+      return <Valid profile={profile} {...style} />;
+    case 'invalid':
+      return <Invalid {...style} />;
+    case 'loading':
+    default:
+      return <Loader />;
+  }
 };
 
 Registration.propTypes = {

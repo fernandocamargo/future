@@ -1,4 +1,5 @@
 import {
+  bool,
   func,
   instanceOf,
   node,
@@ -21,6 +22,7 @@ const Text = ({
   label,
   value,
   onChange,
+  disabled,
   error,
 }) => {
   const style = useStyle();
@@ -37,6 +39,7 @@ const Text = ({
         onChange={onChange}
         error={!!error}
         inputRef={inputRef}
+        disabled={disabled}
       />
     </div>
   );
@@ -51,11 +54,13 @@ Text.propTypes = {
   onChange: func.isRequired,
   error: node,
   fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
+  disabled: bool,
 };
 
 Text.defaultProps = {
   type: 'text',
   value: '',
+  disabled: false,
 };
 
 export default withStyle(Text);

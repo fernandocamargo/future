@@ -24,6 +24,7 @@ const Checkbox = ({
   label,
   value,
   onChange,
+  disabled,
   error,
 }) => {
   const style = useStyle();
@@ -40,6 +41,7 @@ const Checkbox = ({
               onChange={onChange}
               checked={value}
               inputRef={inputRef}
+              disabled={disabled}
             />
           }
         />
@@ -57,10 +59,12 @@ Checkbox.propTypes = {
   onChange: func.isRequired,
   error: node,
   fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
+  disabled: bool,
 };
 
 Checkbox.defaultProps = {
   value: false,
+  disabled: false,
 };
 
 export default withStyle(Checkbox);

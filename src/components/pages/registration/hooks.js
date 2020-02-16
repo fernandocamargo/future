@@ -1,69 +1,48 @@
-import random from 'lodash/random';
-import React, { useMemo, useCallback } from 'react';
+import { Machine, assign } from 'xstate';
+import { useMachine } from '@xstate/react';
+import { useEffect, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { useForm, useI18n, useNotification, useValidation } from 'hooks';
-import { Checkbox, Password, Text } from 'components/widgets/fields';
-
-import Form from './form';
-import Agreement from './agreement';
-import messages from './messages';
-
-export const useRegistration = () => {
-  const validation = useValidation();
-  const i18n = useI18n(messages);
-  const { succeed, fail } = useNotification();
-  const fields = useMemo(
-    () => [
-      {
-        field: Text,
-        name: 'name',
-        label: i18n.name,
-        value: '',
-        validation: validation.fullName.required(),
-      },
-      {
-        field: Text,
-        name: 'email',
-        label: i18n.email,
-        settings: { type: 'email' },
-        value: '',
-        validation: validation.email.required(),
-      },
-      {
-        field: Password,
-        name: 'password',
-        label: i18n.password,
-        value: '',
-        validation: validation.password.required(),
-      },
-      {
-        field: Password,
-        name: 'password-confirmation',
-        label: i18n['password-confirmation'],
-        value: '',
-        validation: validation.password
-          .equal({ field: 'password', label: i18n.password })
-          .required(),
-      },
-      {
-        field: Checkbox,
-        name: 'agreement',
-        label: <Agreement />,
-        value: false,
-        validation: validation.agreement.required(),
-      },
-    ],
-    [i18n, validation]
+export const useCondition = () => {
+  const { token } = useParams();
+  const machine = useMemo(
+    () =>
+      Machine({
+        id: 'registration',
+        initial: 'idle',
+        context: { profile: null, error: true },
+        states: {
+          idle: { on: { FETCH: 'loading' } },
+          loading: {
+            invoke: {
+              src: () =>
+                Promise.resolve({
+                  name: 'Fernando Camargo',
+                  email: 'camargodelbuono@gmail.com',
+                  token,
+                }),
+              onDone: {
+                target: 'valid',
+                actions: assign({ profile: (_, { data: profile }) => profile }),
+              },
+              onError: {
+                target: 'invalid',
+                actions: assign({ error: (_, { data: error }) => error }),
+              },
+            },
+            on: { CANCEL: 'idle' },
+          },
+          valid: { on: { FETCH: 'loading' } },
+          invalid: { on: { FETCH: 'loading' } },
+        },
+      }),
+    [token]
   );
-  const onSubmit = useCallback(
-    data =>
-      new Promise((resolve, reject) =>
-        window.setTimeout(() => (!!random() ? resolve() : reject()), 500)
-      )
-        .then(() => succeed('All good mate!'))
-        .catch(() => fail('U suck! :(')),
-    [succeed, fail]
-  );
+  const [{ value: condition, context }, send] = useMachine(machine);
 
-  return useForm({ render: Form, fields, onSubmit });
+  useEffect(() => {
+    send('FETCH');
+  }, [send]);
+
+  return { condition, ...context };
 };
