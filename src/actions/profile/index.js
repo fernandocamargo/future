@@ -1,7 +1,3 @@
-import { FETCH, FETCH_SUCCEED, FETCH_FAIL } from './constants';
+import { SET_DETAILS } from './constants';
 
-export const fetch = ({ practitionerId }) => ({ type: FETCH, practitionerId });
-
-export const fetchSucceed = ({ items }) => ({ type: FETCH_SUCCEED, items });
-
-export const fetchFail = ({ error }) => ({ type: FETCH_FAIL, error });
+export const fetchSucceed = ({ details }) => ({ type: SET_DETAILS, details });

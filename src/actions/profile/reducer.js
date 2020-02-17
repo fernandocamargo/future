@@ -1,31 +1,15 @@
 import update from 'immutability-helper';
 
-import { FETCH, FETCH_SUCCEED, FETCH_FAIL } from './constants';
+import { SET_DETAILS } from './constants';
 
 export const initialState = {
-  loading: false,
   details: { avatar: `${process.env.PUBLIC_URL}/assets/png/trash/profile.png` },
-  error: null,
 };
 
-export default (state = initialState, { type, details, error }) => {
+export default (state = initialState, { type, details }) => {
   switch (type) {
-    case FETCH:
-      return update(state, {
-        loading: { $set: true },
-        details: { $set: {} },
-        error: { $set: null },
-      });
-    case FETCH_SUCCEED:
-      return update(state, {
-        loading: { $set: false },
-        details: { $set: details },
-      });
-    case FETCH_FAIL:
-      return update(state, {
-        loading: { $set: false },
-        error: { $set: error },
-      });
+    case SET_DETAILS:
+      return update(state, { details: { $set: details } });
     default:
       return state;
   }
