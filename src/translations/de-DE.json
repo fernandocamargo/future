@@ -49,6 +49,7 @@
   "hooks/routes/services": "",
   "hooks/routes/settings": "",
   "hooks/routes/why-expertlead": "",
+  "hooks/services/expertlead/invitation/5": "",
   "hooks/validation/aliases/agreement/message": "",
   "hooks/validation/aliases/full-name/message": "",
   "hooks/validation/aliases/password/message": "",
