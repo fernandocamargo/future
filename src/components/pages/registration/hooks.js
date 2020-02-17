@@ -13,7 +13,7 @@ export const useCondition = () => {
       new Machine({
         id: 'registration',
         initial: 'idle',
-        context: { profile: null, error: true },
+        context: { profile: null, error: null },
         states: {
           idle: { on: { FETCH: 'loading' } },
           loading: {
