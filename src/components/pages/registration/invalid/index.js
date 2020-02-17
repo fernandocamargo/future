@@ -1,4 +1,4 @@
-import { func } from 'prop-types';
+import { func, node } from 'prop-types';
 import React from 'react';
 
 import withStyle from './style';
@@ -8,13 +8,16 @@ const Invalid = ({ useStyle, error }) => {
 
   return (
     <section {...style}>
-      <p>{error}</p>
+      <article>
+        <h1>{error}</h1>
+      </article>
     </section>
   );
 };
 
 Invalid.propTypes = {
   useStyle: func.isRequired,
+  error: node.isRequired,
 };
 
 Invalid.defaultProps = {};

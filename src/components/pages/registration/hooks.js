@@ -5,6 +5,10 @@ import { useParams } from 'react-router-dom';
 
 import { useInvitation } from 'hooks/services/expertlead';
 
+const setProfile = assign({ profile: (_, { data: profile }) => profile });
+
+const setError = assign({ error: (_, { data: error }) => error });
+
 export const useCondition = () => {
   const { token } = useParams();
   const invite = useInvitation(token);
@@ -19,14 +23,8 @@ export const useCondition = () => {
           loading: {
             invoke: {
               src: () => invite(),
-              onDone: {
-                target: 'valid',
-                actions: assign({ profile: (_, { data: profile }) => profile }),
-              },
-              onError: {
-                target: 'invalid',
-                actions: assign({ error: (_, { data: error }) => error }),
-              },
+              onDone: { target: 'valid', actions: [setProfile] },
+              onError: { target: 'invalid', actions: [setError] },
             },
             on: { CANCEL: 'idle' },
           },
