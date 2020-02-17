@@ -1,6 +1,5 @@
 import intersection from 'lodash/intersection';
-import { object } from 'yup';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useLayoutEffect, useMemo, useRef } from 'react';
 import { useFormik } from 'formik';
 
 import { getFormikSettingsFrom, connectTo, focus } from './helpers';
@@ -12,11 +11,11 @@ export default ({ fields, render, onSubmit }) => {
   );
   const { current: order } = useRef(names);
   const { current: refs } = useRef(DOM);
-  const { dirty, validateForm, submitForm, ...formik } = useFormik({
-    validationSchema: object().shape(validationSchema),
+  const { dirty, setStatus, validateForm, submitForm, ...formik } = useFormik({
     validateOnChange: false,
     validateOnBlur: false,
     initialValues,
+    validationSchema,
     onSubmit,
   });
   const formatField = useMemo(() => connectTo({ ...formik, refs }), [
@@ -42,15 +41,21 @@ export default ({ fields, render, onSubmit }) => {
     },
     [order, refs]
   );
+  const validate = useCallback(
+    () =>
+      validateForm()
+        .then(analyze)
+        .catch(debug),
+    [validateForm, analyze, debug]
+  );
   const submit = useCallback(
     event => {
       event.preventDefault();
+      setStatus({ debugging: true });
 
-      return validateForm()
-        .then(analyze)
-        .catch(debug);
+      return validate();
     },
-    [validateForm, analyze, debug]
+    [setStatus, validate]
   );
   const settings = useMemo(
     () => ({
@@ -61,14 +66,9 @@ export default ({ fields, render, onSubmit }) => {
     [fields, formatField, submit, dirty]
   );
 
-  useEffect(() => {
-    const [first] = order;
-    const {
-      [first]: { current: field },
-    } = refs;
-
-    return focus(field);
-  }, [order, refs]);
+  useLayoutEffect(() => {
+    validate();
+  }, [validate]);
 
   return { render, ...settings };
 };

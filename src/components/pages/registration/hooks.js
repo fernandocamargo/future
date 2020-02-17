@@ -7,7 +7,7 @@ export const useCondition = () => {
   const { token } = useParams();
   const machine = useMemo(
     () =>
-      Machine({
+      new Machine({
         id: 'registration',
         initial: 'idle',
         context: { profile: null, error: true },
