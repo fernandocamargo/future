@@ -3,8 +3,11 @@ import { useMachine } from '@xstate/react';
 import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { useInvitation } from 'hooks/services/expertlead';
+
 export const useCondition = () => {
   const { token } = useParams();
+  const invite = useInvitation(token);
   const machine = useMemo(
     () =>
       new Machine({
@@ -15,12 +18,7 @@ export const useCondition = () => {
           idle: { on: { FETCH: 'loading' } },
           loading: {
             invoke: {
-              src: () =>
-                Promise.resolve({
-                  name: 'Fernando Camargo',
-                  email: 'camargodelbuono@gmail.com',
-                  token,
-                }),
+              src: () => invite(),
               onDone: {
                 target: 'valid',
                 actions: assign({ profile: (_, { data: profile }) => profile }),
@@ -36,7 +34,7 @@ export const useCondition = () => {
           invalid: { on: { FETCH: 'loading' } },
         },
       }),
-    [token]
+    [invite]
   );
   const [{ value: condition, context }, send] = useMachine(machine);
 

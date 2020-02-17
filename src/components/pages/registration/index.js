@@ -2,10 +2,10 @@ import { func } from 'prop-types';
 import React from 'react';
 
 import { Loader } from 'components/widgets';
+import { Redirect } from 'components/routes';
 
 import { useCondition } from './hooks';
 import Valid from './valid';
-import Invalid from './invalid';
 import withStyle from './style';
 
 const Registration = ({ useStyle }) => {
@@ -16,7 +16,7 @@ const Registration = ({ useStyle }) => {
     case 'valid':
       return <Valid profile={profile} {...style} />;
     case 'invalid':
-      return <Invalid {...style} />;
+      return <Redirect to="/404" />;
     case 'loading':
     default:
       return <Loader />;
