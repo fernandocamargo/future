@@ -9,14 +9,14 @@ import Invalid from './invalid';
 import withStyle from './style';
 
 const Registration = ({ useStyle }) => {
-  const { condition, profile, error } = useCondition();
+  const { condition, valid, invalid } = useCondition();
   const style = useStyle();
 
   switch (condition) {
     case 'valid':
-      return <Valid profile={profile} {...style} />;
+      return <Valid {...valid} {...style} />;
     case 'invalid':
-      return <Invalid error={error} />;
+      return <Invalid {...invalid} />;
     case 'loading':
     default:
       return <Loader />;

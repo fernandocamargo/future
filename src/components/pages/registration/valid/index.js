@@ -8,8 +8,8 @@ import { useRegistration } from './hooks';
 import messages from './messages';
 import withStyle from './style';
 
-const Registration = ({ useStyle, profile }) => {
-  const registration = useRegistration(profile);
+const Valid = ({ useStyle, ...props }) => {
+  const registration = useRegistration(props);
   const { title, description } = useI18n(messages);
   const style = useStyle();
 
@@ -24,14 +24,16 @@ const Registration = ({ useStyle, profile }) => {
   );
 };
 
-Registration.propTypes = {
+Valid.propTypes = {
   useStyle: func.isRequired,
+  token: string.isRequired,
   profile: shape({
+    firstName: string.isRequired,
+    lastName: string.isRequired,
     email: string.isRequired,
-    name: string.isRequired,
   }).isRequired,
 };
 
-Registration.defaultProps = {};
+Valid.defaultProps = {};
 
-export default withStyle(Registration);
+export default withStyle(Valid);

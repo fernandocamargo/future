@@ -17,10 +17,10 @@ export default token => {
     () =>
       expertlead
         .get(`/invitation/${token}`)
-        .then(({ data: { firstName, lastName, email, status }, error }) =>
+        .then(({ data: { status, ...profile }, error }) =>
           isEqual(lowerCase(status), 'active')
             ? Promise.reject(ACTIVE)
-            : { name: `${firstName} ${lastName}`, email }
+            : profile
         )
         .catch(({ response: { data: { code } } }) =>
           Promise.reject(errors[code])

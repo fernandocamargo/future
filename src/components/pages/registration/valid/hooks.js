@@ -1,24 +1,25 @@
-import random from 'lodash/random';
 import React, { useMemo, useCallback } from 'react';
 
 import { useForm, useI18n, useNotification, useValidation } from 'hooks';
+import { useUsers } from 'hooks/services/expertlead';
 import { Checkbox, Password, Text } from 'components/widgets/fields';
 
 import Form from './form';
 import Agreement from './agreement';
 import messages from './messages';
 
-export const useRegistration = profile => {
+export const useRegistration = ({ token, profile }) => {
+  const { create } = useUsers();
   const validation = useValidation();
-  const i18n = useI18n(messages);
   const { notify } = useNotification();
+  const i18n = useI18n(messages);
   const fields = useMemo(
     () => [
       {
         field: Text,
         name: 'name',
         label: i18n.name,
-        value: profile.name,
+        value: `${profile.firstName} ${profile.lastName}`,
         validation: validation.fullName.required(),
         disabled: true,
       },
@@ -57,15 +58,14 @@ export const useRegistration = profile => {
     ],
     [i18n, profile, validation]
   );
+  const succeed = useCallback(() => notify(i18n.succeed), [notify, i18n]);
+  const fail = useCallback(() => notify(i18n.fail), [notify, i18n]);
   const onSubmit = useCallback(
-    data =>
-      console.log({ data }) ||
-      new Promise((resolve, reject) =>
-        window.setTimeout(() => (!!random() ? resolve() : reject()), 500)
-      )
-        .then(() => notify('All good mate!'))
-        .catch(() => notify('U suck! :(')),
-    [notify]
+    user =>
+      create({ token, user })
+        .then(succeed)
+        .catch(fail),
+    [create, token, succeed, fail]
   );
 
   return useForm({ render: Form, fields, onSubmit });

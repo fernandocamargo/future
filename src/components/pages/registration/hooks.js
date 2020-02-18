@@ -34,11 +34,17 @@ export const useCondition = () => {
       }),
     [invite]
   );
-  const [{ value: condition, context }, send] = useMachine(machine);
+  const [
+    {
+      context: { profile, error },
+      value: condition,
+    },
+    send,
+  ] = useMachine(machine);
 
   useEffect(() => {
     send('FETCH');
   }, [send]);
 
-  return { condition, ...context };
+  return { valid: { token, profile }, invalid: { error }, condition };
 };
