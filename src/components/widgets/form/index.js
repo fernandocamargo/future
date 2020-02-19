@@ -36,8 +36,8 @@ const Form = ({ useStyle, fields, onSubmit, original, render, ...props }) => {
   const { confirmation } = useI18n(messages);
   const style = useStyle();
   const element = createElement(render, {
-    ...props,
     ...style,
+    ...props,
     components,
     elements,
     original,

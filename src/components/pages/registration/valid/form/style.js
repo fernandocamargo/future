@@ -56,7 +56,8 @@ export default style`
       }
 
       [aria-busy="true"] {
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
         left: 50%;
         max-width: 50%;
         position: absolute;
@@ -67,15 +68,15 @@ export default style`
 
         &:before {
           animation: ${spin()} 1.2s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
-          border: 12px solid rgba(0, 0, 0, 0.1);
+          border: 8px solid rgba(0, 0, 0, 0.1);
           border-radius: 50%;
-          border-top: 12px solid #555;
+          border-top: 8px solid #555;
           content: '';
           display: inline-block;
           font-size: 0;
-          height: 36px;
-          margin: 0 auto;
-          width: 36px;
+          height: 24px;
+          margin: 0 auto 1rem auto;
+          width: 24px;
         }
       }
     }

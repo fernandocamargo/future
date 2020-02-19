@@ -91,5 +91,5 @@ export const useRegistration = ({ token, profile }) => {
   const onSubmit = useCallback(user => send('SUBMIT', { user }), [send]);
   const form = useForm({ render: Form, fields, onSubmit });
 
-  return { ...form, submitting };
+  return { form: { ...form, submitting } };
 };
