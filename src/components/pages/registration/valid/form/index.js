@@ -15,7 +15,7 @@ const Form = ({
   useStyle,
   submitting,
 }) => {
-  const { title, description, action, loader } = useI18n(messages);
+  const { title, description, action, busy } = useI18n(messages);
   const style = useStyle();
 
   return (
@@ -29,7 +29,7 @@ const Form = ({
         </div>
         {submitting && (
           <p role="alert" aria-busy="true">
-            {loader}
+            {busy}
           </p>
         )}
       </fieldset>

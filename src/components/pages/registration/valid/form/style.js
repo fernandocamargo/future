@@ -21,6 +21,7 @@ export default style`
       &[disabled] {
         & > *:not([aria-busy="true"]) {
           opacity: 0.25;
+          pointer-events: none;
         }
       }
 
@@ -75,7 +76,7 @@ export default style`
           display: inline-block;
           font-size: 0;
           height: 24px;
-          margin: 0 auto 1rem auto;
+          margin: 0 auto 0.5rem auto;
           width: 24px;
         }
       }

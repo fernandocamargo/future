@@ -13,7 +13,7 @@
   "components/pages/registration/valid/fail": "",
   "components/pages/registration/valid/form/action": "",
   "components/pages/registration/valid/form/description": "",
-  "components/pages/registration/valid/form/loader": "",
+  "components/pages/registration/valid/form/busy": "",
   "components/pages/registration/valid/form/title": "",
   "components/pages/registration/valid/name": "",
   "components/pages/registration/valid/password": "",

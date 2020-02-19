@@ -13,7 +13,7 @@
   "components/pages/registration/valid/fail": "U suck! :(",
   "components/pages/registration/valid/form/action": "Create account",
   "components/pages/registration/valid/form/description": "Your creativity is needed! Please come up with a strong password",
-  "components/pages/registration/valid/form/loader": "Submitting your data...",
+  "components/pages/registration/valid/form/busy": "Submitting your data...",
   "components/pages/registration/valid/form/title": "Registration",
   "components/pages/registration/valid/name": "Name",
   "components/pages/registration/valid/password": "Password",

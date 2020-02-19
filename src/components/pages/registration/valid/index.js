@@ -6,11 +6,12 @@ import { Form } from 'components/widgets';
 
 import { useRegistration } from './hooks';
 import Success from './success';
+import Failure from './failure';
 import messages from './messages';
 import withStyle from './style';
 
 const Valid = ({ useStyle, ...props }) => {
-  const { form, success } = useRegistration(props);
+  const { form, success, failure } = useRegistration(props);
   const { title, description } = useI18n(messages);
   const style = useStyle();
 
@@ -20,7 +21,9 @@ const Valid = ({ useStyle, ...props }) => {
         <h1>{title}</h1>
         <p>{description}</p>
       </article>
-      {success ? <Success {...success} /> : <Form {...form} />}
+      {form && <Form {...form} />}
+      {success && <Success {...success} />}
+      {failure && <Failure {...failure} />}
     </section>
   );
 };

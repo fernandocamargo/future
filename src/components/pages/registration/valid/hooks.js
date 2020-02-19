@@ -30,19 +30,18 @@ export const useRegistration = ({ token, profile }) => {
                 actions: [() => notify(i18n.succeed)],
               },
               onError: {
-                target: 'error',
+                target: 'failure',
                 actions: [() => notify(i18n.fail)],
               },
             },
           },
           success: { on: { SUBMIT: 'submitting' } },
-          error: { on: { SUBMIT: 'submitting' } },
+          failure: { on: { SUBMIT: 'submitting' } },
         },
       }),
     [create, token, notify, i18n]
   );
   const [{ matches }, send] = useMachine(machine);
-  const submitting = useMemo(() => matches('submitting'), [matches]);
   const fields = useMemo(
     () => [
       {
@@ -90,6 +89,21 @@ export const useRegistration = ({ token, profile }) => {
   );
   const onSubmit = useCallback(user => send('SUBMIT', { user }), [send]);
   const form = useForm({ render: Form, fields, onSubmit });
+  const idle = useMemo(() => matches('idle'), [matches]);
+  const submitting = useMemo(() => matches('submitting'), [matches]);
+  const success = useMemo(() => matches('success'), [matches]);
+  const failure = useMemo(() => matches('failure'), [matches]);
 
-  return { form: { ...form, submitting } };
+  return {
+    ...((idle || submitting) && { form: { ...form, submitting } }),
+    ...(success && {
+      success: {
+        redirect: {
+          when: new Date().getTime(),
+          to: console.log.bind(console, 'to();'),
+        },
+      },
+    }),
+    ...(failure && { failure: { foo: 'bar' } }),
+  };
 };
