@@ -10,7 +10,7 @@ import Field from './field';
 import messages from './messages';
 import withStyle from './style';
 
-const Form = ({ useStyle, fields, onSubmit, original, render }) => {
+const Form = ({ useStyle, fields, onSubmit, original, render, ...props }) => {
   const Form = useCallback(
     props => <Container {...props} onSubmit={onSubmit} />,
     [onSubmit]
@@ -36,10 +36,11 @@ const Form = ({ useStyle, fields, onSubmit, original, render }) => {
   const { confirmation } = useI18n(messages);
   const style = useStyle();
   const element = createElement(render, {
+    ...props,
+    ...style,
     components,
     elements,
     original,
-    ...style,
   });
 
   return (

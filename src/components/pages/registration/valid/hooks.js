@@ -1,4 +1,6 @@
+import { Machine } from 'xstate';
 import React, { useMemo, useCallback } from 'react';
+import { useMachine } from '@xstate/react';
 
 import { useForm, useI18n, useNotification, useValidation } from 'hooks';
 import { useUsers } from 'hooks/services/expertlead';
@@ -13,6 +15,34 @@ export const useRegistration = ({ token, profile }) => {
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
+  const machine = useMemo(
+    () =>
+      new Machine({
+        id: 'valid',
+        initial: 'idle',
+        states: {
+          idle: { on: { SUBMIT: 'submitting' } },
+          submitting: {
+            invoke: {
+              src: (_, { user }) => create({ token, user }),
+              onDone: {
+                target: 'success',
+                actions: [() => notify(i18n.succeed)],
+              },
+              onError: {
+                target: 'error',
+                actions: [() => notify(i18n.fail)],
+              },
+            },
+          },
+          success: { on: { SUBMIT: 'submitting' } },
+          error: { on: { SUBMIT: 'submitting' } },
+        },
+      }),
+    [create, token, notify, i18n]
+  );
+  const [{ matches }, send] = useMachine(machine);
+  const submitting = useMemo(() => matches('submitting'), [matches]);
   const fields = useMemo(
     () => [
       {
@@ -36,14 +66,14 @@ export const useRegistration = ({ token, profile }) => {
         field: Password,
         name: 'password',
         label: i18n.password,
-        value: '',
+        value: 'Elf030501!',
         validation: validation.password.required(),
       },
       {
         field: Password,
         name: 'password-confirmation',
         label: i18n['password-confirmation'],
-        value: '',
+        value: 'Elf030501!',
         validation: validation.password
           .equal({ field: 'password', label: i18n.password })
           .required(),
@@ -58,15 +88,8 @@ export const useRegistration = ({ token, profile }) => {
     ],
     [i18n, profile, validation]
   );
-  const succeed = useCallback(() => notify(i18n.succeed), [notify, i18n]);
-  const fail = useCallback(() => notify(i18n.fail), [notify, i18n]);
-  const onSubmit = useCallback(
-    user =>
-      create({ token, user })
-        .then(succeed)
-        .catch(fail),
-    [create, token, succeed, fail]
-  );
+  const onSubmit = useCallback(user => send('SUBMIT', { user }), [send]);
+  const form = useForm({ render: Form, fields, onSubmit });
 
-  return useForm({ render: Form, fields, onSubmit });
+  return { ...form, submitting };
 };

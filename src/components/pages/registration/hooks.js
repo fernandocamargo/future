@@ -1,6 +1,6 @@
 import { Machine, assign } from 'xstate';
-import { useMachine } from '@xstate/react';
 import { useEffect, useMemo } from 'react';
+import { useMachine } from '@xstate/react';
 import { useParams } from 'react-router-dom';
 
 import { useInvitation } from 'hooks/services/expertlead';
@@ -44,6 +44,8 @@ export const useCondition = () => {
 
   useEffect(() => {
     send('FETCH');
+
+    return () => send('CANCEL');
   }, [send]);
 
   return { valid: { token, profile }, invalid: { error }, condition };

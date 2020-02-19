@@ -13,19 +13,25 @@ const Form = ({
   },
   components: { Form },
   useStyle,
+  submitting,
 }) => {
-  const { title, description, action } = useI18n(messages);
+  const { title, description, action, loader } = useI18n(messages);
   const style = useStyle();
 
   return (
     <Form {...style}>
-      <fieldset>
+      <fieldset disabled={submitting}>
         <legend>{title}</legend>
         <p>{description}</p>
         <div>{fields}</div>
         <div>
           <Button type="submit">{action}</Button>
         </div>
+        {submitting && (
+          <p role="alert" aria-busy="true">
+            {loader}
+          </p>
+        )}
       </fieldset>
     </Form>
   );
