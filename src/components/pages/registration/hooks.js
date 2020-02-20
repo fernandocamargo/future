@@ -44,8 +44,6 @@ export const useCondition = () => {
 
   useEffect(() => {
     send('FETCH');
-
-    return () => send('CANCEL');
   }, [send]);
 
   return { valid: { token, profile }, invalid: { error }, condition };
