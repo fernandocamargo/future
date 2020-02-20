@@ -1,16 +1,25 @@
 import { func } from 'prop-types';
 import React from 'react';
 
+import { useI18n } from 'hooks';
+import { Form } from 'components/widgets';
+
+import { useLogin } from './hooks';
+import messages from './messages';
 import withStyle from './style';
 
-const Login = ({ useStyle, ...props }) => {
+const Login = ({ useStyle }) => {
+  const { form } = useLogin();
+  const { title, description } = useI18n(messages);
   const style = useStyle();
-
-  console.log(props);
 
   return (
     <section {...style}>
-      <h1>Login</h1>
+      <article>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </article>
+      {form && <Form {...form} />}
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import { func, node } from 'prop-types';
+import { func, node, shape, string } from 'prop-types';
 import React from 'react';
 
 import { useI18n, useRoutes } from 'hooks';
@@ -41,6 +41,9 @@ const Failure = ({ reason: description, useStyle, profile }) => {
 Failure.propTypes = {
   useStyle: func.isRequired,
   reason: node.isRequired,
+  profile: shape({
+    email: string.isRequired,
+  }).isRequired,
 };
 
 Failure.defaultProps = {};
