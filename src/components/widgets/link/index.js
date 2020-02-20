@@ -6,7 +6,7 @@ import { useNavigation } from './hooks';
 import withStyle from './style';
 
 const Link = ({ useStyle, to, children, params, ...props }) => {
-  const { href, current, external, navigate } = useNavigation({ to });
+  const { href, current, external, navigate } = useNavigation({ to, params });
   const onClick = useCallback(
     event => {
       event.preventDefault();

@@ -1,36 +1,24 @@
+import { func } from 'prop-types';
 import React from 'react';
 
-const Login = () => (
-  <section>
-    <form>
-      <fieldset>
-        <legend>Login</legend>
-        <dl>
-          <dt>
-            <label htmlFor="email">E-mail</label>
-          </dt>
-          <dd>
-            <input type="email" id="email" />
-          </dd>
-        </dl>
-        <dl>
-          <dt>
-            <label htmlFor="password">Password</label>
-          </dt>
-          <dd>
-            <input type="password" id="password" />
-          </dd>
-        </dl>
-        <div>
-          <button type="submit">Login</button>
-        </div>
-      </fieldset>
-    </form>
-  </section>
-);
+import withStyle from './style';
 
-Login.propTypes = {};
+const Login = ({ useStyle, ...props }) => {
+  const style = useStyle();
+
+  console.log(props);
+
+  return (
+    <section {...style}>
+      <h1>Login</h1>
+    </section>
+  );
+};
+
+Login.propTypes = {
+  useStyle: func.isRequired,
+};
 
 Login.defaultProps = {};
 
-export default Login;
+export default withStyle(Login);
