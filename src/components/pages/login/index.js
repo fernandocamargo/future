@@ -7,10 +7,14 @@ import { useLogin } from './hooks';
 import withStyle from './style';
 
 const Login = ({ useStyle }) => {
-  const { form } = useLogin();
+  const form = useLogin();
   const style = useStyle();
 
-  return <section {...style}>{form && <Form {...form} />}</section>;
+  return (
+    <section {...style}>
+      <Form {...form} />
+    </section>
+  );
 };
 
 Login.propTypes = {

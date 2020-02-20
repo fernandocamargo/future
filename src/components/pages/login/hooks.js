@@ -46,13 +46,7 @@ export const useLogin = () => {
       }),
     [login, notify, i18n]
   );
-  const [
-    {
-      context: { error },
-      matches,
-    },
-    send,
-  ] = useMachine(machine);
+  const [{ matches }, send] = useMachine(machine);
   const fields = useMemo(
     () => [
       {
@@ -83,12 +77,7 @@ export const useLogin = () => {
     send,
   ]);
   const form = useForm({ render: Form, fields, onSubmit });
-  const idle = useMemo(() => matches('idle'), [matches]);
   const submitting = useMemo(() => matches('submitting'), [matches]);
-  const success = useMemo(() => matches('success'), [matches]);
-  const failure = useMemo(() => matches('failure'), [matches]);
 
-  return {
-    form,
-  };
+  return { ...form, submitting };
 };
