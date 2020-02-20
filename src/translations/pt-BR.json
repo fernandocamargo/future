@@ -6,6 +6,7 @@
   "components/pages/login/form/action": "Deixe-me entrar",
   "components/pages/login/form/description": "Olá, é muito bom vê-lo de novo!",
   "components/pages/login/form/title": "Entrar",
+  "components/pages/login/keep-logged": "Manter-me logado",
   "components/pages/login/password": "Senha",
   "components/pages/profile/title": "Meu perfil",
   "components/pages/referrals/title": "Indicações",
