@@ -1,23 +1,23 @@
 import { useCallback } from 'react';
 
+import { useI18n } from 'hooks';
 import { useExpertlead } from 'hooks/clients';
+
+import messages from './messages';
 
 const URL = '/users';
 
-const delay = type => (...params) =>
-  new Promise((resolve, reject) =>
-    window.setTimeout(() => ({ resolve, reject }[type](...params)), 5000)
-  );
-
 export default () => {
   const expertlead = useExpertlead();
+  const errors = useI18n(messages);
   const create = useCallback(
     ({ user: { password }, token: invitationToken }) =>
       expertlead
         .post(URL, { invitationToken, password })
-        .then(delay('resolve'))
-        .catch(delay('reject')),
-    [expertlead]
+        .catch(({ response: { data: { code } } }) =>
+          Promise.reject(errors[code])
+        ),
+    [expertlead, errors]
   );
 
   return { create };

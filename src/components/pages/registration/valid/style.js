@@ -4,16 +4,21 @@ import splash from 'assets/png/splashes/registration.png';
 export default style`
   flex-direction: row;
 
-  & > * {
-    width: ${({ theme }) => theme.grid.half()};
+  & > {
+    * {
+      width: ${({ theme }) => theme.grid.half()};
+    }
+
+    article {
+      margin-top: 112px;
+    }
   }
 
-  article {
+  article:first-of-type {
     align-items: center;
     color: #333;
     display: flex;
     flex-direction: column;
-    margin-top: 112px;
     text-align: center;
 
     &:before {

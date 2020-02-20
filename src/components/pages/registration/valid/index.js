@@ -10,8 +10,8 @@ import Failure from './failure';
 import messages from './messages';
 import withStyle from './style';
 
-const Valid = ({ useStyle, ...props }) => {
-  const { form, success, failure } = useRegistration(props);
+const Valid = ({ useStyle, token, profile }) => {
+  const { form, success, failure } = useRegistration({ token, profile });
   const { title, description } = useI18n(messages);
   const style = useStyle();
 

@@ -1,4 +1,4 @@
-import { Machine, assign } from 'xstate';
+import { assign, Machine } from 'xstate';
 import { useEffect, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 import { useParams } from 'react-router-dom';

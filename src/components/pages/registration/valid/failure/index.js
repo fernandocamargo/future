@@ -1,9 +1,28 @@
+import { func, node } from 'prop-types';
 import React from 'react';
 
-const Failure = () => <p>Error!</p>;
+import { useI18n } from 'hooks';
 
-Failure.propTypes = {};
+import messages from './messages';
+import withStyle from './style';
+
+const Failure = ({ reason: description, useStyle }) => {
+  const { title } = useI18n(messages);
+  const style = useStyle();
+
+  return (
+    <article {...style}>
+      <h1>{title}</h1>
+      <p>{description}</p>
+    </article>
+  );
+};
+
+Failure.propTypes = {
+  useStyle: func.isRequired,
+  reason: node.isRequired,
+};
 
 Failure.defaultProps = {};
 
-export default Failure;
+export default withStyle(Failure);

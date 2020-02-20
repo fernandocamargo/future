@@ -1,4 +1,4 @@
-import { Machine } from 'xstate';
+import { assign, Machine } from 'xstate';
 import React, { useMemo, useCallback } from 'react';
 import { useMachine } from '@xstate/react';
 
@@ -9,6 +9,8 @@ import { Checkbox, Password, Text } from 'components/widgets/fields';
 import Form from './form';
 import Agreement from './agreement';
 import messages from './messages';
+
+const setError = assign({ error: (_, { data: error }) => error });
 
 export const useRegistration = ({ token, profile }) => {
   const { create } = useUsers();
@@ -31,7 +33,7 @@ export const useRegistration = ({ token, profile }) => {
               },
               onError: {
                 target: 'failure',
-                actions: [() => notify(i18n.fail)],
+                actions: [setError, () => notify(i18n.fail)],
               },
             },
           },
@@ -41,7 +43,13 @@ export const useRegistration = ({ token, profile }) => {
       }),
     [create, token, notify, i18n]
   );
-  const [{ matches }, send] = useMachine(machine);
+  const [
+    {
+      context: { error },
+      matches,
+    },
+    send,
+  ] = useMachine(machine);
   const fields = useMemo(
     () => [
       {
@@ -104,6 +112,6 @@ export const useRegistration = ({ token, profile }) => {
         },
       },
     }),
-    ...(failure && { failure: { foo: 'bar' } }),
+    ...(failure && { failure: { reason: error } }),
   };
 };
