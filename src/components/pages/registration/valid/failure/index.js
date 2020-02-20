@@ -8,7 +8,7 @@ import Option from 'components/widgets/menu/option';
 import messages from './messages';
 import withStyle from './style';
 
-const Failure = ({ reason: description, useStyle }) => {
+const Failure = ({ reason: description, useStyle, profile }) => {
   const routes = useRoutes();
   const {
     'recover-password': recoverPassword,
@@ -24,10 +24,14 @@ const Failure = ({ reason: description, useStyle }) => {
       <p>{description}</p>
       <Menu title={actions}>
         <Option>
-          <Link to={routes.login}>{login}</Link>
+          <Link to={routes.login} params={profile}>
+            {login}
+          </Link>
         </Option>
         <Option>
-          <Link to={routes.login}>{recoverPassword}</Link>
+          <Link to={routes['password-recovery']} params={profile}>
+            {recoverPassword}
+          </Link>
         </Option>
       </Menu>
     </article>

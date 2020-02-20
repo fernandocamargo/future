@@ -112,6 +112,6 @@ export const useRegistration = ({ token, profile }) => {
         },
       },
     }),
-    ...(failure && { failure: { reason: error } }),
+    ...(failure && { failure: { reason: error, profile } }),
   };
 };

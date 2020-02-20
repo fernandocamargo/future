@@ -49,6 +49,7 @@
   "hooks/routes/dashboard": "",
   "hooks/routes/faq": "",
   "hooks/routes/login": "",
+  "hooks/routes/password-recovery": "",
   "hooks/routes/phone": "",
   "hooks/routes/profile": "",
   "hooks/routes/referrals": "",

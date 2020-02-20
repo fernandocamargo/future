@@ -4,7 +4,7 @@ import URL from 'url-parse';
 import { useCallback, useMemo } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
-export const useNavigation = (path = '') => {
+export const useNavigation = ({ to: path = '', params: state }) => {
   const history = useHistory();
   const current = !!useRouteMatch({ path: path.toString() });
   const external = useMemo(
@@ -18,9 +18,9 @@ export const useNavigation = (path = '') => {
       case external:
         return window.open(path);
       default:
-        return history.push(path);
+        return history.push({ pathname: path, state });
     }
-  }, [external, history, path]);
+  }, [external, history, path, state]);
   const href = useMemo(() => {
     switch (true) {
       case !path || isFunction(path):

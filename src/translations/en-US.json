@@ -49,6 +49,7 @@
   "hooks/routes/dashboard": "/dashboard",
   "hooks/routes/faq": "/faq",
   "hooks/routes/login": "/login",
+  "hooks/routes/password-recovery": "/login/password-recovery",
   "hooks/routes/phone": "tel:+4930209663144",
   "hooks/routes/profile": "/profile",
   "hooks/routes/referrals": "/referrals",

@@ -5,6 +5,7 @@ export default defineMessages({
   'why-expertlead': '/why-expertlead',
   registration: '/registration',
   login: '/login',
+  'password-recovery': '/login/password-recovery',
   dashboard: '/dashboard',
   profile: '/profile',
   referrals: '/referrals',

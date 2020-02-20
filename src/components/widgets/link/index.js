@@ -5,8 +5,8 @@ import React, { useCallback } from 'react';
 import { useNavigation } from './hooks';
 import withStyle from './style';
 
-const Link = ({ useStyle, to, children, ...props }) => {
-  const { href, current, external, navigate } = useNavigation(to);
+const Link = ({ useStyle, to, children, params, ...props }) => {
+  const { href, current, external, navigate } = useNavigation({ to });
   const onClick = useCallback(
     event => {
       event.preventDefault();
