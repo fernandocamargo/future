@@ -63,6 +63,8 @@
   "hooks/routes/services": "/servicos",
   "hooks/routes/settings": "/configuracoes",
   "hooks/routes/why-expertlead": "/porque-expertlead",
+  "hooks/services/expertlead/auth/3": "A senha não corresponde ao e-mail fornecido.",
+  "hooks/services/expertlead/auth/5": "Conta inexistente ou não encontrada.",
   "hooks/services/expertlead/invitation/5": "Token inválido ou expirado",
   "hooks/services/expertlead/invitation/9": "Conta já ativada.",
   "hooks/services/expertlead/users/9": "Sua conta já havia sido ativada.",

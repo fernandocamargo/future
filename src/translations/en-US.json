@@ -63,6 +63,8 @@
   "hooks/routes/services": "/services",
   "hooks/routes/settings": "/settings",
   "hooks/routes/why-expertlead": "/why-expertlead",
+  "hooks/services/expertlead/auth/3": "The password does not match the email provided.",
+  "hooks/services/expertlead/auth/5": "Account not found.",
   "hooks/services/expertlead/invitation/5": "Invalid or expired token.",
   "hooks/services/expertlead/invitation/9": "Account already activated.",
   "hooks/services/expertlead/users/9": "Your account had already been activated.",

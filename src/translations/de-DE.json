@@ -63,6 +63,8 @@
   "hooks/routes/services": "",
   "hooks/routes/settings": "",
   "hooks/routes/why-expertlead": "",
+  "hooks/services/expertlead/auth/3": "",
+  "hooks/services/expertlead/auth/5": "",
   "hooks/services/expertlead/invitation/5": "",
   "hooks/services/expertlead/invitation/9": "",
   "hooks/services/expertlead/users/9": "",
