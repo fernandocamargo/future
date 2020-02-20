@@ -4,13 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { useForm, useI18n, useValidation } from 'hooks';
 import { Password, Text } from 'components/widgets/fields';
 
+import Form from './form';
 import messages from './messages';
-
-const Form = ({
-  elements: {
-    fields: { ordered: fields },
-  },
-}) => fields;
 
 export const useLogin = () => {
   const {
