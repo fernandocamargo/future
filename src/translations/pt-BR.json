@@ -8,6 +8,7 @@
   "components/pages/login/form/title": "Entrar",
   "components/pages/login/keep-logged": "Manter-me logado",
   "components/pages/login/password": "Senha",
+  "components/pages/login/succeed": "Você está dentro! Seja bem-vindo de volta.",
   "components/pages/profile/title": "Meu perfil",
   "components/pages/referrals/title": "Indicações",
   "components/pages/registration/valid/agreement/agreement": "Termo de Acordo do Usuário",
