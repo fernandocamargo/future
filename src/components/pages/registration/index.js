@@ -1,4 +1,3 @@
-import { func } from 'prop-types';
 import React from 'react';
 
 import { Loader } from 'components/widgets';
@@ -6,15 +5,13 @@ import { Loader } from 'components/widgets';
 import { useCondition } from './hooks';
 import Valid from './valid';
 import Invalid from './invalid';
-import withStyle from './style';
 
-const Registration = ({ useStyle }) => {
+const Registration = () => {
   const { condition, valid, invalid } = useCondition();
-  const style = useStyle();
 
   switch (condition) {
     case 'valid':
-      return <Valid {...valid} {...style} />;
+      return <Valid {...valid} />;
     case 'invalid':
       return <Invalid {...invalid} />;
     case 'loading':
@@ -23,10 +20,8 @@ const Registration = ({ useStyle }) => {
   }
 };
 
-Registration.propTypes = {
-  useStyle: func.isRequired,
-};
+Registration.propTypes = {};
 
 Registration.defaultProps = {};
 
-export default withStyle(Registration);
+export default Registration;

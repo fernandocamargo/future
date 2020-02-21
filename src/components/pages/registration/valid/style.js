@@ -2,6 +2,7 @@ import style from 'style';
 import splash from 'assets/png/splashes/registration.png';
 
 export default style`
+  display: flex;
   flex-direction: row;
 
   & > {
