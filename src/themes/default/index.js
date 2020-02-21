@@ -30,10 +30,10 @@ export default {
         css`
           background: repeating-linear-gradient(
             to right,
-            ${property('theme.colors.G100')},
-            ${property('theme.colors.G100')} ${property('theme.grid.gap')},
-            ${property('theme.colors.P200')} ${property('theme.grid.gap')},
-            ${property('theme.colors.P200')} 118px
+            transparent,
+            transparent ${property('theme.grid.gap')},
+            rgba(0, 0, 0, 0.05) ${property('theme.grid.gap')},
+            rgba(0, 0, 0, 0.05) 118px
           );
         `
       );

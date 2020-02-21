@@ -23,7 +23,7 @@
   "components/pages/registration/valid/failure/recover-password": "",
   "components/pages/registration/valid/failure/title": "",
   "components/pages/registration/valid/form/action": "",
-  "components/pages/registration/valid/form/busy": "",
+  "components/pages/registration/valid/form/loading": "",
   "components/pages/registration/valid/form/description": "",
   "components/pages/registration/valid/form/title": "",
   "components/pages/registration/valid/name": "",

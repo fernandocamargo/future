@@ -4,6 +4,7 @@ export { default as useHotkeys } from './hotkeys';
 export { default as useI18n } from './i18n';
 export { default as useNotification } from './notification';
 export { default as useOutsideClick } from './outside-click';
+export { default as useRoadtrip } from './roadtrip';
 export { default as useRoutes } from './routes';
 export { default as useValidation } from './validation';
 export { default as useYup } from './yup';

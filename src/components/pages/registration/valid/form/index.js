@@ -13,23 +13,23 @@ const Form = ({
   },
   components: { Form },
   useStyle,
-  submitting,
+  busy,
 }) => {
-  const { title, description, action, busy } = useI18n(messages);
+  const { title, description, action, loading } = useI18n(messages);
   const style = useStyle();
 
   return (
     <Form {...style}>
-      <fieldset disabled={submitting}>
+      <fieldset disabled={busy}>
         <legend>{title}</legend>
         <p>{description}</p>
         <div>{fields}</div>
         <div>
           <Button type="submit">{action}</Button>
         </div>
-        {submitting && (
+        {busy && (
           <p role="alert" aria-busy="true">
-            {busy}
+            {loading}
           </p>
         )}
       </fieldset>

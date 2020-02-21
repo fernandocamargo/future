@@ -5,5 +5,5 @@ export default defineMessages({
   description:
     'Your creativity is needed! Please come up with a strong password',
   action: 'Create account',
-  busy: 'Submitting your data...',
+  loading: 'Submitting your data...',
 });

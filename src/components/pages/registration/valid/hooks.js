@@ -1,8 +1,12 @@
-import { assign, Machine } from 'xstate';
 import React, { useMemo, useCallback } from 'react';
-import { useMachine } from '@xstate/react';
 
-import { useForm, useI18n, useNotification, useValidation } from 'hooks';
+import {
+  useForm,
+  useI18n,
+  useNotification,
+  useRoadtrip,
+  useValidation,
+} from 'hooks';
 import { useUsers } from 'hooks/services/expertlead';
 import { Checkbox, Password, Text } from 'components/widgets/fields';
 
@@ -10,46 +14,16 @@ import Form from './form';
 import Agreement from './agreement';
 import messages from './messages';
 
-const setError = assign({ error: (_, { data: error }) => error });
-
 export const useRegistration = ({ token, profile }) => {
   const { create } = useUsers();
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const machine = useMemo(
-    () =>
-      new Machine({
-        id: 'valid',
-        initial: 'idle',
-        states: {
-          idle: { on: { SUBMIT: 'submitting' } },
-          submitting: {
-            invoke: {
-              src: (_, { user }) => create({ token, user }),
-              onDone: {
-                target: 'success',
-                actions: [() => notify(i18n.succeed)],
-              },
-              onError: {
-                target: 'failure',
-                actions: [setError, () => notify(i18n.fail)],
-              },
-            },
-          },
-          success: { on: { SUBMIT: 'submitting' } },
-          failure: { on: { SUBMIT: 'submitting' } },
-        },
-      }),
-    [create, token, notify, i18n]
-  );
-  const [
-    {
-      context: { error },
-      matches,
-    },
-    send,
-  ] = useMachine(machine);
+  const { start, idle, busy, success, failure, error } = useRoadtrip({
+    destination: (_, { user }) => create({ token, user }),
+    arrival: () => notify(i18n.succeed),
+    crash: () => notify(i18n.fail),
+  });
   const fields = useMemo(
     () => [
       {
@@ -95,15 +69,11 @@ export const useRegistration = ({ token, profile }) => {
     ],
     [i18n, profile, validation]
   );
-  const onSubmit = useCallback(user => send('SUBMIT', { user }), [send]);
+  const onSubmit = useCallback(user => start({ user }), [start]);
   const form = useForm({ render: Form, fields, onSubmit });
-  const idle = useMemo(() => matches('idle'), [matches]);
-  const submitting = useMemo(() => matches('submitting'), [matches]);
-  const success = useMemo(() => matches('success'), [matches]);
-  const failure = useMemo(() => matches('failure'), [matches]);
 
   return {
-    ...((idle || submitting) && { form: { ...form, submitting } }),
+    ...((idle || busy) && { form: { ...form, busy } }),
     ...(success && {
       success: {
         redirect: {
