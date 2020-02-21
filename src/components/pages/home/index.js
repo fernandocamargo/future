@@ -1,16 +1,11 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
-import { useAuthentication, useRoutes } from 'hooks';
 import { Redirect } from 'components/routes';
 
+import { useHome } from './hooks';
+
 const Home = () => {
-  const { logged } = useAuthentication();
-  const { dashboard, registration } = useRoutes();
-  const to = useMemo(() => (logged ? dashboard : registration), [
-    logged,
-    dashboard,
-    registration,
-  ]);
+  const to = useHome();
 
   return <Redirect to={to} />;
 };

@@ -2,9 +2,7 @@ import update from 'immutability-helper';
 
 import { SET_DETAILS } from './constants';
 
-export const initialState = {
-  details: { avatar: `${process.env.PUBLIC_URL}/assets/png/trash/profile.png` },
-};
+export const initialState = { details: {} };
 
 export default (state = initialState, { type, details }) => {
   switch (type) {

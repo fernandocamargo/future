@@ -14,15 +14,15 @@ const Public = ({ useStyle }) => {
   const {
     'about-us': aboutUs,
     'why-expertlead': whyExpertlead,
-    registration,
+    login,
     contact,
   } = useI18n(messages);
   const style = useStyle();
 
   return (
     <Menu {...style}>
-      <Option id="registration">
-        <Link to={routes.registration}>{registration}</Link>
+      <Option id="login">
+        <Link to={routes.login}>{login}</Link>
       </Option>
       <Option id="about-us">
         <Link to={routes['about-us']}>{aboutUs}</Link>
