@@ -1,6 +1,7 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  '5': 'Invalid or expired token.',
-  '9': 'Account already activated.',
+  'not-found': 'Token not found.',
+  active: 'This account is already active.',
+  invalid: 'Invalid or expired token.',
 });
