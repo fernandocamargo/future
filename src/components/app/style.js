@@ -10,14 +10,14 @@ export default style`
 
   main {
     margin-top: var(--margin-top);
-    min-height: calc(100vh - var(--margin-top));
+    min-height: calc(100vh - (var(--margin-top) * 2));
     padding: 0 ${gap} var(--margin-top) ${gap};
 
     ${({
       theme: {
         grid: { show },
       },
-    }) => show(false)}
+    }) => show()}
   }
 
   section {
