@@ -30,12 +30,20 @@ export default ({ itinerary, destination, crash }) => {
       }),
     [itinerary, destination, crash]
   );
-  const [{ context, matches, value, done }, send] = useMachine(machine);
+  const [
+    {
+      context: { error, ...context },
+      matches,
+      value,
+      done,
+    },
+    send,
+  ] = useMachine(machine);
   const start = useCallback((...params) => send('START', ...params), [send]);
   const idle = useMemo(() => matches('idle'), [matches]);
   const busy = useMemo(() => matches('busy'), [matches]);
   const success = useMemo(() => matches('success'), [matches]);
   const failure = useMemo(() => matches('failure'), [matches]);
 
-  return { start, idle, busy, success, failure, context, value, done };
+  return { start, idle, busy, success, failure, context, value, done, error };
 };
