@@ -3,8 +3,6 @@ import React, { useMemo } from 'react';
 
 import { Link } from 'components/widgets';
 
-import withStyle from './style';
-
 const fromNow = () => ({
   in: format => 10,
 });
@@ -13,12 +11,11 @@ const Countdown = ({ from }) => {
   return from;
 };
 
-const Success = ({ useStyle, redirect: { when, to } }) => {
+const Success = ({ redirect: { when, to } }) => {
   const countdown = useMemo(() => fromNow(when).in('seconds'), [when]);
-  const style = useStyle();
 
   return (
-    <article {...style}>
+    <article>
       <h2>All done.</h2>
       <p>Your account has been successfully created.</p>
       <p>
@@ -33,7 +30,6 @@ const Success = ({ useStyle, redirect: { when, to } }) => {
 };
 
 Success.propTypes = {
-  useStyle: func.isRequired,
   redirect: shape({
     when: number.isRequired,
     to: func.isRequired,
@@ -42,4 +38,4 @@ Success.propTypes = {
 
 Success.defaultProps = {};
 
-export default withStyle(Success);
+export default Success;

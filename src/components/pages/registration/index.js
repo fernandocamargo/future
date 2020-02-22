@@ -2,12 +2,12 @@ import React from 'react';
 
 import { Loader } from 'components/widgets';
 
-import { useCondition } from './hooks';
+import { useRegistration } from './hooks';
 import Valid from './valid';
 import Invalid from './invalid';
 
 const Registration = () => {
-  const { condition, valid, invalid } = useCondition();
+  const { condition, valid, invalid } = useRegistration();
 
   switch (condition) {
     case 'success':

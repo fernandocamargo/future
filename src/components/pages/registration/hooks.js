@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useRoadtrip } from 'hooks';
 import { useInvitation } from 'hooks/services/expertlead';
 
-export const useCondition = () => {
+export const useRegistration = () => {
   const { token } = useParams();
   const invite = useInvitation(token);
   const {

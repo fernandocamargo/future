@@ -27,12 +27,6 @@ export default style`
     width: 100%;
   }
 
-  ${Menu} {
-    h4 {
-      display: none;
-    }
-  }
-
   h2 {
     margin-left: 24px;
 

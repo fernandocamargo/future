@@ -1,4 +1,4 @@
-import { func, node, shape, string } from 'prop-types';
+import { node, shape, string } from 'prop-types';
 import React from 'react';
 
 import { useI18n, useRoutes } from 'hooks';
@@ -6,9 +6,8 @@ import { Link, Menu } from 'components/widgets';
 import Option from 'components/widgets/menu/option';
 
 import messages from './messages';
-import withStyle from './style';
 
-const Failure = ({ reason: description, useStyle, profile }) => {
+const Failure = ({ reason: description, profile }) => {
   const routes = useRoutes();
   const {
     'recover-password': recoverPassword,
@@ -16,10 +15,9 @@ const Failure = ({ reason: description, useStyle, profile }) => {
     actions,
     login,
   } = useI18n(messages);
-  const style = useStyle();
 
   return (
-    <article {...style}>
+    <article>
       <h1>{title}</h1>
       <p>{description}</p>
       <Menu title={actions}>
@@ -39,7 +37,6 @@ const Failure = ({ reason: description, useStyle, profile }) => {
 };
 
 Failure.propTypes = {
-  useStyle: func.isRequired,
   reason: node.isRequired,
   profile: shape({
     email: string.isRequired,
@@ -48,4 +45,4 @@ Failure.propTypes = {
 
 Failure.defaultProps = {};
 
-export default withStyle(Failure);
+export default Failure;
