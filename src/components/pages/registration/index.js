@@ -10,11 +10,11 @@ const Registration = () => {
   const { condition, valid, invalid } = useCondition();
 
   switch (condition) {
-    case 'valid':
+    case 'success':
       return <Valid {...valid} />;
-    case 'invalid':
+    case 'failure':
       return <Invalid {...invalid} />;
-    case 'loading':
+    case 'busy':
     default:
       return <Loader />;
   }

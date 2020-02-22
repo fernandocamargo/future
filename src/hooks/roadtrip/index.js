@@ -1,10 +1,11 @@
+import isFunction from 'lodash/isFunction';
 import { assign, Machine } from 'xstate';
 import { useCallback, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 
-const setError = assign({ error: (_, { data: error }) => error });
+import { setError } from './helpers';
 
-export default ({ destination, arrival, crash }) => {
+export default ({ arrival, destination, crash }) => {
   const machine = useMemo(
     () =>
       new Machine({
@@ -14,7 +15,10 @@ export default ({ destination, arrival, crash }) => {
           busy: {
             invoke: {
               src: destination,
-              onDone: { target: 'success', actions: arrival },
+              onDone: {
+                target: 'success',
+                actions: [isFunction(arrival) ? arrival : assign(arrival)],
+              },
               onError: { target: 'failure', actions: [setError, crash] },
             },
           },
@@ -24,12 +28,12 @@ export default ({ destination, arrival, crash }) => {
       }),
     [destination, arrival, crash]
   );
-  const [{ context, matches }, send] = useMachine(machine);
+  const [{ context, matches, value, done }, send] = useMachine(machine);
   const start = useCallback((...params) => send('START', ...params), [send]);
   const idle = useMemo(() => matches('idle'), [matches]);
   const busy = useMemo(() => matches('busy'), [matches]);
   const success = useMemo(() => matches('success'), [matches]);
   const failure = useMemo(() => matches('failure'), [matches]);
 
-  return { start, idle, busy, success, failure, ...context };
+  return { start, idle, busy, success, failure, context, value, done };
 };
