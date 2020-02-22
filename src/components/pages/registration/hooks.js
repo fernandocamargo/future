@@ -15,7 +15,6 @@ export const useCondition = () => {
   } = useRoadtrip({
     itinerary: () => invite(),
     destination: { profile: (_, { data: profile }) => profile },
-    crash: () => console.log('crash();'),
   });
 
   useEffect(() => {

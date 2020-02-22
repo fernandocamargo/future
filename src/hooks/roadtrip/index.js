@@ -21,7 +21,10 @@ export default ({ itinerary, destination, crash }) => {
                   isFunction(destination) ? destination : assign(destination),
                 ],
               },
-              onError: { target: 'failure', actions: [setError, crash] },
+              onError: {
+                target: 'failure',
+                actions: [setError].concat(crash ? crash : []),
+              },
             },
           },
           success: { on: { START: 'busy' } },
