@@ -5,7 +5,7 @@ import { useMachine } from '@xstate/react';
 
 import { setError } from './helpers';
 
-export default ({ arrival, destination, crash }) => {
+export default ({ itinerary, destination, crash }) => {
   const machine = useMemo(
     () =>
       new Machine({
@@ -14,10 +14,12 @@ export default ({ arrival, destination, crash }) => {
           idle: { on: { START: 'busy' } },
           busy: {
             invoke: {
-              src: destination,
+              src: itinerary,
               onDone: {
                 target: 'success',
-                actions: [isFunction(arrival) ? arrival : assign(arrival)],
+                actions: [
+                  isFunction(destination) ? destination : assign(destination),
+                ],
               },
               onError: { target: 'failure', actions: [setError, crash] },
             },
@@ -26,7 +28,7 @@ export default ({ arrival, destination, crash }) => {
           failure: { on: { START: 'busy' } },
         },
       }),
-    [destination, arrival, crash]
+    [itinerary, destination, crash]
   );
   const [{ context, matches, value, done }, send] = useMachine(machine);
   const start = useCallback((...params) => send('START', ...params), [send]);

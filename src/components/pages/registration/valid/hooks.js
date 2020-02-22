@@ -20,8 +20,8 @@ export const useRegistration = ({ token, profile }) => {
   const { notify } = useNotification();
   const i18n = useI18n(messages);
   const { start, idle, busy, success, failure, error } = useRoadtrip({
-    destination: (_, { user }) => create({ token, user }),
-    arrival: () => notify(i18n.succeed),
+    itinerary: (_, { user }) => create({ token, user }),
+    destination: () => notify(i18n.succeed),
     crash: () => notify(i18n.fail),
   });
   const fields = useMemo(

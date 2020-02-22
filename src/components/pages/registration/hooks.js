@@ -13,8 +13,8 @@ export const useCondition = () => {
     start,
     error,
   } = useRoadtrip({
-    destination: () => invite(),
-    arrival: { profile: (_, { data: profile }) => profile },
+    itinerary: () => invite(),
+    destination: { profile: (_, { data: profile }) => profile },
     crash: () => console.log('crash();'),
   });
 
