@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useSnackbar } from 'notistack';
 
-const anchorOrigin = { vertical: 'bottom', horizontal: 'left' };
+const anchorOrigin = { vertical: 'bottom', horizontal: 'right' };
 
 const defaults = { anchorOrigin };
 
