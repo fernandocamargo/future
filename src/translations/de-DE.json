@@ -11,6 +11,7 @@
   "components/pages/login/succeed": "",
   "components/pages/profile/title": "",
   "components/pages/referrals/title": "",
+  "components/pages/registration/invalid/title": "",
   "components/pages/registration/valid/agreement/agreement": "",
   "components/pages/registration/valid/agreement/and": "",
   "components/pages/registration/valid/agreement/policy": "",

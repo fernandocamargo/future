@@ -11,6 +11,7 @@
   "components/pages/login/succeed": "Você está dentro! Seja bem-vindo de volta.",
   "components/pages/profile/title": "Meu perfil",
   "components/pages/referrals/title": "Indicações",
+  "components/pages/registration/invalid/title": "Houve um erro na sua solicitação:",
   "components/pages/registration/valid/agreement/agreement": "Termo de Acordo do Usuário",
   "components/pages/registration/valid/agreement/and": "e nossa",
   "components/pages/registration/valid/agreement/policy": "Política de Privacidade",

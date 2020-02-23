@@ -79,6 +79,14 @@ export default style`
         font-size: 24px;
         line-height: 24px;
       }
+
+      p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        margin-top: 16px;
+      }
     }
   }
 `;

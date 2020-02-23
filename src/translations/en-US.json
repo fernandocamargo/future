@@ -11,6 +11,7 @@
   "components/pages/login/succeed": "You're in! Welcome back.",
   "components/pages/profile/title": "Profile",
   "components/pages/referrals/title": "Indicações",
+  "components/pages/registration/invalid/title": "Error",
   "components/pages/registration/valid/agreement/agreement": "User Agreement",
   "components/pages/registration/valid/agreement/and": "and",
   "components/pages/registration/valid/agreement/policy": "Privacy Policy",
