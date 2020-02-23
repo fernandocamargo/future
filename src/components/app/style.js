@@ -1,6 +1,7 @@
 import property from 'lodash/property';
 
 import style from 'style';
+import { Link } from 'components/widgets';
 
 const gap = property('theme.grid.gap');
 
@@ -25,6 +26,10 @@ export default style`
       &:not(:first-child) {
         margin-left: ${gap};
       }
+    }
+
+    ${Link} {
+      color: #4130db;
     }
   }
 `;
