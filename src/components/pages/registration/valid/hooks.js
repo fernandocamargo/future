@@ -5,6 +5,7 @@ import {
   useI18n,
   useNotification,
   useRoadtrip,
+  useScrollToTop,
   useValidation,
 } from 'hooks';
 import { useUsers } from 'hooks/services/expertlead';
@@ -18,11 +19,13 @@ export const useRegistration = ({ token, profile }) => {
   const { create } = useUsers();
   const validation = useValidation();
   const { notify } = useNotification();
+  const scrollToTop = useScrollToTop();
   const i18n = useI18n(messages);
   const { start, idle, busy, success, failure, error } = useRoadtrip({
     itinerary: (_, { user }) => create({ token, user }),
     onArrive: () => notify(i18n.succeed),
     onCrash: () => notify(i18n.fail),
+    onStop: scrollToTop,
   });
   const fields = useMemo(
     () => [

@@ -6,5 +6,6 @@ export { default as useNotification } from './notification';
 export { default as useOutsideClick } from './outside-click';
 export { default as useRoadtrip } from './roadtrip';
 export { default as useRoutes } from './routes';
+export { default as useScrollToTop } from './scroll-to-top';
 export { default as useValidation } from './validation';
 export { default as useYup } from './yup';
