@@ -1,5 +1,5 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  title: 'We were unable to finalize your registration.',
+  title: 'All done! Your account has been successfully created!',
 });

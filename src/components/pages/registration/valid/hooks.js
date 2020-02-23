@@ -83,6 +83,7 @@ export const useRegistration = ({ token, profile }) => {
           when: new Date().getTime(),
           to: console.log.bind(console, 'to();'),
         },
+        profile,
       },
     }),
     ...(failure && { failure: { reason: error, profile } }),

@@ -3,6 +3,7 @@ import React from 'react';
 
 import { useI18n } from 'hooks';
 
+import Menu from '../menu';
 import messages from './messages';
 import withStyle from './style';
 
@@ -15,6 +16,7 @@ const Invalid = ({ useStyle, error }) => {
       <article>
         <h1>{title}</h1>
         <p>{error}</p>
+        <Menu />
       </article>
     </section>
   );
