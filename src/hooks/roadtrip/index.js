@@ -5,7 +5,7 @@ import { useMachine } from '@xstate/react';
 
 import { setError } from './helpers';
 
-export default ({ crash = [], itinerary, arrive }) => {
+export default ({ onCrash: crash = [], onArrive: arrive, itinerary }) => {
   const machine = useMemo(
     () =>
       new Machine({
@@ -25,8 +25,8 @@ export default ({ crash = [], itinerary, arrive }) => {
               },
             },
           },
-          success: { on: { START: 'busy' } },
-          failure: { on: { START: 'busy' } },
+          success: { on: { START: 'busy' }, type: 'final' },
+          failure: { on: { START: 'busy' }, type: 'final' },
         },
       }),
     [itinerary, arrive, crash]
