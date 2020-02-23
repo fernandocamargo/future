@@ -14,7 +14,7 @@ export const useRegistration = () => {
     error,
   } = useRoadtrip({
     itinerary: () => invite(),
-    destination: { profile: (_, { data: profile }) => profile },
+    arrive: { profile: (_, { data: profile }) => profile },
   });
 
   useEffect(() => {
