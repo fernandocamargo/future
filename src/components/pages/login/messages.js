@@ -5,4 +5,5 @@ export default defineMessages({
   password: 'Password',
   'keep-logged': 'Remember me',
   succeed: "You're in! Welcome back.",
+  fail: 'There was a problem with your data. Please verify.',
 });

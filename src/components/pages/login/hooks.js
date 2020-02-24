@@ -1,18 +1,21 @@
-import { assign, Machine } from 'xstate';
 import { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useMachine } from '@xstate/react';
 
-import { useForm, useI18n, useNotification, useValidation } from 'hooks';
+import {
+  useForm,
+  useI18n,
+  useNotification,
+  useRoadtrip,
+  useValidation,
+} from 'hooks';
 import { useAuth } from 'hooks/services/expertlead';
 import { Password, Switch, Text } from 'components/widgets/fields';
 
 import Form from './form';
 import messages from './messages';
 
-const setError = assign({ error: (_, { data: error }) => error });
-
 export const useLogin = () => {
+  const history = useHistory();
   const {
     location: { state: profile = { email: '' } },
   } = useHistory();
@@ -20,33 +23,11 @@ export const useLogin = () => {
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const machine = useMemo(
-    () =>
-      new Machine({
-        id: 'login',
-        initial: 'idle',
-        states: {
-          idle: { on: { SUBMIT: 'submitting' } },
-          submitting: {
-            invoke: {
-              src: (_, { credentials }) => login({ credentials }),
-              onDone: {
-                target: 'success',
-                actions: [() => notify(i18n.succeed)],
-              },
-              onError: {
-                target: 'failure',
-                actions: [setError, ({ error }) => notify(error)],
-              },
-            },
-          },
-          success: { on: { SUBMIT: 'submitting' } },
-          failure: { on: { SUBMIT: 'submitting' } },
-        },
-      }),
-    [login, notify, i18n]
-  );
-  const [{ matches }, send] = useMachine(machine);
+  const { start, busy } = useRoadtrip({
+    itinerary: (_, { credentials }) => login({ credentials }),
+    onArrive: () => notify(i18n.succeed),
+    onCrash: () => notify(i18n.fail),
+  });
   const fields = useMemo(
     () => [
       {
@@ -73,11 +54,8 @@ export const useLogin = () => {
     ],
     [i18n, profile, validation]
   );
-  const onSubmit = useCallback(credentials => send('SUBMIT', { credentials }), [
-    send,
-  ]);
+  const onSubmit = useCallback(credentials => start({ credentials }), [start]);
   const form = useForm({ render: Form, fields, onSubmit });
-  const submitting = useMemo(() => matches('submitting'), [matches]);
 
-  return { ...form, submitting };
+  return { ...form, busy };
 };
