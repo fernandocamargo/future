@@ -9,6 +9,7 @@ export default ({
   onStop: stop = noop,
   onCrash: crash = [],
   onArrive: arrive,
+  id,
   itinerary,
 }) => {
   const machine = useMemo(
@@ -28,10 +29,11 @@ export default ({
             },
           },
           success: { entry: 'stop', type: 'final', on: { START: 'busy' } },
-          failure: { entry: 'stop', type: 'final', on: { START: 'busy' } },
+          failure: { entry: 'stop', on: { START: 'busy' } },
         },
+        id,
       }),
-    [itinerary, arrive, crash]
+    [id, itinerary, arrive, crash]
   );
   const [
     {

@@ -25,16 +25,12 @@ export const useLogin = () => {
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const { start, busy } = useRoadtrip({
+  const { start: enter } = useRoadtrip({
+    itinerary: (_, { profile }) => identify(profile),
+  });
+  const { start: check, busy: checking } = useRoadtrip({
     itinerary: (_, { credentials }) => login({ credentials }),
-    onArrive: [
-      { profile: setProfile },
-      ({ profile }) =>
-        identify(profile).then(() => {
-          form.reset();
-          notify(i18n.succeed);
-        }),
-    ],
+    onArrive: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
     onCrash: ({ error }) => notify(error),
   });
   const fields = useMemo(
@@ -43,7 +39,7 @@ export const useLogin = () => {
         field: Text,
         name: 'email',
         label: i18n.email,
-        value: profile.email,
+        value: 'camargodelbuono+router0001@gmail.com' || profile.email,
         validation: validation.email.required(),
         settings: { type: 'email' },
       },
@@ -63,8 +59,8 @@ export const useLogin = () => {
     ],
     [i18n, profile, validation]
   );
-  const onSubmit = useCallback(credentials => start({ credentials }), [start]);
+  const onSubmit = useCallback(credentials => check({ credentials }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });
 
-  return { ...form, busy };
+  return { ...form, busy: checking };
 };
