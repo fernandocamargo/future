@@ -15,7 +15,6 @@ import Form from './form';
 import messages from './messages';
 
 export const useLogin = () => {
-  const history = useHistory();
   const {
     location: { state: profile = { email: '' } },
   } = useHistory();
