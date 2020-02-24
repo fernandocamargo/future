@@ -1,42 +1,34 @@
-import { func, number, shape } from 'prop-types';
-import React, { useMemo } from 'react';
+import moment from 'moment';
+import { func, instanceOf, shape } from 'prop-types';
+import React from 'react';
 
 import { useI18n } from 'hooks';
-import { Link } from 'components/widgets';
+import { Countdown, Link } from 'components/widgets';
 
-import Menu from '../../menu';
+import { useSuccess } from './hooks';
 import messages from './messages';
 
-const fromNow = () => ({
-  in: format => 10,
-});
-
-const Countdown = ({ from }) => {
-  return from;
-};
-
-const Success = ({ redirect: { when, to }, profile }) => {
-  const countdown = useMemo(() => fromNow(when).in('seconds'), [when]);
+const Success = ({ redirect: { to, ...redirect } }) => {
+  const { countdown } = useSuccess({ redirect });
   const { title } = useI18n(messages);
 
   return (
     <article>
-      <h2>{title}</h2>
+      <h1>{title}</h1>
       <p>
         <span>We're redirecting you to the </span>
         <Link to={to}>login page</Link>
         <span> in </span>
-        <Countdown from={countdown} />
-        <span>second(s).</span>
+        {countdown && <Countdown {...countdown} />}
+        <span> second(s).</span>
       </p>
-      <Menu profile={profile} />
     </article>
   );
 };
 
 Success.propTypes = {
   redirect: shape({
-    when: number.isRequired,
+    when: instanceOf(moment).isRequired,
     to: func.isRequired,
   }).isRequired,
 };

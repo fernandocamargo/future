@@ -1,10 +1,14 @@
-import React, { useMemo, useCallback } from 'react';
+import noop from 'lodash/noop';
+import moment from 'moment';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import {
   useForm,
   useI18n,
   useNotification,
   useRoadtrip,
+  useRoutes,
   useScrollToTop,
   useValidation,
 } from 'hooks';
@@ -15,7 +19,11 @@ import Form from './form';
 import Agreement from './agreement';
 import messages from './messages';
 
-export const useRegistration = ({ token, profile }) => {
+const [TIMER_VALUE, TIMER_UNIT] = [10, 'second'];
+
+export const useValid = ({ token, profile }) => {
+  const history = useHistory();
+  const { login: pathname } = useRoutes();
   const { create } = useUsers();
   const validation = useValidation();
   const { notify } = useNotification();
@@ -74,18 +82,22 @@ export const useRegistration = ({ token, profile }) => {
   );
   const onSubmit = useCallback(user => start({ user }), [start]);
   const form = useForm({ render: Form, fields, onSubmit });
+  const when = useMemo(() => new moment().add(TIMER_VALUE, TIMER_UNIT), []);
+  const redirect = useCallback(
+    () => history.push({ state: profile, pathname }),
+    [history, pathname, profile]
+  );
+  const schedule = useCallback(() => {
+    const timeout = window.setTimeout(redirect, TIMER_VALUE * 1000);
+
+    return () => window.clearTimeout(timeout);
+  }, [redirect]);
+
+  useEffect(success ? schedule : noop, [success]);
 
   return {
     ...((idle || busy) && { form: { ...form, busy } }),
-    ...(success && {
-      success: {
-        redirect: {
-          when: new Date().getTime(),
-          to: console.log.bind(console, 'to();'),
-        },
-        profile,
-      },
-    }),
+    ...(success && { success: { redirect: { to: redirect, when } } }),
     ...(failure && { failure: { reason: error, profile } }),
   };
 };

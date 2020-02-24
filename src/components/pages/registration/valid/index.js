@@ -4,14 +4,14 @@ import React from 'react';
 import { useI18n } from 'hooks';
 import { Form } from 'components/widgets';
 
-import { useRegistration } from './hooks';
+import { useValid } from './hooks';
 import Success from './success';
 import Failure from './failure';
 import messages from './messages';
 import withStyle from './style';
 
 const Valid = ({ useStyle, token, profile }) => {
-  const { form, success, failure } = useRegistration({ token, profile });
+  const { form, success, failure } = useValid({ token, profile });
   const { title, description } = useI18n(messages);
   const style = useStyle();
 

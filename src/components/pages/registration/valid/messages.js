@@ -8,6 +8,6 @@ export default defineMessages({
   email: 'E-mail',
   password: 'Password',
   'password-confirmation': 'Repeat password',
-  succeed: 'All good mate!',
-  fail: 'U suck! :(',
+  succeed: 'Registration successful!',
+  fail: 'There was a problem with your registration.',
 });
