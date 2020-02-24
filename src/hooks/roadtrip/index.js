@@ -1,10 +1,9 @@
-import isFunction from 'lodash/isFunction';
 import noop from 'lodash/noop';
-import { assign, Machine } from 'xstate';
+import { Machine } from 'xstate';
 import { useCallback, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 
-import { setError } from './helpers';
+import { apply, setError } from './helpers';
 
 export default ({
   onStop: stop = noop,
@@ -21,11 +20,11 @@ export default ({
           busy: {
             invoke: {
               src: itinerary,
-              onDone: {
-                target: 'success',
-                actions: [isFunction(arrive) ? arrive : assign(arrive)],
+              onDone: { target: 'success', actions: apply(arrive) },
+              onError: {
+                target: 'failure',
+                actions: [setError].concat(apply(crash)),
               },
-              onError: { target: 'failure', actions: [setError].concat(crash) },
             },
           },
           success: { entry: 'stop', type: 'final', on: { START: 'busy' } },

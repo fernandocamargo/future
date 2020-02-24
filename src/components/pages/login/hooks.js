@@ -24,7 +24,10 @@ export const useLogin = () => {
   const i18n = useI18n(messages);
   const { start, busy } = useRoadtrip({
     itinerary: (_, { credentials }) => login({ credentials }),
-    onArrive: () => notify(i18n.succeed),
+    onArrive: [
+      { profile: (_, { data: profile }) => profile },
+      ({ profile }) => notify(JSON.stringify(profile)),
+    ],
     onCrash: ({ error }) => notify(error),
   });
   const fields = useMemo(
