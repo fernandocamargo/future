@@ -12,15 +12,13 @@ import {
 import { useAuth } from 'hooks/services/expertlead';
 import { Password, Switch, Text } from 'components/widgets/fields';
 
+import { setProfile } from './helpers';
 import Form from './form';
 import messages from './messages';
-
-const setProfile = (_, { data: { data: profile } }) => profile;
 
 export const useLogin = () => {
   const {
     location: { state: profile = { email: '' } },
-    push,
   } = useHistory();
   const { identify } = useAuthentication();
   const { login } = useAuth();
@@ -33,7 +31,7 @@ export const useLogin = () => {
       { profile: setProfile },
       ({ profile }) =>
         identify(profile).then(() => {
-          push({ pathname: '/' });
+          form.reset();
           notify(i18n.succeed);
         }),
     ],

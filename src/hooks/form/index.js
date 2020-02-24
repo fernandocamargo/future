@@ -11,7 +11,14 @@ export default ({ fields, render, onSubmit }) => {
   );
   const { current: order } = useRef(names);
   const { current: refs } = useRef(DOM);
-  const { dirty, setStatus, validateForm, submitForm, ...formik } = useFormik({
+  const {
+    resetForm: reset,
+    dirty,
+    setStatus,
+    validateForm,
+    submitForm,
+    ...formik
+  } = useFormik({
     validateOnChange: false,
     validateOnBlur: false,
     initialValues,
@@ -62,8 +69,9 @@ export default ({ fields, render, onSubmit }) => {
       fields: fields.map(formatField),
       onSubmit: submit,
       original: !dirty,
+      reset,
     }),
-    [fields, formatField, submit, dirty]
+    [fields, formatField, submit, dirty, reset]
   );
 
   useLayoutEffect(() => {

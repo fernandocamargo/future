@@ -3,7 +3,7 @@ import React, { Suspense as OnDemand } from 'react';
 import { Switch as Routes } from 'react-router-dom';
 
 import { useRoutes } from 'hooks';
-import { Restricted, Public } from 'components/routes';
+import { Public, Restricted, Skippable } from 'components/routes';
 import {
   Account,
   Dashboard,
@@ -37,7 +37,7 @@ const App = ({ useStyle }) => {
           <Routes>
             <Public path="/" component={Home} exact />
             <Public path={`${registration}/:token`} component={Registration} />
-            <Public path={login} component={Login} exact />
+            <Skippable path={login} component={Login} exact />
             <Restricted path={dashboard} component={Dashboard} exact />
             <Restricted path={profile} component={Profile} exact />
             <Restricted path={referrals} component={Referrals} exact />
