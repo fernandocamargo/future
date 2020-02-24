@@ -31,11 +31,11 @@ export const useLogin = () => {
     itinerary: (_, { credentials }) => login({ credentials }),
     onArrive: [
       { profile: setProfile },
-      ({ profile }) => {
-        identify(profile);
-        push({ pathname: '/' });
-        notify(i18n.succeed);
-      },
+      ({ profile }) =>
+        identify(profile).then(() => {
+          push({ pathname: '/' });
+          notify(i18n.succeed);
+        }),
     ],
     onCrash: ({ error }) => notify(error),
   });
