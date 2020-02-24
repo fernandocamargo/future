@@ -1,29 +1,13 @@
 import style from 'style';
 
-import Field from 'components/widgets/form/field';
 import { spin } from 'style/animations';
 
 export default style`
   padding-top: 104px;
-  position: relative;
 
   & > {
     fieldset {
-      color: #333;
-      display: block;
-      position: relative;
       width: ${({ theme }) => theme.grid.third()};
-
-      & > *:not([aria-busy="true"]) {
-        transition: opacity 0.15s linear;
-      }
-
-      &[disabled] {
-        & > *:not([aria-busy="true"]) {
-          opacity: 0.25;
-          pointer-events: none;
-        }
-      }
 
       & > legend {
         font-weight: 500;
@@ -40,17 +24,6 @@ export default style`
       }
 
       & > div {
-        &:first-of-type {
-          ${Field} {
-            margin-top: 33px;
-
-            &:first-of-type,
-            &:last-of-type {
-              margin-top: 25px;
-            }
-          }
-        }
-
         &:last-of-type {
           margin-top: 48px;
         }

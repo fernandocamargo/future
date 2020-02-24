@@ -1,3 +1,4 @@
+import { func } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
@@ -11,7 +12,9 @@ const Link = props => {
   return <Anchor {...props}>{title}</Anchor>;
 };
 
-Link.propTypes = {};
+Link.propTypes = {
+  to: func.isRequired,
+};
 
 Link.defaultProps = {};
 
