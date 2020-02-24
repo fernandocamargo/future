@@ -26,7 +26,7 @@ export const useLogin = () => {
   const { start, busy } = useRoadtrip({
     itinerary: (_, { credentials }) => login({ credentials }),
     onArrive: () => notify(i18n.succeed),
-    onCrash: () => notify(i18n.fail),
+    onCrash: ({ error }) => notify(error),
   });
   const fields = useMemo(
     () => [

@@ -14,7 +14,7 @@ export default () => {
     ({ credentials: { email, password } }) =>
       expertlead
         .post(URL, { email, password })
-        .catch(({ response: { data: { code } } }) =>
+        .catch(({ response: { data: { message: code } } }) =>
           Promise.reject(errors[code])
         ),
     [expertlead, errors]
