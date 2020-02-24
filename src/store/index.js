@@ -10,7 +10,7 @@ const compose = composeWithDevTools({ name });
 
 const store = createStore(
   persistReducer(
-    { whitelist: ['settings'], key: name, storage },
+    { whitelist: ['profile', 'settings'], key: name, storage },
     combineReducers(reducers)
   ),
   compose()

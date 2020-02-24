@@ -2,6 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {
+  useAuthentication,
   useForm,
   useI18n,
   useNotification,
@@ -14,10 +15,14 @@ import { Password, Switch, Text } from 'components/widgets/fields';
 import Form from './form';
 import messages from './messages';
 
+const setProfile = (_, { data: { data: profile } }) => profile;
+
 export const useLogin = () => {
   const {
     location: { state: profile = { email: '' } },
+    push,
   } = useHistory();
+  const { identify } = useAuthentication();
   const { login } = useAuth();
   const validation = useValidation();
   const { notify } = useNotification();
@@ -25,8 +30,12 @@ export const useLogin = () => {
   const { start, busy } = useRoadtrip({
     itinerary: (_, { credentials }) => login({ credentials }),
     onArrive: [
-      { profile: (_, { data: profile }) => profile },
-      ({ profile }) => notify(JSON.stringify(profile)),
+      { profile: setProfile },
+      ({ profile }) => {
+        identify(profile);
+        push({ pathname: '/' });
+        notify(i18n.succeed);
+      },
     ],
     onCrash: ({ error }) => notify(error),
   });
