@@ -31,6 +31,8 @@
   "components/pages/registration/valid/password": "",
   "components/pages/registration/valid/password-confirmation": "",
   "components/pages/registration/valid/succeed": "",
+  "components/pages/registration/valid/success/description": "",
+  "components/pages/registration/valid/success/link/title": "",
   "components/pages/registration/valid/success/title": "",
   "components/pages/registration/valid/title": "",
   "components/widgets/form/confirmation": "",

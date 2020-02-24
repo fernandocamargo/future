@@ -3,25 +3,23 @@ import { func, instanceOf, shape } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
-import { Countdown, Link } from 'components/widgets';
+import { Countdown } from 'components/widgets';
 
 import { useSuccess } from './hooks';
+import Link from './link';
 import messages from './messages';
 
 const Success = ({ redirect: { to, ...redirect } }) => {
   const { countdown } = useSuccess({ redirect });
-  const { title } = useI18n(messages);
+  const { title, description } = useI18n(messages, {
+    link: <Link to={to} />,
+    countdown: countdown && <Countdown {...countdown} />,
+  });
 
   return (
     <article>
       <h1>{title}</h1>
-      <p>
-        <span>We're redirecting you to the </span>
-        <Link to={to}>login page</Link>
-        <span> in </span>
-        {countdown && <Countdown {...countdown} />}
-        <span> second(s).</span>
-      </p>
+      <p>{description}</p>
     </article>
   );
 };

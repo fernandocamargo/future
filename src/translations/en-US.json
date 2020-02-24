@@ -31,6 +31,8 @@
   "components/pages/registration/valid/password": "Password",
   "components/pages/registration/valid/password-confirmation": "Repeat password",
   "components/pages/registration/valid/succeed": "Registration successful!",
+  "components/pages/registration/valid/success/description": "We're redirecting you to the {link} in {countdown} second(s).",
+  "components/pages/registration/valid/success/link/title": "login page",
   "components/pages/registration/valid/success/title": "All done! Your account has been successfully created and you can access already our portal.",
   "components/pages/registration/valid/title": "Welcome!",
   "components/widgets/form/confirmation": "Are you sure you want to leave? You have unsaved changes.",
