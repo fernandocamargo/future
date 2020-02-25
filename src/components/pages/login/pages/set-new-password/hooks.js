@@ -39,7 +39,7 @@ export const useRoot = () => {
         field: Text,
         name: 'email',
         label: i18n.email,
-        value: 'camargodelbuono+router0001@gmail.com' || profile.email,
+        value: profile.email,
         validation: validation.email.required(),
         settings: { type: 'email' },
       },
