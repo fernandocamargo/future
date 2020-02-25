@@ -28,7 +28,7 @@ export default ({
               },
             },
           },
-          success: { entry: 'stop', type: 'final', on: { START: 'busy' } },
+          success: { entry: 'stop', on: { START: 'busy' } },
           failure: { entry: 'stop', on: { START: 'busy' } },
         },
         id,

@@ -2,16 +2,16 @@ import React from 'react';
 
 import { Form } from 'components/widgets';
 
-import { useRoot } from './hooks';
+import { useRecoverPassword } from './hooks';
 
-const Root = () => {
-  const form = useRoot();
+const RecoverPassword = () => {
+  const form = useRecoverPassword();
 
   return <Form {...form} />;
 };
 
-Root.propTypes = {};
+RecoverPassword.propTypes = {};
 
-Root.defaultProps = {};
+RecoverPassword.defaultProps = {};
 
-export default Root;
+export default RecoverPassword;

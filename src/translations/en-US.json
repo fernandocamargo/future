@@ -90,6 +90,7 @@
   "hooks/routes/settings": "/settings",
   "hooks/routes/why-expertlead": "/why-expertlead",
   "hooks/services/expertlead/auth/user.not-found": "Account does not exist or not found.",
+  "hooks/services/expertlead/auth/users.email-invalid": "Unfortunately we could not find your email! Please confirm your details.",
   "hooks/services/expertlead/auth/users.password-invalid": "The password does not match the email provided.",
   "hooks/services/expertlead/invitation/active": "This account is already active.",
   "hooks/services/expertlead/invitation/invalid": "Invalid or expired token.",

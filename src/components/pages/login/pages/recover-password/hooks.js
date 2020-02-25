@@ -2,7 +2,6 @@ import { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {
-  useAuthentication,
   useForm,
   useI18n,
   useNotification,
@@ -12,25 +11,20 @@ import {
 import { useAuth } from 'hooks/services/expertlead';
 import { Text } from 'components/widgets/fields';
 
-import { setProfile } from './helpers';
 import Form from './form';
 import messages from './messages';
 
-export const useRoot = () => {
+export const useRecoverPassword = () => {
   const {
     location: { state: profile = { email: '' } },
   } = useHistory();
-  const { identify } = useAuthentication();
-  const { login } = useAuth();
+  const { forgotPassword } = useAuth();
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const { start: enter } = useRoadtrip({
-    itinerary: (_, { profile }) => identify(profile),
-  });
   const { start: check, busy: checking } = useRoadtrip({
-    itinerary: (_, { credentials }) => login({ credentials }),
-    onArrive: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
+    itinerary: (_, { email }) => forgotPassword({ email }),
+    onArrive: () => notify(i18n.succeed),
     onCrash: ({ error }) => notify(error),
   });
   const fields = useMemo(
@@ -46,7 +40,7 @@ export const useRoot = () => {
     ],
     [i18n, profile, validation]
   );
-  const onSubmit = useCallback(credentials => check({ credentials }), [check]);
+  const onSubmit = useCallback(({ email }) => check({ email }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });
 
   return { ...form, busy: checking };
