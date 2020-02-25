@@ -23,7 +23,7 @@ const Navigation = ({ useStyle, profile }) => {
         </Link>
       </Option>
       <Option>
-        <Link to={routes['password-recovery']} params={profile}>
+        <Link to={routes['recover-password']} params={profile}>
           {recoverPassword}
         </Link>
       </Option>

@@ -16,7 +16,7 @@ import { setProfile } from './helpers';
 import Form from './form';
 import messages from './messages';
 
-export const useLogin = () => {
+export const useRoot = () => {
   const {
     location: { state: profile = { email: '' } },
   } = useHistory();

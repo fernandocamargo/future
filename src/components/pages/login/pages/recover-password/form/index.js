@@ -1,9 +1,8 @@
 import { func } from 'prop-types';
 import React from 'react';
 
-import { useI18n, useRoutes } from 'hooks';
-import { Button, Link, Menu } from 'components/widgets';
-import Option from 'components/widgets/menu/option';
+import { useI18n } from 'hooks';
+import { Button } from 'components/widgets';
 
 import messages from './messages';
 import withStyle from './style';
@@ -16,15 +15,7 @@ const Form = ({
   useStyle,
   busy,
 }) => {
-  const routes = useRoutes();
-  const {
-    'recover-password': recoverPassword,
-    title,
-    description,
-    action,
-    actions,
-    loading,
-  } = useI18n(messages);
+  const { title, description, submit, cancel, loading } = useI18n(messages);
   const style = useStyle();
 
   return (
@@ -34,13 +25,9 @@ const Form = ({
         <p>{description}</p>
         <div>{fields}</div>
         <div>
-          <Button type="submit">{action}</Button>
+          <Button type="submit">{submit}</Button>
+          <Button type="button">{cancel}</Button>
         </div>
-        <Menu title={actions}>
-          <Option>
-            <Link to={routes['password-recovery']}>{recoverPassword}</Link>
-          </Option>
-        </Menu>
         {busy && (
           <p role="alert" aria-busy="true">
             {loading}
