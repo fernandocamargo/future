@@ -5,4 +5,4 @@ import { Root } from 'components';
 
 const initialize = () => render(<Root />, document.getElementById('root'));
 
-export default document.fonts.ready.then(initialize).catch(console.warn);
+export default document.fonts.ready.then(initialize);
