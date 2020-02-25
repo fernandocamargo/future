@@ -24,8 +24,14 @@ export const useRecoverPassword = () => {
   const i18n = useI18n(messages);
   const { start: check, busy: checking } = useRoadtrip({
     itinerary: (_, { email }) => forgotPassword({ email }),
-    onArrive: () => notify(i18n.succeed),
-    onCrash: ({ error }) => notify(error),
+    onArrive: () => {
+      notify(i18n.succeed);
+      form.reset();
+    },
+    onCrash: ({ error }) => {
+      notify(error);
+      console.log(form);
+    },
   });
   const fields = useMemo(
     () => [
