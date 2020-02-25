@@ -2,7 +2,9 @@ import intersection from 'lodash/intersection';
 import { useCallback, useLayoutEffect, useMemo, useRef } from 'react';
 import { useFormik } from 'formik';
 
-import { getFormikSettingsFrom, connectTo, focus } from './helpers';
+import { focus } from 'helpers/dom';
+
+import { getFormikSettingsFrom, connectTo } from './helpers';
 
 const EMPTY = { ordered: [], unordered: {} };
 

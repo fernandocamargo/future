@@ -2,6 +2,8 @@ import update from 'immutability-helper';
 import { object } from 'yup';
 import { createRef } from 'react';
 
+import { focus } from 'helpers/dom';
+
 export const getFormikSettingsFrom = fields => {
   const { validationSchema, ...settings } = fields.reduce(
     (stack, { value = '', name, validation, disabled = false }) => {
@@ -47,10 +49,4 @@ export const connectTo = ({
     unordered: { [name]: { $set: { focus: () => focus(fieldRef.current) } } },
     ordered: { $push: [props] },
   });
-};
-
-export const focus = element => {
-  element.focus();
-  element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  element.select();
 };
