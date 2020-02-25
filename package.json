@@ -61,7 +61,23 @@
     "babel-plugin-react-intl-auto": "^3.1.0",
     "chalk": "^3.0.0",
     "customize-cra": "^0.9.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
     "extract-react-intl-messages": "^2.3.5",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1",
     "react-app-rewired": "^2.1.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./src/*.{js,jsx,ts,tsx}": [
+      "npx prettier --write",
+      "eslint src/*.js --fix-dry-run"
+    ]
   }
 }
