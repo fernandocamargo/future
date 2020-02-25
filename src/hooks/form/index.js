@@ -4,6 +4,8 @@ import { useFormik } from 'formik';
 
 import { getFormikSettingsFrom, connectTo, focus } from './helpers';
 
+const EMPTY = { ordered: [], unordered: {} };
+
 export default ({ fields, render, onSubmit }) => {
   const { initialValues, validationSchema, DOM, names } = useMemo(
     () => getFormikSettingsFrom(fields),
@@ -66,7 +68,7 @@ export default ({ fields, render, onSubmit }) => {
   );
   const settings = useMemo(
     () => ({
-      fields: fields.map(formatField),
+      fields: fields.reduce(formatField, EMPTY),
       onSubmit: submit,
       original: !dirty,
       reset,

@@ -29,20 +29,24 @@ export const connectTo = ({
   errors,
   refs,
   isValidating,
-}) => field => {
+}) => (stack, field) => {
   const { debugging = false } = status;
   const { name } = field;
   const { [name]: value } = data;
   const { [name]: error } = errors;
   const { [name]: fieldRef } = refs;
-
-  return {
+  const props = {
     ...(debugging && { error }),
     ...field,
     value,
     onChange,
     fieldRef,
   };
+
+  return update(stack, {
+    unordered: { [name]: { $set: { focus: () => focus(fieldRef.current) } } },
+    ordered: { $push: [props] },
+  });
 };
 
 export const focus = element => {

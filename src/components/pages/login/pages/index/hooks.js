@@ -31,7 +31,8 @@ export const useRoot = () => {
   const { start: check, busy: checking } = useRoadtrip({
     itinerary: (_, { credentials }) => login({ credentials }),
     onArrive: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
-    onCrash: ({ error }) => notify(error),
+    onCrash: ({ error }) =>
+      notify(error).then(() => form.fields.unordered.password.focus()),
   });
   const fields = useMemo(
     () => [

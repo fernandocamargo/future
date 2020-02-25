@@ -10,7 +10,14 @@ import Field from './field';
 import messages from './messages';
 import withStyle from './style';
 
-const Form = ({ useStyle, fields, onSubmit, original, render, ...props }) => {
+const Form = ({
+  fields: { ordered: fields },
+  useStyle,
+  onSubmit,
+  original,
+  render,
+  ...props
+}) => {
   const Form = useCallback(
     props => <Container {...props} onSubmit={onSubmit} />,
     [onSubmit]
@@ -53,7 +60,9 @@ const Form = ({ useStyle, fields, onSubmit, original, render, ...props }) => {
 
 Form.propTypes = {
   useStyle: func.isRequired,
-  fields: arrayOf(shape({}).isRequired),
+  fields: shape({
+    ordered: arrayOf(shape({}).isRequired),
+  }).isRequired,
   onSubmit: func.isRequired,
 };
 
