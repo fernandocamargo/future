@@ -16,6 +16,7 @@ import {
   OutlinedInput,
 } from '@material-ui/core';
 
+import { focus } from 'helpers/dom';
 import { reverse } from 'helpers/boolean';
 
 import { measure } from './helpers';
@@ -36,7 +37,7 @@ const Password = ({
   const type = useMemo(() => (visible ? 'text' : 'password'), [visible]);
   const toggle = useCallback(() => {
     setVisible(reverse);
-    inputRef.current.focus();
+    focus(inputRef.current);
   }, [inputRef]);
   const labelWidth = useMemo(() => measure(label), [label]);
   const style = useStyle();
