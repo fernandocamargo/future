@@ -52,4 +52,5 @@ export const connectTo = ({
 export const focus = element => {
   element.focus();
   element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  element.select();
 };

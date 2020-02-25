@@ -32,7 +32,7 @@ export const useRoot = () => {
     itinerary: (_, { credentials }) => login({ credentials }),
     onArrive: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
     onCrash: ({ error }) =>
-      notify(error).then(() => form.fields.unordered.password.focus()),
+      notify(error).then(form.fields.unordered.password.focus),
   });
   const fields = useMemo(
     () => [
