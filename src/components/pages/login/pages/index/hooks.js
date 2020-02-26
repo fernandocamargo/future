@@ -62,6 +62,10 @@ export const useRoot = () => {
   );
   const onSubmit = useCallback(credentials => check({ credentials }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });
+  const goToRecoverPage = useCallback(
+    () => console.log('goToRecoverPage();'),
+    []
+  );
 
-  return { ...form, busy: checking };
+  return { busy: checking, goToRecoverPage, ...form };
 };

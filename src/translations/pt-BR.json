@@ -5,7 +5,7 @@
   "components/pages/login/pages/index/email": "E-mail",
   "components/pages/login/pages/index/form/action": "Deixe-me entrar",
   "components/pages/login/pages/index/form/actions": "Ações sugeridas:",
-  "components/pages/login/pages/index/form/description": "Olá, é muito bom vê-lo de novo!",
+  "components/pages/login/pages/index/form/description": "Olá, é muito bom te ver de novo!",
   "components/pages/login/pages/index/form/loading": "Checando as suas credenciais...",
   "components/pages/login/pages/index/form/recover-password": "Esqueceu a senha?",
   "components/pages/login/pages/index/form/title": "Entrar",

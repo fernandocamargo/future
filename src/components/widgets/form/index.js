@@ -16,7 +16,7 @@ const Form = ({
   onSubmit,
   original,
   render,
-  ...props
+  ...extra
 }) => {
   const Form = useCallback(
     props => <Container {...props} onSubmit={onSubmit} />,
@@ -44,7 +44,7 @@ const Form = ({
   const style = useStyle();
   const element = createElement(render, {
     ...style,
-    ...props,
+    ...extra,
     components,
     elements,
     original,

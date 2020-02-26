@@ -1,7 +1,7 @@
 import { func } from 'prop-types';
 import React from 'react';
 
-import { useI18n, useRoutes } from 'hooks';
+import { useI18n } from 'hooks';
 import { Button, Link, Menu } from 'components/widgets';
 import Option from 'components/widgets/menu/option';
 
@@ -14,9 +14,9 @@ const Form = ({
   },
   components: { Form },
   useStyle,
+  goToRecoverPage,
   busy,
 }) => {
-  const routes = useRoutes();
   const {
     'recover-password': recoverPassword,
     title,
@@ -38,7 +38,7 @@ const Form = ({
         </div>
         <Menu title={actions}>
           <Option>
-            <Link to={routes['recover-password']}>{recoverPassword}</Link>
+            <Link to={goToRecoverPage}>{recoverPassword}</Link>
           </Option>
         </Menu>
         {busy && (
@@ -53,6 +53,7 @@ const Form = ({
 
 Form.propTypes = {
   useStyle: func.isRequired,
+  goToRecoverPage: func.isRequired,
 };
 
 Form.defaultProps = {};
