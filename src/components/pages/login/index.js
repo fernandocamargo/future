@@ -6,7 +6,7 @@ import { useRoutes } from 'hooks';
 import { Public } from 'components/routes';
 import { Loader } from 'components/widgets';
 
-import { Index, RecoverPassword, SetNewPassword } from './pages';
+import { Index, RecoverPassword, SetNewPassword } from './subpages';
 import withStyle from './style';
 
 const Login = ({ useStyle }) => {

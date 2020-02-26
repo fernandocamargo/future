@@ -7,6 +7,7 @@ import {
   useI18n,
   useNotification,
   useRoadtrip,
+  useRoutes,
   useValidation,
 } from 'hooks';
 import { useAuth } from 'hooks/services/expertlead';
@@ -19,9 +20,11 @@ import messages from './messages';
 export const useRoot = () => {
   const {
     location: { state: profile = { email: '' } },
+    push,
   } = useHistory();
   const { identify } = useAuthentication();
   const { login } = useAuth();
+  const { 'recover-password': recoverPassword } = useRoutes();
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
@@ -63,8 +66,8 @@ export const useRoot = () => {
   const onSubmit = useCallback(credentials => check({ credentials }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });
   const goToRecoverPage = useCallback(
-    () => console.log('goToRecoverPage();'),
-    []
+    () => push({ pathname: recoverPassword, state: profile }),
+    [push, recoverPassword, profile]
   );
 
   return { busy: checking, goToRecoverPage, ...form };
