@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 
 import store, { persistor } from 'store';
 import * as translations from 'translations';
+import { useScrollToTop } from 'hooks';
 
 import history from '../../history';
 import { normalize } from './helpers';
-import { useScrollToTop } from 'hooks';
 
 export const useRoot = () => {
   const scrollToTop = useScrollToTop();

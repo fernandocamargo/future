@@ -70,12 +70,14 @@ Password.propTypes = {
   value: oneOfType([string, number]),
   onChange: func.isRequired,
   error: node,
-  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
+  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })])
+    .isRequired,
   disabled: bool,
 };
 
 Password.defaultProps = {
-  type: '',
+  value: '',
+  error: null,
   disabled: false,
 };
 

@@ -37,11 +37,11 @@ const Checkbox = ({
           control={
             <Input
               name={name}
-              value={true}
               onChange={onChange}
               checked={value}
               inputRef={inputRef}
               disabled={disabled}
+              value
             />
           }
         />
@@ -58,12 +58,14 @@ Checkbox.propTypes = {
   value: bool,
   onChange: func.isRequired,
   error: node,
-  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
+  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })])
+    .isRequired,
   disabled: bool,
 };
 
 Checkbox.defaultProps = {
   value: false,
+  error: null,
   disabled: false,
 };
 

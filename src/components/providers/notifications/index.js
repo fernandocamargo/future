@@ -8,6 +8,8 @@ Notifications.propTypes = {
   children: node,
 };
 
-Notifications.defaultProps = {};
+Notifications.defaultProps = {
+  children: null,
+};
 
 export default Notifications;

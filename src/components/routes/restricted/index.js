@@ -1,4 +1,5 @@
-import { string, elementType, bool } from 'prop-types';
+/* eslint-disable react/prop-types */
+import { bool, elementType, string } from 'prop-types';
 import React, { createElement, useCallback } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 

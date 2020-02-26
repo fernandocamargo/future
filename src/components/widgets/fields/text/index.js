@@ -53,7 +53,8 @@ Text.propTypes = {
   value: oneOfType([string, number]),
   onChange: func.isRequired,
   error: node,
-  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
+  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })])
+    .isRequired,
   disabled: bool,
 };
 
@@ -61,6 +62,7 @@ Text.defaultProps = {
   type: 'text',
   value: '',
   disabled: false,
+  error: null,
 };
 
 export default withStyle(Text);

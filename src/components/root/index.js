@@ -5,7 +5,7 @@ import { Router } from 'react-router-dom';
 import { ThemeProvider as Theming } from 'styled-components';
 import { IntlProvider as I18n } from 'react-intl';
 
-import { default as theme } from 'themes';
+import theme from 'themes';
 import { App, Style } from 'components';
 import { Notifications } from 'components/providers';
 import { Loader } from 'components/widgets';

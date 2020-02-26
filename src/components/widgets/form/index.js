@@ -1,6 +1,6 @@
-import { arrayOf, func, shape } from 'prop-types';
+import { arrayOf, bool, elementType, func, shape } from 'prop-types';
 import update from 'immutability-helper';
-import React, { createElement, Fragment, useCallback, useMemo } from 'react';
+import React, { createElement, Fragment, useMemo } from 'react';
 
 import { useI18n } from 'hooks';
 import { Prompt } from 'components/routes';
@@ -18,11 +18,10 @@ const Form = ({
   render,
   ...extra
 }) => {
-  const Form = useCallback(
-    props => <Container {...props} onSubmit={onSubmit} />,
+  const components = useMemo(
+    () => ({ Form: props => <Container {...props} onSubmit={onSubmit} /> }),
     [onSubmit]
   );
-  const components = useMemo(() => ({ Form }), [Form]);
   const elements = useMemo(
     () => ({
       fields: fields.reduce(
@@ -60,14 +59,14 @@ const Form = ({
 
 Form.propTypes = {
   useStyle: func.isRequired,
-  fields: shape({
-    ordered: arrayOf(shape({}).isRequired),
-  }).isRequired,
+  fields: shape({ ordered: arrayOf(shape().isRequired) }).isRequired,
   onSubmit: func.isRequired,
+  render: elementType.isRequired,
+  original: bool,
 };
 
 Form.defaultProps = {
-  fields: [],
+  original: false,
 };
 
 export default withStyle(Form);

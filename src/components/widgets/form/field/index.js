@@ -1,4 +1,4 @@
-import { elementType, func, object } from 'prop-types';
+import { elementType, func, shape } from 'prop-types';
 import { createElement } from 'react';
 
 import withStyle from './style';
@@ -12,7 +12,7 @@ const Field = ({ useStyle, field, settings, ...props }) => {
 Field.propTypes = {
   useStyle: func.isRequired,
   field: elementType.isRequired,
-  settings: object,
+  settings: shape(),
 };
 
 Field.defaultProps = {

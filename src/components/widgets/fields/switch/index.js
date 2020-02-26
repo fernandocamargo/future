@@ -36,11 +36,11 @@ const Switch = ({
           control={
             <Input
               name={name}
-              value={true}
               onChange={onChange}
               checked={value}
               inputRef={inputRef}
               disabled={disabled}
+              value
             />
           }
           label={label}
@@ -58,12 +58,15 @@ Switch.propTypes = {
   value: bool,
   onChange: func.isRequired,
   error: node,
-  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
+  fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })])
+    .isRequired,
   disabled: bool,
 };
 
 Switch.defaultProps = {
   value: false,
+  disabled: false,
+  error: null,
 };
 
 export default withStyle(Switch);

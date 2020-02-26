@@ -23,7 +23,21 @@ module.exports = {
     ],
     'import/prefer-default-export': ['off'],
     'react/jsx-filename-extension': ['off'],
+    'react/jsx-fragments': ['error', 'element'],
+    'react/jsx-one-expression-per-line': ['off'],
     'react/jsx-props-no-spreading': ['off'],
+    'react/jsx-wrap-multilines': [
+      'error',
+      {
+        declaration: 'parens',
+        assignment: 'parens',
+        return: 'parens',
+        arrow: 'parens',
+        condition: 'ignore',
+        logical: 'ignore',
+        prop: 'ignore',
+      },
+    ],
     'arrow-parens': ['error', 'as-needed'],
     'comma-dangle': [
       'error',

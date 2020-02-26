@@ -82,7 +82,7 @@ export const useValid = ({ token, profile }) => {
   );
   const onSubmit = useCallback(user => start({ user }), [start]);
   const form = useForm({ render: Form, fields, onSubmit });
-  const when = useMemo(() => new moment().add(TIMER_VALUE, TIMER_UNIT), []);
+  const when = useMemo(() => moment().add(TIMER_VALUE, TIMER_UNIT), []);
   const redirect = useCallback(
     () => history.push({ state: profile, pathname }),
     [history, pathname, profile]
