@@ -12,7 +12,7 @@ const Form = ({
   elements: {
     fields: { ordered: fields },
   },
-  components: { Form },
+  components: { Form: Container },
   useStyle,
   goToRecoverPage,
   busy,
@@ -28,7 +28,7 @@ const Form = ({
   const style = useStyle();
 
   return (
-    <Form {...style}>
+    <Container {...style}>
       <fieldset disabled={busy}>
         <legend>{title}</legend>
         <p>{description}</p>
@@ -47,7 +47,7 @@ const Form = ({
           </p>
         )}
       </fieldset>
-    </Form>
+    </Container>
   );
 };
 
