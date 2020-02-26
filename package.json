@@ -38,6 +38,9 @@
     "storybook:build": "build-storybook -s public",
     "i18n:extract": "node ./scripts/i18n/extract"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
