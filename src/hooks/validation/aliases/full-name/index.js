@@ -1,6 +1,4 @@
-import { useYup } from 'hooks';
-
-import { useI18n } from 'hooks';
+import { useI18n, useYup } from 'hooks';
 
 import { isValid } from './helpers';
 import messages from './messages';

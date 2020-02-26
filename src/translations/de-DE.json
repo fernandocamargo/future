@@ -95,7 +95,7 @@
   "hooks/services/expertlead/invitation/active": "",
   "hooks/services/expertlead/invitation/invalid": "",
   "hooks/services/expertlead/invitation/not-found": "",
-  "hooks/services/expertlead/users/9": "",
+  "hooks/services/expertlead/users/already-activated": "",
   "hooks/validation/aliases/agreement/message": "",
   "hooks/validation/aliases/full-name/message": "",
   "hooks/validation/aliases/password/message": "",

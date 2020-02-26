@@ -8,10 +8,10 @@ import messages from './messages';
 export default yup => {
   const { message } = useI18n(messages);
   const method = useCallback(
-    function({ field, ...params }) {
-      const test = function(value) {
+    function compare({ field, ...params }) {
+      function test(value) {
         return !value || isEqual(value, this.resolve(yup.ref(field)));
-      };
+      }
 
       return this.test({
         params: { field, ...params },

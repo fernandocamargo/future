@@ -8,7 +8,7 @@ import * as methods from './methods';
 export default () => {
   yup.setLocale(invoke(locales));
 
-  Object.entries(methods).forEach(function([name, useMethod]) {
+  Object.entries(methods).forEach(([name, useMethod]) => {
     const [schema, method] = useMethod(yup);
 
     yup.addMethod(schema, name, method);

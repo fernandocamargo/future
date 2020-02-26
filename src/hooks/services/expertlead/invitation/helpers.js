@@ -1,6 +1,6 @@
-import { ERROR_STATUSES, STATUS_BY_CODE } from './constants';
-
 import isEqual from 'lodash/isEqual';
+
+import { ERROR_STATUSES, STATUS_BY_CODE } from './constants';
 
 export const getErrorByCode = ({
   response: {

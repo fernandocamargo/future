@@ -95,7 +95,7 @@
   "hooks/services/expertlead/invitation/active": "Essa conta já está ativa.",
   "hooks/services/expertlead/invitation/invalid": "Token inválido ou expirado.",
   "hooks/services/expertlead/invitation/not-found": "Token não encontrado.",
-  "hooks/services/expertlead/users/9": "Sua conta já havia sido ativada.",
+  "hooks/services/expertlead/users/already-activated": "Sua conta já havia sido ativada.",
   "hooks/validation/aliases/agreement/message": "Você precisa ler e concordar com esses termos.",
   "hooks/validation/aliases/full-name/message": "Esse campo precisa ser um nome completo.",
   "hooks/validation/aliases/password/message": "Esse campo precisa ser uma senha segura, ter entre 6 e 50 caracteres e conter uma letra maiúscula, uma minúscula, um número e um caracter especial (!@#$%^&*).",
