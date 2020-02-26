@@ -24,7 +24,7 @@ export default {
   },
   grid: {
     gap: '24px',
-    show: function(status = true) {
+    show(status = true) {
       return (
         !!status &&
         css`
@@ -38,13 +38,13 @@ export default {
         `
       );
     },
-    available: function() {
+    available() {
       return `calc(100vw - (${this.gap} * 2))`;
     },
-    half: function() {
+    half() {
       return `calc((${this.available()} - ${this.gap}) / 2)`;
     },
-    third: function() {
+    third() {
       return `calc((${this.available()} - (${this.gap} * 2)) / 3)`;
     },
   },

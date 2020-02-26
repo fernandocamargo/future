@@ -8,11 +8,21 @@ module.exports = {
     'import/resolver': { node: { paths: [src] } },
   },
   rules: {
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      { js: 'never', json: 'never' },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['./storybook/**', './src/stories/**'] },
+    ],
+    'import/prefer-default-export': ['off'],
     'react/jsx-filename-extension': ['off'],
     'react/jsx-props-no-spreading': ['off'],
-    'import/prefer-default-export': ['off'],
     'arrow-parens': ['error', 'as-needed'],
     'linebreak-style': ['off'],
     'object-curly-newline': ['error', { consistent: true }],
+    'operator-linebreak': ['error', 'after'],
   },
 };
