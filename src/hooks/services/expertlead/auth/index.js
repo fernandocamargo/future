@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 
+import Error from 'error';
 import { useI18n } from 'hooks';
 import { useExpertlead } from 'hooks/clients';
 
@@ -15,7 +16,9 @@ export default () => {
       response: {
         data: { message: code },
       },
-    }) => Promise.reject(errors[code]),
+    }) => {
+      throw new Error({ message: errors[code], code });
+    },
     [errors]
   );
   const forgotPassword = useCallback(

@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Form } from 'components/widgets';
 
-import { useRoot } from './hooks';
+import { useIndex } from './hooks';
 
 const Root = () => {
-  const form = useRoot();
+  const form = useIndex();
 
   return <Form {...form} />;
 };

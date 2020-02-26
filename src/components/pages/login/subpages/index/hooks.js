@@ -13,13 +13,14 @@ import {
 import { useAuth } from 'hooks/services/expertlead';
 import { Password, Switch, Text } from 'components/widgets/fields';
 
-import { setProfile } from './helpers';
+import { UNKNOWN } from './constants';
+import { getFieldNameBasedOn, setProfile } from './helpers';
 import Form from './form';
 import messages from './messages';
 
-export const useRoot = () => {
+export const useIndex = () => {
   const {
-    location: { state: user = { email: '' } },
+    location: { state: user = UNKNOWN },
     push,
   } = useHistory();
   const { identify } = useAuthentication();
@@ -34,8 +35,16 @@ export const useRoot = () => {
   const { start: check, busy: checking } = useRoadtrip({
     itinerary: (_, { credentials }) => login({ credentials }),
     onArrive: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
-    onCrash: ({ error }) =>
-      notify(error).then(form.fields.unordered.password.focus),
+    onCrash: ({ error: { code, message } }) =>
+      notify(message).then(() => {
+        const {
+          fields: {
+            unordered: { [getFieldNameBasedOn(code)]: field },
+          },
+        } = form;
+
+        return field.focus();
+      }),
   });
   const fields = useMemo(
     () => [

@@ -15426,6 +15426,11 @@ ws@^6.1.2, ws@^6.2.1:
   dependencies:
     async-limiter "~1.0.0"
 
+x-err@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/x-err/-/x-err-1.1.0.tgz#7d580c21f5cb148737075c5ae3e464a749114541"
+  integrity sha512-fJ3R65yJ+S1Vebg/7XVrVc1AWcsbQYCD5ZquBUH9xEfyL4499MXWGzpn8TwHXPcKQgMcN4O4LgLHVglHjQIZ3g==
+
 xml-name-validator@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
