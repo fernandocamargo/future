@@ -27,9 +27,6 @@ const Form = ({
   } = useI18n(messages);
   const style = useStyle();
 
-  console.log('here();');
-  console.log('there();');
-
   return (
     <Form {...style}>
       <fieldset disabled={busy}>
