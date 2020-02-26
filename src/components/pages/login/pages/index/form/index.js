@@ -28,6 +28,7 @@ const Form = ({
   const style = useStyle();
 
   console.log('here();');
+  console.log('there();');
 
   return (
     <Form {...style}>
