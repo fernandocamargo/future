@@ -30,7 +30,6 @@ export const connectTo = ({
   handleChange: onChange,
   errors,
   refs,
-  isValidating,
 }) => (stack, field) => {
   const { debugging = false } = status;
   const { name } = field;

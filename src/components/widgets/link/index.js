@@ -1,5 +1,5 @@
 import isString from 'lodash/isString';
-import { func, node, oneOfType, string } from 'prop-types';
+import { func, node, oneOfType, shape, string } from 'prop-types';
 import React, { useCallback } from 'react';
 
 import { useNavigation } from './hooks';
@@ -33,8 +33,11 @@ Link.propTypes = {
   useStyle: func.isRequired,
   to: oneOfType([func.isRequired, string.isRequired]).isRequired,
   children: node.isRequired,
+  params: shape(),
 };
 
-Link.defaultProps = {};
+Link.defaultProps = {
+  params: {},
+};
 
 export default withStyle(Link);

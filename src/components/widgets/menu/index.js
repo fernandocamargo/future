@@ -30,6 +30,9 @@ Menu.propTypes = {
   children: node,
 };
 
-Menu.defaultProps = {};
+Menu.defaultProps = {
+  title: null,
+  children: null,
+};
 
 export default withStyle(Menu);

@@ -1,37 +1,18 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { clear, setDetails } from 'actions/profile';
+import { useAsyncDispatch } from 'hooks';
 
 import selector from './selector';
 
 export default () => {
-  const dispatch = useDispatch();
+  const dispatch = useAsyncDispatch();
   const { logged, ...profile } = useSelector(selector);
-  const identify = useCallback(
-    details =>
-      new Promise((resolve, reject) => {
-        try {
-          dispatch(setDetails({ details }));
-
-          return resolve(details);
-        } catch (error) {
-          return reject(error);
-        }
-      }),
-    [dispatch]
-  );
-  const logout = useCallback(() => {
-    new Promise((resolve, reject) => {
-      try {
-        dispatch(clear());
-
-        return resolve();
-      } catch (error) {
-        return reject(error);
-      }
-    });
-  }, [dispatch]);
+  const identify = useCallback(details => dispatch(setDetails({ details })), [
+    dispatch,
+  ]);
+  const logout = useCallback(() => dispatch(clear()), [dispatch]);
 
   return { identify, logged, profile, logout };
 };

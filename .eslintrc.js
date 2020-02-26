@@ -11,6 +11,7 @@ module.exports = {
     'import/ignore': [pckg],
   },
   rules: {
+    'import/no-cycle': ['off'],
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -26,10 +27,18 @@ module.exports = {
     'arrow-parens': ['error', 'as-needed'],
     'comma-dangle': [
       'error',
-      { functions: 'never', objects: 'always-multiline' },
+      {
+        arrays: 'always-multiline',
+        exports: 'always-multiline',
+        functions: 'never',
+        imports: 'always-multiline',
+        objects: 'always-multiline',
+      },
     ],
+    'function-paren-newline': ['off'],
     'implicit-arrow-linebreak': ['off'],
     'linebreak-style': ['off'],
+    'no-confusing-arrow': ['off'],
     'object-curly-newline': ['error', { consistent: true }],
     'operator-linebreak': [
       'error',

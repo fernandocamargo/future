@@ -3,11 +3,11 @@ import isNull from 'lodash/isNull';
 
 const isDescendant = child => ({
   of: parent => {
+    let { parentNode: node } = child;
+
     if (isEqual(child, parent)) {
       return true;
     }
-
-    var node = child.parentNode;
 
     while (!isNull(node)) {
       if (isEqual(node, parent)) {
