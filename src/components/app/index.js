@@ -16,7 +16,7 @@ import {
 } from 'components/pages';
 import { Footer, Header, Loader } from 'components/widgets';
 
-import withStyle from './style.js';
+import withStyle from './style';
 
 const App = ({ useStyle }) => {
   const {

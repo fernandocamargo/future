@@ -1,4 +1,4 @@
-import { func } from 'prop-types';
+import { arrayOf, bool, elementType, func, node, shape } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
@@ -52,8 +52,15 @@ const Form = ({
 };
 
 Form.propTypes = {
-  useStyle: func.isRequired,
+  elements: shape({
+    fields: shape({ ordered: arrayOf(node).isRequired }),
+  }).isRequired,
+  components: shape({
+    Form: elementType.isRequired,
+  }).isRequired,
   goToRecoverPage: func.isRequired,
+  useStyle: func.isRequired,
+  busy: bool.isRequired,
 };
 
 Form.defaultProps = {};

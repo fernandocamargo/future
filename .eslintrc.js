@@ -8,6 +8,10 @@ module.exports = {
     'import/resolver': { node: { paths: [src] } },
   },
   rules: {
-    'react/jsx-filename-extension': 'off',
+    'react/jsx-filename-extension': ['off'],
+    'react/jsx-props-no-spreading': ['off'],
+    'import/prefer-default-export': ['off'],
+    'arrow-parens': ['error', 'as-needed'],
+    'linebreak-style': ['off'],
   },
 };

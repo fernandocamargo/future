@@ -1,31 +1,17 @@
 import { lazy } from 'react';
 
-export const Account = lazy(() =>
-  import(/* webpackChunkName: "account" */ './account')
-);
+export const Account = lazy(() => import('./account'));
 
-export const Dashboard = lazy(() =>
-  import(/* webpackChunkName: "dashboard" */ './dashboard')
-);
+export const Dashboard = lazy(() => import('./dashboard'));
 
-export const Home = lazy(() => import(/* webpackChunkName: "home" */ './home'));
+export const Home = lazy(() => import('./home'));
 
-export const Login = lazy(() =>
-  import(/* webpackChunkName: "login" */ './login')
-);
+export const Login = lazy(() => import('./login'));
 
-export const NotFound = lazy(() =>
-  import(/* webpackChunkName: "404" */ './404')
-);
+export const NotFound = lazy(() => import('./404'));
 
-export const Profile = lazy(() =>
-  import(/* webpackChunkName: "profile" */ './profile')
-);
+export const Profile = lazy(() => import('./profile'));
 
-export const Referrals = lazy(() =>
-  import(/* webpackChunkName: "referrals" */ './referrals')
-);
+export const Referrals = lazy(() => import('./referrals'));
 
-export const Registration = lazy(() =>
-  import(/* webpackChunkName: "registration" */ './registration')
-);
+export const Registration = lazy(() => import('./registration'));
