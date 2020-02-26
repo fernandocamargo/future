@@ -13,5 +13,6 @@ module.exports = {
     'import/prefer-default-export': ['off'],
     'arrow-parens': ['error', 'as-needed'],
     'linebreak-style': ['off'],
+    'object-curly-newline': ['error', { consistent: true }],
   },
 };

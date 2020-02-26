@@ -19,7 +19,7 @@ import messages from './messages';
 
 export const useRoot = () => {
   const {
-    location: { state: profile = { email: '' } },
+    location: { state: user = { email: '' } },
     push,
   } = useHistory();
   const { identify } = useAuthentication();
@@ -43,7 +43,7 @@ export const useRoot = () => {
         field: Text,
         name: 'email',
         label: i18n.email,
-        value: profile.email,
+        value: user.email,
         validation: validation.email.required(),
         settings: { type: 'email' },
       },
@@ -61,13 +61,13 @@ export const useRoot = () => {
         value: false,
       },
     ],
-    [i18n, profile, validation]
+    [i18n, user, validation]
   );
   const onSubmit = useCallback(credentials => check({ credentials }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });
   const goToRecoverPage = useCallback(
-    () => push({ pathname: recoverPassword, state: profile }),
-    [push, recoverPassword, profile]
+    () => push({ pathname: recoverPassword, state: user }),
+    [push, recoverPassword, user]
   );
 
   return { busy: checking, goToRecoverPage, ...form };
