@@ -39,7 +39,10 @@
     "i18n:extract": "node ./scripts/i18n/extract"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "airbnb"
+    ]
   },
   "browserslist": {
     "production": [
