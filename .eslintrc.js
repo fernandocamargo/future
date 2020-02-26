@@ -53,6 +53,7 @@ module.exports = {
     'implicit-arrow-linebreak': ['off'],
     'linebreak-style': ['off'],
     'no-confusing-arrow': ['off'],
+    'no-use-before-define': ['error', { variables: false }],
     'object-curly-newline': ['error', { consistent: true }],
     'operator-linebreak': [
       'error',
