@@ -38,6 +38,8 @@ Navigation.propTypes = {
   }),
 };
 
-Navigation.defaultProps = {};
+Navigation.defaultProps = {
+  profile: {},
+};
 
 export default withStyle(Navigation);

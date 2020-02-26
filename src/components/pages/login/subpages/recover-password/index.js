@@ -17,6 +17,8 @@ RecoverPassword.propTypes = {
   }),
 };
 
-RecoverPassword.defaultProps = {};
+RecoverPassword.defaultProps = {
+  profile: {},
+};
 
 export default RecoverPassword;

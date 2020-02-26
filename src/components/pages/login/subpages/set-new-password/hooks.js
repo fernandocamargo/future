@@ -16,9 +16,11 @@ import { setProfile } from './helpers';
 import Form from './form';
 import messages from './messages';
 
+const UNKNOWN = { email: '' };
+
 export const useRoot = () => {
   const {
-    location: { state: profile = { email: '' } },
+    location: { state: { email } = UNKNOWN },
   } = useHistory();
   const { identify } = useAuthentication();
   const { login } = useAuth();
@@ -39,7 +41,7 @@ export const useRoot = () => {
         field: Text,
         name: 'email',
         label: i18n.email,
-        value: profile.email,
+        value: email,
         validation: validation.email.required(),
         settings: { type: 'email' },
       },
@@ -57,7 +59,7 @@ export const useRoot = () => {
         value: false,
       },
     ],
-    [i18n, profile, validation]
+    [i18n, email, validation]
   );
   const onSubmit = useCallback(credentials => check({ credentials }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });

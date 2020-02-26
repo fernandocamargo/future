@@ -1,4 +1,4 @@
-import { func } from 'prop-types';
+import { arrayOf, bool, elementType, func, node, shape } from 'prop-types';
 import React from 'react';
 
 import { useI18n, useRoutes } from 'hooks';
@@ -12,7 +12,7 @@ const Form = ({
   elements: {
     fields: { ordered: fields },
   },
-  components: { Form },
+  components: { Form: Container },
   useStyle,
   busy,
 }) => {
@@ -28,7 +28,7 @@ const Form = ({
   const style = useStyle();
 
   return (
-    <Form {...style}>
+    <Container {...style}>
       <fieldset disabled={busy}>
         <legend>{title}</legend>
         <p>{description}</p>
@@ -47,14 +47,25 @@ const Form = ({
           </p>
         )}
       </fieldset>
-    </Form>
+    </Container>
   );
 };
 
 Form.propTypes = {
   useStyle: func.isRequired,
+  elements: shape({
+    fields: shape({
+      ordered: arrayOf(node.isRequired).isRequired,
+    }).isRequired,
+  }).isRequired,
+  components: shape({
+    Form: elementType.isRequired,
+  }).isRequired,
+  busy: bool,
 };
 
-Form.defaultProps = {};
+Form.defaultProps = {
+  busy: false,
+};
 
 export default withStyle(Form);

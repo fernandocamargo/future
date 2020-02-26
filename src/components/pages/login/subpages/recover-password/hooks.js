@@ -30,7 +30,6 @@ export const useRecoverPassword = () => {
     },
     onCrash: ({ error }) => {
       notify(error);
-      console.log(form);
     },
   });
   const fields = useMemo(
