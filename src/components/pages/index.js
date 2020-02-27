@@ -15,3 +15,5 @@ export const Profile = lazy(() => import('./profile'));
 export const Referrals = lazy(() => import('./referrals'));
 
 export const Registration = lazy(() => import('./registration'));
+
+export const Services = lazy(() => import('./services'));

@@ -13,6 +13,7 @@ import {
   Profile,
   Referrals,
   Registration,
+  Services,
 } from 'components/pages';
 import { Footer, Header, Loader } from 'components/widgets';
 
@@ -26,6 +27,7 @@ const App = ({ useStyle }) => {
     profile,
     referrals,
     registration,
+    services,
   } = useRoutes();
   const style = useStyle();
 
@@ -41,6 +43,7 @@ const App = ({ useStyle }) => {
             <Restricted path={dashboard} component={Dashboard} exact />
             <Restricted path={profile} component={Profile} exact />
             <Restricted path={referrals} component={Referrals} exact />
+            <Restricted path={services} component={Services} exact />
             <Restricted path={account} component={Account} exact />
             <Public path="*" component={NotFound} />
           </Routes>
