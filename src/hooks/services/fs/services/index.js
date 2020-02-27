@@ -6,6 +6,7 @@ export default () => {
   const { load } = useFileSystem();
   const now = new Date().getTime();
   const somethingElse = 'nope();';
+  const also = 1337;
 
   return useCallback(
     () =>
