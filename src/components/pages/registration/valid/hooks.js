@@ -1,10 +1,10 @@
 import noop from 'lodash/noop';
 import moment from 'moment';
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import {
   useForm,
+  useHistory,
   useI18n,
   useNotification,
   useRoadtrip,

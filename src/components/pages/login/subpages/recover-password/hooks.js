@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import {
   useForm,
+  useHistory,
   useI18n,
   useNotification,
   useRoadtrip,

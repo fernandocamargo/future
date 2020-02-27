@@ -2,7 +2,9 @@ import isEqual from 'lodash/isEqual';
 import isFunction from 'lodash/isFunction';
 import URL from 'url-parse';
 import { useCallback, useMemo } from 'react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
+
+import { useHistory } from 'hooks';
 
 export const useNavigation = ({ to: path = '', params: state }) => {
   const history = useHistory();
