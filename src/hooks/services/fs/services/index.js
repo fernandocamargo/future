@@ -8,6 +8,7 @@ export default () => {
   const somethingElse = 'nope();';
   const also = 1337;
   const maybe = 1337;
+  const last = true;
 
   return useCallback(
     () =>
