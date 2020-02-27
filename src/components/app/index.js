@@ -7,6 +7,7 @@ import { Public, Restricted, Skippable } from 'components/routes';
 import {
   Account,
   Dashboard,
+  FAQ,
   Home,
   Login,
   NotFound,
@@ -23,6 +24,7 @@ const App = ({ useStyle }) => {
   const {
     account,
     dashboard,
+    faq,
     login,
     profile,
     referrals,
@@ -44,6 +46,7 @@ const App = ({ useStyle }) => {
             <Restricted path={profile} component={Profile} exact />
             <Restricted path={referrals} component={Referrals} exact />
             <Restricted path={services} component={Services} exact />
+            <Restricted path={faq} component={FAQ} />
             <Restricted path={account} component={Account} exact />
             <Public path="*" component={NotFound} />
           </Routes>

@@ -4,6 +4,8 @@ export const Account = lazy(() => import('./account'));
 
 export const Dashboard = lazy(() => import('./dashboard'));
 
+export const FAQ = lazy(() => import('./faq'));
+
 export const Home = lazy(() => import('./home'));
 
 export const Login = lazy(() => import('./login'));

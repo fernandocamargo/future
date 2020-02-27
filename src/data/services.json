@@ -1,7 +1,7 @@
 [
-  { "id": 1, "title": "Lorem ipsum 01" },
-  { "id": 2, "title": "Lorem ipsum 02" },
-  { "id": 3, "title": "Lorem ipsum 03" },
-  { "id": 4, "title": "Lorem ipsum 04" },
-  { "id": 5, "title": "Lorem ipsum 05" }
+  { "id": 1, "title": "Service #01" },
+  { "id": 2, "title": "Service #02" },
+  { "id": 3, "title": "Service #03" },
+  { "id": 4, "title": "Service #04" },
+  { "id": 5, "title": "Service #05" }
 ]
