@@ -7,6 +7,7 @@ export default () => {
   const now = new Date().getTime();
   const somethingElse = 'nope();';
   const also = 1337;
+  const maybe = 1337;
 
   return useCallback(
     () =>
