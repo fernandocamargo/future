@@ -5,7 +5,6 @@ import { useFileSystem } from 'hooks/clients';
 export default () => {
   const { load } = useFileSystem();
   const now = new Date().getTime();
-  const somethingElse = () => {};
 
   return useCallback(
     () =>
