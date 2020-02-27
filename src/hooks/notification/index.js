@@ -11,29 +11,29 @@ export default (...settings) => {
   );
   const notify = useCallback(
     message =>
-      new Promise(onEntered =>
-        show(message, { variant: 'default', onEntered, ...defaults })
+      new Promise(onEnter =>
+        show(message, { variant: 'default', onEnter, ...defaults })
       ),
     [show]
   );
   const warn = useCallback(
     message =>
-      new Promise(onEntered =>
-        show(message, { variant: 'warning', onEntered, ...defaults })
+      new Promise(onEnter =>
+        show(message, { variant: 'warning', onEnter, ...defaults })
       ),
     [show]
   );
   const succeed = useCallback(
     message =>
-      new Promise(onEntered =>
-        show(message, { variant: 'success', onEntered, ...defaults })
+      new Promise(onEnter =>
+        show(message, { variant: 'success', onEnter, ...defaults })
       ),
     [show]
   );
   const fail = useCallback(
     message =>
-      new Promise(onEntered =>
-        show(message, { variant: 'error', onEntered, ...defaults })
+      new Promise(onEnter =>
+        show(message, { variant: 'error', onEnter, ...defaults })
       ),
     [show]
   );
