@@ -22,7 +22,7 @@ export const useRecoverPassword = () => {
       state: { profile = UNKNOWN },
     },
     push,
-  } = useHistory({ persist: true });
+  } = useHistory({ forwardState: true });
   const { forgotPassword } = useAuth();
   const { login } = useRoutes();
   const validation = useValidation();

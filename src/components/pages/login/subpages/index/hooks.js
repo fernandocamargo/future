@@ -24,7 +24,7 @@ export const useIndex = () => {
       state: { profile: user = UNKNOWN },
     },
     push,
-  } = useHistory({ persist: true });
+  } = useHistory({ forwardState: true });
   const { identify } = useAuthentication();
   const { login } = useAuth();
   const { 'recover-password': recoverPassword } = useRoutes();
