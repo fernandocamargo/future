@@ -1,5 +1,5 @@
 import { func, shape, string } from 'prop-types';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { useI18n, useRoutes } from 'hooks';
 import { Link, Menu } from 'components/widgets';
@@ -13,17 +13,18 @@ const Navigation = ({ useStyle, profile }) => {
   const { 'recover-password': recoverPassword, actions, login } = useI18n(
     messages
   );
+  const params = useMemo(() => ({ profile }), [profile]);
   const style = useStyle();
 
   return (
     <Menu title={actions} {...style}>
       <Option>
-        <Link to={routes.login} params={profile}>
+        <Link to={routes.login} params={params}>
           {login}
         </Link>
       </Option>
       <Option>
-        <Link to={routes['recover-password']} params={profile}>
+        <Link to={routes['recover-password']} params={params}>
           {recoverPassword}
         </Link>
       </Option>

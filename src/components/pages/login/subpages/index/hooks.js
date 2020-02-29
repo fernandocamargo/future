@@ -20,9 +20,11 @@ import messages from './messages';
 
 export const useIndex = () => {
   const {
-    location: { state: user = UNKNOWN },
+    location: {
+      state: { profile: user = UNKNOWN },
+    },
     push,
-  } = useHistory();
+  } = useHistory({ persist: true });
   const { identify } = useAuthentication();
   const { login } = useAuth();
   const { 'recover-password': recoverPassword } = useRoutes();
@@ -75,8 +77,8 @@ export const useIndex = () => {
   const onSubmit = useCallback(credentials => check({ credentials }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });
   const goToRecoverPage = useCallback(
-    () => push({ pathname: recoverPassword, state: user }),
-    [push, recoverPassword, user]
+    () => push({ pathname: recoverPassword }),
+    [push, recoverPassword]
   );
 
   return { busy: checking, goToRecoverPage, ...form };

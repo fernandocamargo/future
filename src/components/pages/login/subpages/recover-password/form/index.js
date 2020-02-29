@@ -13,6 +13,7 @@ const Form = ({
   },
   components: { Form: Container },
   useStyle,
+  goBack,
   busy,
 }) => {
   const { title, description, submit, cancel, loading } = useI18n(messages);
@@ -26,7 +27,9 @@ const Form = ({
         <div>{fields}</div>
         <div>
           <Button type="submit">{submit}</Button>
-          <Button type="button">{cancel}</Button>
+          <Button type="button" onClick={goBack}>
+            {cancel}
+          </Button>
         </div>
         {busy && (
           <p role="alert" aria-busy="true">
@@ -49,6 +52,7 @@ Form.propTypes = {
     Form: elementType.isRequired,
   }).isRequired,
   busy: bool,
+  goBack: func.isRequired,
 };
 
 Form.defaultProps = {

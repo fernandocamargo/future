@@ -58,14 +58,14 @@ export const useValid = ({ token, profile }) => {
         field: Password,
         name: 'password',
         label: i18n.password,
-        value: '',
+        value: 'Elf030501!',
         validation: validation.password.required(),
       },
       {
         field: Password,
         name: 'password-confirmation',
         label: i18n['password-confirmation'],
-        value: '',
+        value: 'Elf030501!',
         validation: validation.password
           .equal({ field: 'password', label: i18n.password })
           .required(),
@@ -84,7 +84,7 @@ export const useValid = ({ token, profile }) => {
   const form = useForm({ render: Form, fields, onSubmit });
   const when = useMemo(() => moment().add(TIMER_VALUE, TIMER_UNIT), []);
   const redirect = useCallback(
-    () => history.push({ state: profile, pathname }),
+    () => history.push({ state: { profile }, pathname }),
     [history, pathname, profile]
   );
   const schedule = useCallback(() => {

@@ -4,14 +4,14 @@ import { Form } from 'components/widgets';
 
 import { useIndex } from './hooks';
 
-const Root = () => {
+const Index = () => {
   const form = useIndex();
 
   return <Form {...form} />;
 };
 
-Root.propTypes = {};
+Index.propTypes = {};
 
-Root.defaultProps = {};
+Index.defaultProps = {};
 
-export default Root;
+export default Index;

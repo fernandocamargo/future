@@ -1,24 +1,17 @@
-import { shape, string } from 'prop-types';
 import React from 'react';
 
 import { Form } from 'components/widgets';
 
 import { useRecoverPassword } from './hooks';
 
-const RecoverPassword = ({ profile }) => {
-  const form = useRecoverPassword({ profile });
+const RecoverPassword = () => {
+  const form = useRecoverPassword();
 
   return <Form {...form} />;
 };
 
-RecoverPassword.propTypes = {
-  profile: shape({
-    email: string.isRequired,
-  }),
-};
+RecoverPassword.propTypes = {};
 
-RecoverPassword.defaultProps = {
-  profile: {},
-};
+RecoverPassword.defaultProps = {};
 
 export default RecoverPassword;

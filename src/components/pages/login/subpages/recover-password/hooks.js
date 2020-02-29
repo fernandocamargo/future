@@ -6,19 +6,25 @@ import {
   useI18n,
   useNotification,
   useRoadtrip,
+  useRoutes,
   useValidation,
 } from 'hooks';
 import { useAuth } from 'hooks/services/expertlead';
 import { Text } from 'components/widgets/fields';
 
+import { UNKNOWN } from './constants';
 import Form from './form';
 import messages from './messages';
 
 export const useRecoverPassword = () => {
   const {
-    location: { state: profile = { email: '' } },
-  } = useHistory();
+    location: {
+      state: { profile = UNKNOWN },
+    },
+    push,
+  } = useHistory({ persist: true });
   const { forgotPassword } = useAuth();
+  const { login } = useRoutes();
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
@@ -47,6 +53,7 @@ export const useRecoverPassword = () => {
   );
   const onSubmit = useCallback(({ email }) => check({ email }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });
+  const goBack = useCallback(() => push({ pathname: login }), [push, login]);
 
-  return { ...form, busy: checking };
+  return { busy: checking, goBack, ...form };
 };

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 export default (...settings) => {
   const {
-    location: { state, ...location },
+    location: { state = {}, ...location },
     push: navigate,
     ...history
   } = useHistory(...settings);
@@ -12,7 +12,9 @@ export default (...settings) => {
     params =>
       navigate({
         ...(isString(params) ? { pathname: params } : params),
-        state,
+        ...(isString(params)
+          ? { state }
+          : { state: { ...state, ...params.state } }),
       }),
     [navigate, state]
   );
