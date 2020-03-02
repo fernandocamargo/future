@@ -2,12 +2,12 @@ import isString from 'lodash/isString';
 import { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default ({ forwardState = false, ...settings } = {}) => {
+export default ({ forwardState = false } = {}) => {
   const {
     location: { state: current = {}, ...location },
     push: navigate,
     ...history
-  } = useHistory(settings);
+  } = useHistory();
   const state = useMemo(() => (forwardState ? current : {}), [
     forwardState,
     current,

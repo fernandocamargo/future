@@ -37,7 +37,13 @@ export default ({ fields, render, onSubmit }) => {
     report => {
       const errors = Object.keys(report);
 
-      return !errors.length ? submitForm() : Promise.reject(errors);
+      // return !errors.length ? submitForm() : Promise.reject(errors);
+      switch (true) {
+        case !errors.length:
+          return submitForm();
+        default:
+          return Promise.reject(errors);
+      }
     },
     [submitForm]
   );
