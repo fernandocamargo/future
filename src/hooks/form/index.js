@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import intersection from 'lodash/intersection';
 import { useCallback, useLayoutEffect, useMemo, useRef } from 'react';
 import { useFormik } from 'formik';
@@ -34,12 +35,13 @@ export default ({ fields, render, onSubmit }) => {
     refs,
   ]);
   const analyze = useCallback(
-    report => {
+    settings => report => {
+      const asEffect = get(settings, 'asEffect', false);
       const errors = Object.keys(report);
 
-      console.log('here();');
-
-      return !errors.length ? submitForm() : Promise.reject(errors);
+      return !errors.length && !asEffect
+        ? submitForm()
+        : Promise.reject(errors);
     },
     [submitForm]
   );
@@ -59,9 +61,9 @@ export default ({ fields, render, onSubmit }) => {
     [order, refs]
   );
   const validate = useCallback(
-    () =>
+    settings =>
       validateForm()
-        .then(analyze)
+        .then(analyze(settings))
         .catch(debug),
     [validateForm, analyze, debug]
   );
@@ -87,7 +89,7 @@ export default ({ fields, render, onSubmit }) => {
   );
 
   useLayoutEffect(() => {
-    validate();
+    validate({ asEffect: true });
   }, [validate]);
 
   return { render, ...settings };
