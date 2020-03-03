@@ -37,9 +37,11 @@ export default ({ fields, render, onSubmit }) => {
     report => {
       const errors = Object.keys(report);
 
-      return dirty && !errors.length ? submitForm() : Promise.reject(errors);
+      console.log('here();');
+
+      return !errors.length ? submitForm() : Promise.reject(errors);
     },
-    [dirty, submitForm]
+    [submitForm]
   );
   const debug = useCallback(
     errors => {
@@ -74,7 +76,6 @@ export default ({ fields, render, onSubmit }) => {
   );
   const settings = useMemo(
     () => ({
-      foo: 'bar',
       fields: fields.reduce(formatField, EMPTY),
       onReset: reset,
       onSubmit: submit,

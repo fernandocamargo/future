@@ -7,6 +7,7 @@ import { Prompt } from 'components/routes';
 
 import Container from './container';
 import Field from './field';
+import Fieldset from './fieldset';
 import Loader from './loader';
 import Reset from './reset/index';
 import Submit from './submit';
@@ -23,6 +24,7 @@ const Form = ({
   onSubmit,
   original,
   render,
+  busy,
   ...extra
 }) => {
   const components = useMemo(
@@ -30,11 +32,12 @@ const Form = ({
       Form: props => (
         <Container {...props} onReset={onReset} onSubmit={onSubmit} />
       ),
+      Fieldset: props => <Fieldset disabled={busy} {...props} />,
       Reset: props => <Reset buttonRef={reset} {...props} />,
       Submit: props => <Submit buttonRef={submit} {...props} />,
-      Loader: props => extra.busy && <Loader {...props} />,
+      Loader: props => busy && <Loader {...props} />,
     }),
-    [onReset, reset, onSubmit, submit, extra.busy]
+    [onReset, reset, onSubmit, submit, busy]
   );
   const elements = useMemo(
     () => ({
@@ -61,6 +64,7 @@ const Form = ({
     components,
     elements,
     original,
+    busy,
   });
 
   return (
@@ -81,10 +85,12 @@ Form.propTypes = {
   refs: shape({
     buttons: shape({}).isRequired,
   }).isRequired,
+  busy: bool,
 };
 
 Form.defaultProps = {
   original: false,
+  busy: false,
 };
 
 export default withStyle(Form);

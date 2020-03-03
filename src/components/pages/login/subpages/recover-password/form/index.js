@@ -1,4 +1,4 @@
-import { arrayOf, bool, elementType, func, node, shape } from 'prop-types';
+import { arrayOf, elementType, func, node, shape } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
@@ -11,17 +11,16 @@ const Form = ({
   elements: {
     fields: { ordered: fields },
   },
-  components: { Form: Container, Submit, Loader },
+  components: { Form: Container, Fieldset, Submit, Loader },
   useStyle,
   goBack,
-  busy,
 }) => {
   const { title, description, submit, cancel, loading } = useI18n(messages);
   const style = useStyle();
 
   return (
     <Container {...style}>
-      <fieldset disabled={busy}>
+      <Fieldset>
         <legend>{title}</legend>
         <p>{description}</p>
         <div>{fields}</div>
@@ -32,7 +31,7 @@ const Form = ({
         <Loader>
           <p>{loading}</p>
         </Loader>
-      </fieldset>
+      </Fieldset>
     </Container>
   );
 };
@@ -46,15 +45,13 @@ Form.propTypes = {
   }).isRequired,
   components: shape({
     Form: elementType.isRequired,
+    Fieldset: elementType.isRequired,
     Submit: elementType.isRequired,
     Loader: elementType.isRequired,
   }).isRequired,
-  busy: bool,
   goBack: func.isRequired,
 };
 
-Form.defaultProps = {
-  busy: false,
-};
+Form.defaultProps = {};
 
 export default withStyle(Form);
