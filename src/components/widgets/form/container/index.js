@@ -3,11 +3,17 @@ import React from 'react';
 
 import withStyle from './style';
 
-const Container = ({ useStyle, onSubmit, children }) => {
+const Container = ({ useStyle, onReset, onSubmit, children }) => {
   const style = useStyle();
 
   return (
-    <form autoComplete="off" noValidate onSubmit={onSubmit} {...style}>
+    <form
+      autoComplete="off"
+      noValidate
+      onReset={onReset}
+      onSubmit={onSubmit}
+      {...style}
+    >
       {children}
     </form>
   );
@@ -15,6 +21,7 @@ const Container = ({ useStyle, onSubmit, children }) => {
 
 Container.propTypes = {
   useStyle: func.isRequired,
+  onReset: func.isRequired,
   onSubmit: func.isRequired,
   children: node.isRequired,
 };

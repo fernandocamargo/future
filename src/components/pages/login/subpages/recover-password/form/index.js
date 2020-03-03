@@ -11,7 +11,7 @@ const Form = ({
   elements: {
     fields: { ordered: fields },
   },
-  components: { Form: Container },
+  components: { Form: Container, Submit, Loader },
   useStyle,
   goBack,
   busy,
@@ -26,16 +26,12 @@ const Form = ({
         <p>{description}</p>
         <div>{fields}</div>
         <div>
-          <Button type="submit">{submit}</Button>
-          <Button type="button" onClick={goBack}>
-            {cancel}
-          </Button>
+          <Submit>{submit}</Submit>
+          <Button onClick={goBack}>{cancel}</Button>
         </div>
-        {busy && (
-          <p role="alert" aria-busy="true">
-            {loading}
-          </p>
-        )}
+        <Loader>
+          <p>{loading}</p>
+        </Loader>
       </fieldset>
     </Container>
   );
@@ -50,6 +46,8 @@ Form.propTypes = {
   }).isRequired,
   components: shape({
     Form: elementType.isRequired,
+    Submit: elementType.isRequired,
+    Loader: elementType.isRequired,
   }).isRequired,
   busy: bool,
   goBack: func.isRequired,

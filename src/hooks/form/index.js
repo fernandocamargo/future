@@ -37,24 +37,22 @@ export default ({ fields, render, onSubmit }) => {
     report => {
       const errors = Object.keys(report);
 
-      // return !errors.length ? submitForm() : Promise.reject(errors);
-      switch (true) {
-        case !errors.length:
-          return submitForm();
-        default:
-          return Promise.reject(errors);
-      }
+      return dirty && !errors.length ? submitForm() : Promise.reject(errors);
     },
-    [submitForm]
+    [dirty, submitForm]
   );
   const debug = useCallback(
     errors => {
       const [first] = intersection(order, errors);
+      const target = first || 'submit';
+      const type = first ? 'fields' : 'buttons';
       const {
-        [first]: { current: field },
+        [type]: {
+          [target]: { current: element },
+        },
       } = refs;
 
-      return focus(field);
+      return focus(element);
     },
     [order, refs]
   );
@@ -76,12 +74,15 @@ export default ({ fields, render, onSubmit }) => {
   );
   const settings = useMemo(
     () => ({
+      foo: 'bar',
       fields: fields.reduce(formatField, EMPTY),
+      onReset: reset,
       onSubmit: submit,
       original: !dirty,
       reset,
+      refs,
     }),
-    [fields, formatField, submit, dirty, reset]
+    [fields, formatField, dirty, reset, submit, refs]
   );
 
   useLayoutEffect(() => {

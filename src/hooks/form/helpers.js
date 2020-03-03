@@ -11,25 +11,30 @@ export const getFormikSettingsFrom = fields => {
 
       return update(stack, {
         initialValues: { [name]: { $set: value } },
-        DOM: { [name]: { $set: ref } },
+        DOM: { fields: { [name]: { $set: ref } } },
         names: { $push: [name] },
         ...(!disabled && {
           validationSchema: { [name]: { $set: validation } },
         }),
       });
     },
-    { DOM: {}, initialValues: {}, validationSchema: {}, names: [] }
+    {
+      DOM: { buttons: { submit: createRef(), reset: createRef() }, fields: {} },
+      initialValues: {},
+      validationSchema: {},
+      names: [],
+    }
   );
 
   return { validationSchema: object().shape(validationSchema), ...settings };
 };
 
 export const connectTo = ({
+  refs: { fields: refs },
   status = {},
   values: data,
   handleChange: onChange,
   errors,
-  refs,
 }) => (stack, field) => {
   const { debugging = false } = status;
   const { name } = field;
