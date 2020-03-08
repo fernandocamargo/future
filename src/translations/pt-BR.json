@@ -89,6 +89,7 @@
   "hooks/routes/set-new-password": "/entrar/criar-nova-senha",
   "hooks/routes/settings": "/configuracoes",
   "hooks/routes/why-expertlead": "/porque-expertlead",
+  "hooks/services/expertlead/auth/network.not-connected": "Você está offline. Cheque a sua conexão e tente novamente.",
   "hooks/services/expertlead/auth/user.not-found": "Conta inexistente ou não encontrada.",
   "hooks/services/expertlead/auth/users.email-invalid": "Infelizmente não conseguimos encontrar o seu e-mail! Por favor, confirme os seus dados.",
   "hooks/services/expertlead/auth/users.password-invalid": "A senha não corresponde ao e-mail fornecido.",

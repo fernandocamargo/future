@@ -1,12 +1,15 @@
-import first from 'lodash/first';
 import isEqual from 'lodash/isEqual';
+
+import { findMatchingKey } from 'helpers/object';
 
 export const setProfile = (_, { data: { data: profile } }) => profile;
 
 export const getFieldNameBasedOn = code =>
-  first(
-    [
-      ['users.email-invalid', 'user.not-found'].includes(code) && 'email',
-      isEqual(code, 'users.password-invalid') && 'password',
-    ].filter(Boolean)
-  );
+  findMatchingKey({
+    email: [
+      'network.not-connected',
+      'users.email-invalid',
+      'user.not-found',
+    ].includes(code),
+    password: isEqual(code, 'users.password-invalid'),
+  });
