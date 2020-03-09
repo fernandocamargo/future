@@ -8,13 +8,12 @@ import * as reducers from 'actions/reducers';
 
 const compose = composeWithDevTools({ name });
 
-const store = createStore(
-  persistReducer(
-    { whitelist: ['profile', 'settings'], key: name, storage },
-    combineReducers(reducers)
-  ),
-  compose()
+const persistency = persistReducer(
+  { whitelist: ['profile', 'settings'], key: name, storage },
+  combineReducers(reducers)
 );
+
+export const store = createStore(persistency, compose());
 
 export const persistor = persistStore(store);
 

@@ -44,8 +44,9 @@ export const useIndex = () => {
             unordered: { [getFieldNameBasedOn(code)]: field },
           },
         } = form;
+        const { [code]: reason } = i18n;
 
-        return field.focus();
+        return field.error(reason).focus();
       }),
   });
   const fields = useMemo(

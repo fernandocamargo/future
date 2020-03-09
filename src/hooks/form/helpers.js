@@ -34,6 +34,7 @@ export const connectTo = ({
   status = {},
   values: data,
   handleChange: onChange,
+  setFieldError,
   errors,
 }) => (stack, field) => {
   const { debugging = false } = status;
@@ -48,9 +49,21 @@ export const connectTo = ({
     onChange,
     fieldRef,
   };
+  const instance = {
+    focus() {
+      focus(fieldRef.current);
+
+      return instance;
+    },
+    error(reason) {
+      setFieldError(name, reason);
+
+      return instance;
+    },
+  };
 
   return update(stack, {
-    unordered: { [name]: { $set: { focus: () => focus(fieldRef.current) } } },
+    unordered: { [name]: { $set: instance } },
     ordered: { $push: [props] },
   });
 };
