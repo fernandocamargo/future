@@ -58,14 +58,14 @@ export const useValid = ({ token, profile }) => {
         field: Password,
         name: 'password',
         label: i18n.password,
-        value: 'Elf030501!',
+        value: '',
         validation: validation.password.required(),
       },
       {
         field: Password,
         name: 'password-confirmation',
         label: i18n['password-confirmation'],
-        value: 'Elf030501!',
+        value: '',
         validation: validation.password
           .equal({ field: 'password', label: i18n.password })
           .required(),

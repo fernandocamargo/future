@@ -20,5 +20,5 @@ export const useRegistration = () => {
     start();
   }, [start]);
 
-  return { valid: { token, profile }, invalid: { error }, condition };
+  return { valid: { token, profile }, invalid: { error, profile }, condition };
 };

@@ -2,13 +2,13 @@ import { func, shape, string } from 'prop-types';
 import React, { useMemo } from 'react';
 
 import { useI18n, useRoutes } from 'hooks';
-import { Link, Menu } from 'components/widgets';
+import { Link, Menu as Wrapper } from 'components/widgets';
 import Option from 'components/widgets/menu/option';
 
 import messages from './messages';
 import withStyle from './style';
 
-const Navigation = ({ useStyle, profile }) => {
+const Menu = ({ useStyle, profile }) => {
   const routes = useRoutes();
   const { 'recover-password': recoverPassword, actions, login } = useI18n(
     messages
@@ -17,7 +17,7 @@ const Navigation = ({ useStyle, profile }) => {
   const style = useStyle();
 
   return (
-    <Menu title={actions} {...style}>
+    <Wrapper title={actions} {...style}>
       <Option>
         <Link to={routes.login} params={params}>
           {login}
@@ -28,19 +28,19 @@ const Navigation = ({ useStyle, profile }) => {
           {recoverPassword}
         </Link>
       </Option>
-    </Menu>
+    </Wrapper>
   );
 };
 
-Navigation.propTypes = {
+Menu.propTypes = {
   useStyle: func.isRequired,
   profile: shape({
     email: string.isRequired,
   }),
 };
 
-Navigation.defaultProps = {
+Menu.defaultProps = {
   profile: {},
 };
 
-export default withStyle(Navigation);
+export default withStyle(Menu);
