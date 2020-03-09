@@ -34,9 +34,7 @@ const Menu = ({ useStyle, profile }) => {
 
 Menu.propTypes = {
   useStyle: func.isRequired,
-  profile: shape({
-    email: string.isRequired,
-  }),
+  profile: shape({ email: string }),
 };
 
 Menu.defaultProps = {
