@@ -19,7 +19,7 @@ import Form from './form';
 import Agreement from './agreement';
 import messages from './messages';
 
-const [TIMER_VALUE, TIMER_UNIT] = [10, 'second'];
+const [TIMER_VALUE, TIMER_UNIT] = [100, 'seconds'];
 
 export const useValid = ({ token, profile }) => {
   const history = useHistory();
@@ -88,10 +88,14 @@ export const useValid = ({ token, profile }) => {
     [history, pathname, profile]
   );
   const schedule = useCallback(() => {
-    const timeout = window.setTimeout(redirect, TIMER_VALUE * 1000);
+    const now = moment();
+    const miliseconds = now.diff(when, 'milliseconds');
+    const timeout = window.setTimeout(redirect, miliseconds);
+
+    console.log({ now, miliseconds, when });
 
     return () => window.clearTimeout(timeout);
-  }, [redirect]);
+  }, [when, redirect]);
 
   useEffect(success ? schedule : noop, [success]);
 
