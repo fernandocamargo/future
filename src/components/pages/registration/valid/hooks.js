@@ -8,7 +8,6 @@ import {
   useI18n,
   useNotification,
   useRoadtrip,
-  useRoutes,
   useScrollToTop,
   useValidation,
 } from 'hooks';
@@ -19,21 +18,22 @@ import Form from './form';
 import Agreement from './agreement';
 import messages from './messages';
 
-const [TIMER_VALUE, TIMER_UNIT] = [15, 'seconds'];
+const [TIMER_VALUE, TIMER_UNIT] = [60, 'seconds'];
+
+const OTHER_CONST = 'milliseconds';
 
 export const useValid = ({ token, profile }) => {
   const history = useHistory();
-  const { login: pathname } = useRoutes();
   const { create } = useUsers();
   const validation = useValidation();
   const { notify } = useNotification();
-  const scrollToTop = useScrollToTop();
+  const onStop = useScrollToTop();
   const i18n = useI18n(messages);
-  const { start, idle, busy, success, failure, error } = useRoadtrip({
+  const { start: register, idle, busy, success, failure, error } = useRoadtrip({
     itinerary: (_, { user }) => create({ token, user }),
     onArrive: () => notify(i18n.succeed),
     onCrash: () => notify(i18n.fail),
-    onStop: scrollToTop,
+    onStop,
   });
   const fields = useMemo(
     () => [
@@ -80,18 +80,16 @@ export const useValid = ({ token, profile }) => {
     ],
     [i18n, profile, validation]
   );
-  const onSubmit = useCallback(user => start({ user }), [start]);
+  const onSubmit = useCallback(user => register({ user }), [register]);
   const form = useForm({ render: Form, fields, onSubmit });
   const when = useMemo(() => moment().add(TIMER_VALUE, TIMER_UNIT), []);
   const redirect = useCallback(
-    () => history.push({ state: { profile }, pathname }),
-    [history, pathname, profile]
+    () => history.push({ state: { profile }, pathname: '/' }),
+    [history, profile]
   );
   const schedule = useCallback(() => {
-    const timeout = window.setTimeout(
-      redirect,
-      when.diff(moment(), 'milliseconds')
-    );
+    const delay = when.diff(moment(), OTHER_CONST);
+    const timeout = window.setTimeout(redirect, delay);
 
     return () => window.clearTimeout(timeout);
   }, [when, redirect]);

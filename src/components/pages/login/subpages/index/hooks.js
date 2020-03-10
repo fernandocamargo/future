@@ -39,9 +39,10 @@ export const useIndex = () => {
     onArrive: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
     onCrash: ({ error: { code, message } }) =>
       notify(message).then(() => {
+        const name = getFieldNameBasedOn(code);
         const {
           fields: {
-            unordered: { [getFieldNameBasedOn(code)]: field },
+            unordered: { [name]: field },
           },
         } = form;
         const { [code]: reason } = i18n;
