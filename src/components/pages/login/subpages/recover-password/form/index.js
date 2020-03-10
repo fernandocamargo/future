@@ -1,7 +1,8 @@
-import { arrayOf, elementType, func, node, shape } from 'prop-types';
+import { func } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
+import * as form from 'prop-types/definitions/form';
 import { Button } from 'components/widgets';
 
 import messages from './messages';
@@ -38,18 +39,8 @@ const Form = ({
 
 Form.propTypes = {
   useStyle: func.isRequired,
-  elements: shape({
-    fields: shape({
-      ordered: arrayOf(node.isRequired).isRequired,
-    }).isRequired,
-  }).isRequired,
-  components: shape({
-    Form: elementType.isRequired,
-    Fieldset: elementType.isRequired,
-    Submit: elementType.isRequired,
-    Loader: elementType.isRequired,
-  }).isRequired,
   goBack: func.isRequired,
+  ...form,
 };
 
 Form.defaultProps = {};
