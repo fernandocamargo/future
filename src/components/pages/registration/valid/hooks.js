@@ -20,7 +20,7 @@ import messages from './messages';
 
 const [TIMER_VALUE, TIMER_UNIT] = [60, 'seconds'];
 
-const OTHER_CONST = 'milliseconds';
+const DELAY_UNIT = 'milliseconds';
 
 export const useValid = ({ token, profile }) => {
   const history = useHistory();
@@ -88,7 +88,7 @@ export const useValid = ({ token, profile }) => {
     [history, profile]
   );
   const schedule = useCallback(() => {
-    const delay = when.diff(moment(), OTHER_CONST);
+    const delay = when.diff(moment(), DELAY_UNIT);
     const timeout = window.setTimeout(redirect, delay);
 
     return () => window.clearTimeout(timeout);
