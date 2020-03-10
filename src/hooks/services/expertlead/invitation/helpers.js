@@ -1,17 +1,30 @@
-import isEqual from 'lodash/isEqual';
+import toLower from 'lodash/toLower';
 
-import { ERROR_STATUSES, STATUS_BY_CODE } from './constants';
+import Error from 'error';
 
-export const getErrorByCode = ({
-  response: {
-    data: { code },
-  },
-}) => Promise.reject(STATUS_BY_CODE[code]);
+import { STATUS_BY_CODE } from './constants';
 
-export const check = ({ data: { status, ...profile } }) => {
-  const error = ERROR_STATUSES.find(value =>
-    isEqual(status.localeCompare(value, undefined, { sensitivity: 'base' }), 0)
-  );
+export const checkByCode = ({ errors }) => response => {
+  const {
+    response: {
+      data: { code },
+    },
+  } = response;
+  const { [code]: status } = STATUS_BY_CODE;
+  const { [toLower(status)]: message } = errors;
 
-  return error ? Promise.reject(error) : profile;
+  throw new Error({ message });
+};
+
+export const checkByStatus = ({ errors }) => response => {
+  const { data: profile } = response;
+  const { status } = profile;
+  const { [toLower(status)]: message } = errors;
+
+  switch (true) {
+    case !!message:
+      throw new Error({ message, profile });
+    default:
+      return profile;
+  }
 };

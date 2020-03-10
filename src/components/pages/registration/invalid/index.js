@@ -1,4 +1,4 @@
-import { func, node } from 'prop-types';
+import { func, node, shape, string } from 'prop-types';
 import React from 'react';
 
 import { useI18n } from 'hooks';
@@ -7,7 +7,7 @@ import Menu from '../menu';
 import messages from './messages';
 import withStyle from './style';
 
-const Invalid = ({ useStyle, error }) => {
+const Invalid = ({ error: { message: error, profile }, useStyle }) => {
   const { title } = useI18n(messages);
   const style = useStyle();
 
@@ -16,7 +16,7 @@ const Invalid = ({ useStyle, error }) => {
       <article>
         <h1>{title}</h1>
         <p>{error}</p>
-        <Menu />
+        <Menu profile={profile} />
       </article>
     </section>
   );
@@ -24,7 +24,10 @@ const Invalid = ({ useStyle, error }) => {
 
 Invalid.propTypes = {
   useStyle: func.isRequired,
-  error: node.isRequired,
+  error: shape({
+    profile: shape({ email: string }),
+    message: node.isRequired,
+  }).isRequired,
 };
 
 Invalid.defaultProps = {};

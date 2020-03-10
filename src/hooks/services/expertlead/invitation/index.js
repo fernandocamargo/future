@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useI18n } from 'hooks';
 import { useExpertlead } from 'hooks/clients';
 
-import { getErrorByCode, check } from './helpers';
+import { checkByCode, checkByStatus } from './helpers';
 import messages from './messages';
 
 export default token => {
@@ -14,9 +14,8 @@ export default token => {
     () =>
       expertlead
         .get(`/invitation/${token}`)
-        .catch(getErrorByCode)
-        .then(check)
-        .catch(error => Promise.reject(errors[error])),
+        .catch(checkByCode({ errors }))
+        .then(checkByStatus({ errors })),
     [expertlead, token, errors]
   );
 };
