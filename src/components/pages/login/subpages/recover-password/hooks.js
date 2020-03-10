@@ -5,7 +5,7 @@ import {
   useHistory,
   useI18n,
   useNotification,
-  useRoadtrip,
+  usePromise,
   useRoutes,
   useValidation,
 } from 'hooks';
@@ -28,13 +28,13 @@ export const useRecoverPassword = () => {
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const { start: check, busy: checking } = useRoadtrip({
-    itinerary: (_, { email }) => forgotPassword({ email }),
-    onArrive: () => {
+  const { start: check, busy: checking } = usePromise({
+    promise: (_, { email }) => forgotPassword({ email }),
+    then: () => {
       notify(i18n.succeed);
       form.reset();
     },
-    onCrash: ({ error }) => {
+    catch: ({ error }) => {
       notify(error);
     },
   });

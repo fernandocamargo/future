@@ -1,18 +1,19 @@
+// fix cache (remove on the next change)
 import { useEffect } from 'react';
 
-import { useRoadtrip } from 'hooks';
+import { usePromise } from 'hooks';
 import { useFAQ } from 'hooks/services/fs';
 
-const onArrive = { services: (_, { data: services }) => services };
+const then = { services: (_, { data: services }) => services };
 
 export default () => {
-  const itinerary = useFAQ();
+  const promise = useFAQ();
   const {
     context: { services },
     value: condition,
     start,
     error,
-  } = useRoadtrip({ itinerary, onArrive });
+  } = usePromise({ promise, then });
 
   useEffect(() => {
     start();

@@ -6,7 +6,7 @@ import {
   useHistory,
   useI18n,
   useNotification,
-  useRoadtrip,
+  usePromise,
   useValidation,
 } from 'hooks';
 import { useAuth } from 'hooks/services/expertlead';
@@ -27,13 +27,13 @@ export const useRoot = () => {
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const { start: enter } = useRoadtrip({
-    itinerary: (_, { profile }) => identify(profile),
+  const { start: enter } = usePromise({
+    promise: (_, { profile }) => identify(profile),
   });
-  const { start: check, busy: checking } = useRoadtrip({
-    itinerary: (_, { credentials }) => login({ credentials }),
-    onArrive: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
-    onCrash: ({ error }) => notify(error),
+  const { start: check, busy: checking } = usePromise({
+    promise: (_, { credentials }) => login({ credentials }),
+    then: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
+    catch: ({ error }) => notify(error),
   });
   const fields = useMemo(
     () => [

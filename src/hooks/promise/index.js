@@ -6,11 +6,11 @@ import { useMachine } from '@xstate/react';
 import { apply, setError } from './helpers';
 
 export default ({
-  onStop: stop = noop,
-  onCrash: crash = [],
-  onArrive: arrive,
+  finally: stop = noop,
+  catch: crash = [],
+  then: arrive,
   id,
-  itinerary,
+  promise,
 }) => {
   const machine = useMemo(
     () =>
@@ -20,7 +20,7 @@ export default ({
           idle: { on: { START: 'busy' } },
           busy: {
             invoke: {
-              src: itinerary,
+              src: promise,
               onDone: { target: 'success', actions: apply(arrive) },
               onError: {
                 target: 'failure',
@@ -33,7 +33,7 @@ export default ({
         },
         id,
       }),
-    [id, itinerary, arrive, crash]
+    [id, promise, arrive, crash]
   );
   const [
     {

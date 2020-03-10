@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useRoadtrip } from 'hooks';
+import { usePromise } from 'hooks';
 import { useInvitation } from 'hooks/services/expertlead';
 
-const onArrive = { profile: (_, { data: profile }) => profile };
+const then = { profile: (_, { data: profile }) => profile };
 
 export const useRegistration = () => {
   const { token } = useParams();
-  const itinerary = useInvitation(token);
+  const promise = useInvitation(token);
   const {
     context: { profile },
     value: condition,
     start,
     error,
-  } = useRoadtrip({ itinerary, onArrive });
+  } = usePromise({ promise, then });
 
   useEffect(() => {
     start();

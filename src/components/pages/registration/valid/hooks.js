@@ -7,7 +7,7 @@ import {
   useHistory,
   useI18n,
   useNotification,
-  useRoadtrip,
+  usePromise,
   useScrollToTop,
   useValidation,
 } from 'hooks';
@@ -27,13 +27,13 @@ export const useValid = ({ token, profile }) => {
   const { create } = useUsers();
   const validation = useValidation();
   const { notify } = useNotification();
-  const onStop = useScrollToTop();
+  const scrollToTop = useScrollToTop();
   const i18n = useI18n(messages);
-  const { start: register, idle, busy, success, failure, error } = useRoadtrip({
-    itinerary: (_, { user }) => create({ token, user }),
-    onArrive: () => notify(i18n.succeed),
-    onCrash: () => notify(i18n.fail),
-    onStop,
+  const { start: register, idle, busy, success, failure, error } = usePromise({
+    promise: (_, { user }) => create({ token, user }),
+    then: () => notify(i18n.succeed),
+    catch: () => notify(i18n.fail),
+    finally: scrollToTop,
   });
   const fields = useMemo(
     () => [
