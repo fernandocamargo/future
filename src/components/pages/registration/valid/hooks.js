@@ -19,7 +19,7 @@ import Form from './form';
 import Agreement from './agreement';
 import messages from './messages';
 
-const [TIMER_VALUE, TIMER_UNIT] = [100, 'seconds'];
+const [TIMER_VALUE, TIMER_UNIT] = [15, 'seconds'];
 
 export const useValid = ({ token, profile }) => {
   const history = useHistory();
@@ -90,7 +90,7 @@ export const useValid = ({ token, profile }) => {
   const schedule = useCallback(() => {
     const timeout = window.setTimeout(
       redirect,
-      moment().diff(when, 'milliseconds')
+      when.diff(moment(), 'milliseconds')
     );
 
     return () => window.clearTimeout(timeout);
