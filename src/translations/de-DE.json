@@ -22,6 +22,7 @@
   "components/pages/login/subpages/recover-password/form/submit": "",
   "components/pages/login/subpages/recover-password/form/title": "",
   "components/pages/login/subpages/recover-password/succeed": "",
+  "components/pages/login/subpages/recover-password/users.email-invalid": "",
   "components/pages/login/subpages/set-new-password/email": "",
   "components/pages/login/subpages/set-new-password/form/action": "",
   "components/pages/login/subpages/set-new-password/form/actions": "",

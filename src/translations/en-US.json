@@ -22,6 +22,7 @@
   "components/pages/login/subpages/recover-password/form/submit": "Send",
   "components/pages/login/subpages/recover-password/form/title": "Password recovery",
   "components/pages/login/subpages/recover-password/succeed": "The link to your password recovery page has been successfully sent to you by email.",
+  "components/pages/login/subpages/recover-password/users.email-invalid": "E-mail not found.",
   "components/pages/login/subpages/set-new-password/email": "E-mail",
   "components/pages/login/subpages/set-new-password/form/action": "Let me in",
   "components/pages/login/subpages/set-new-password/form/actions": "Suggested actions:",

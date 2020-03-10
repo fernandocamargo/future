@@ -30,13 +30,18 @@ export const useRecoverPassword = () => {
   const i18n = useI18n(messages);
   const { start: check, busy: checking } = usePromise({
     promise: (_, { email }) => forgotPassword({ email }),
-    then: () => {
-      notify(i18n.succeed);
-      form.reset();
-    },
-    catch: ({ error }) => {
-      notify(error);
-    },
+    then: () => notify(i18n.succeed),
+    catch: ({ error: { code, message } }) =>
+      notify(message).then(() => {
+        const {
+          fields: {
+            unordered: { email: field },
+          },
+        } = form;
+        const { [code]: reason } = i18n;
+
+        return field.error(reason).focus();
+      }),
   });
   const fields = useMemo(
     () => [
