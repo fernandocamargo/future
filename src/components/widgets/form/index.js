@@ -1,6 +1,6 @@
 import { arrayOf, bool, elementType, func, shape } from 'prop-types';
 import update from 'immutability-helper';
-import React, { createElement, Fragment, useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 
 import { useI18n } from 'hooks';
 import { Prompt } from 'components/routes';
@@ -19,12 +19,12 @@ const Form = ({
     buttons: { reset, submit },
   },
   fields: { ordered: fields },
+  render: Render,
   useStyle,
   onReset,
   onSubmit,
   original,
-  render,
-  busy,
+  pending,
   ...extra
 }) => {
   const components = useMemo(
@@ -32,19 +32,19 @@ const Form = ({
       Form: props => (
         <Container {...props} onReset={onReset} onSubmit={onSubmit} />
       ),
-      Fieldset: props => <Fieldset disabled={busy} {...props} />,
+      Fieldset: props => <Fieldset disabled={pending} {...props} />,
       Reset: props => <Reset buttonRef={reset} {...props} />,
       Submit: props => <Submit buttonRef={submit} {...props} />,
-      Loader: props => busy && <Loader {...props} />,
+      Loader: props => pending && <Loader {...props} />,
     }),
-    [onReset, reset, onSubmit, submit, busy]
+    [onReset, reset, onSubmit, submit, pending]
   );
   const elements = useMemo(
     () => ({
       fields: fields.reduce(
         (stack, field) => {
           const { name } = field;
-          const element = createElement(Field, { key: name, ...field });
+          const element = <Field key={name} {...field} />;
 
           return update(stack, {
             ordered: { $push: [element] },
@@ -58,19 +58,18 @@ const Form = ({
   );
   const { confirmation } = useI18n(messages);
   const style = useStyle();
-  const element = createElement(render, {
-    ...style,
-    ...extra,
-    components,
-    elements,
-    original,
-    busy,
-  });
 
   return (
     <Fragment>
       <Prompt message={confirmation} when={!original} />
-      {element}
+      <Render
+        components={components}
+        elements={elements}
+        original={original}
+        pending={pending}
+        {...extra}
+        {...style}
+      />
     </Fragment>
   );
 };
@@ -85,12 +84,12 @@ Form.propTypes = {
   refs: shape({
     buttons: shape({}).isRequired,
   }).isRequired,
-  busy: bool,
+  pending: bool,
 };
 
 Form.defaultProps = {
   original: false,
-  busy: false,
+  pending: false,
 };
 
 export default withStyle(Form);

@@ -14,7 +14,7 @@ const Registration = () => {
       return <Valid {...valid} />;
     case 'failure':
       return <Invalid {...invalid} />;
-    case 'busy':
+    case 'pending':
     default:
       return <Loader />;
   }

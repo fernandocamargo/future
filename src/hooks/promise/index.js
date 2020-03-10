@@ -7,7 +7,7 @@ import { apply, setError } from './helpers';
 
 export default ({
   finally: stop = noop,
-  catch: crash = [],
+  catch: fail = [],
   then: arrive,
   id,
   promise,
@@ -17,23 +17,23 @@ export default ({
       new Machine({
         initial: 'idle',
         states: {
-          idle: { on: { START: 'busy' } },
-          busy: {
+          idle: { on: { START: 'pending' } },
+          pending: {
             invoke: {
               src: promise,
               onDone: { target: 'success', actions: apply(arrive) },
               onError: {
                 target: 'failure',
-                actions: [setError].concat(apply(crash)),
+                actions: [setError].concat(apply(fail)),
               },
             },
           },
-          success: { entry: 'stop', on: { START: 'busy' } },
-          failure: { entry: 'stop', on: { START: 'busy' } },
+          success: { entry: 'stop', on: { START: 'pending' } },
+          failure: { entry: 'stop', on: { START: 'pending' } },
         },
         id,
       }),
-    [id, promise, arrive, crash]
+    [id, promise, arrive, fail]
   );
   const [
     {
@@ -46,9 +46,19 @@ export default ({
   ] = useMachine(machine, { actions: { stop } });
   const start = useCallback((...params) => send('START', ...params), [send]);
   const idle = useMemo(() => matches('idle'), [matches]);
-  const busy = useMemo(() => matches('busy'), [matches]);
+  const pending = useMemo(() => matches('pending'), [matches]);
   const success = useMemo(() => matches('success'), [matches]);
   const failure = useMemo(() => matches('failure'), [matches]);
 
-  return { start, idle, busy, success, failure, context, value, done, error };
+  return {
+    start,
+    idle,
+    pending,
+    success,
+    failure,
+    context,
+    value,
+    done,
+    error,
+  };
 };

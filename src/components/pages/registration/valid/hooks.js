@@ -29,7 +29,14 @@ export const useValid = ({ token, profile }) => {
   const { notify } = useNotification();
   const scrollToTop = useScrollToTop();
   const i18n = useI18n(messages);
-  const { start: register, idle, busy, success, failure, error } = usePromise({
+  const {
+    start: register,
+    idle,
+    pending,
+    success,
+    failure,
+    error,
+  } = usePromise({
     promise: (_, { user }) => create({ token, user }),
     then: () => notify(i18n.succeed),
     catch: () => notify(i18n.fail),
@@ -97,7 +104,7 @@ export const useValid = ({ token, profile }) => {
   useEffect(success ? schedule : noop, [success]);
 
   return {
-    ...((idle || busy) && { form: { ...form, busy } }),
+    ...((idle || pending) && { form: { ...form, pending } }),
     ...(success && { success: { redirect: { to: redirect, when } } }),
     ...(failure && { failure: { reason: error, profile } }),
   };

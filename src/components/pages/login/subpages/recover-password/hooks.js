@@ -28,7 +28,7 @@ export const useRecoverPassword = () => {
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const { start: check, busy: checking } = usePromise({
+  const { start: check, pending } = usePromise({
     promise: (_, { email }) => forgotPassword({ email }),
     then: () => notify(i18n.succeed),
     catch: ({ error: { code, message } }) =>
@@ -60,5 +60,5 @@ export const useRecoverPassword = () => {
   const form = useForm({ render: Form, fields, onSubmit });
   const goBack = useCallback(() => push({ pathname: login }), [push, login]);
 
-  return { busy: checking, goBack, ...form };
+  return { pending, goBack, ...form };
 };

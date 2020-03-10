@@ -30,7 +30,7 @@ export const useRoot = () => {
   const { start: enter } = usePromise({
     promise: (_, { profile }) => identify(profile),
   });
-  const { start: check, busy: checking } = usePromise({
+  const { start: check, pending } = usePromise({
     promise: (_, { credentials }) => login({ credentials }),
     then: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
     catch: ({ error }) => notify(error),
@@ -64,5 +64,5 @@ export const useRoot = () => {
   const onSubmit = useCallback(credentials => check({ credentials }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });
 
-  return { ...form, busy: checking };
+  return { ...form, pending };
 };

@@ -34,7 +34,7 @@ export const useIndex = () => {
   const { start: enter } = usePromise({
     promise: (_, { profile }) => identify(profile),
   });
-  const { start: check, busy: checking } = usePromise({
+  const { start: check, pending } = usePromise({
     promise: (_, { credentials }) => login({ credentials }),
     then: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
     catch: ({ error: { code, message } }) =>
@@ -83,5 +83,5 @@ export const useIndex = () => {
     [push, recoverPassword]
   );
 
-  return { busy: checking, goToRecoverPage, ...form };
+  return { ...form, pending, goToRecoverPage };
 };
