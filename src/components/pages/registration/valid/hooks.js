@@ -88,11 +88,10 @@ export const useValid = ({ token, profile }) => {
     [history, pathname, profile]
   );
   const schedule = useCallback(() => {
-    const now = moment();
-    const miliseconds = now.diff(when, 'milliseconds');
-    const timeout = window.setTimeout(redirect, miliseconds);
-
-    console.log({ now, miliseconds, when });
+    const timeout = window.setTimeout(
+      redirect,
+      moment().diff(when, 'milliseconds')
+    );
 
     return () => window.clearTimeout(timeout);
   }, [when, redirect]);
