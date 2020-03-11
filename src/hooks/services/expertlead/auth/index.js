@@ -5,6 +5,7 @@ import { useI18n } from 'hooks';
 import { useExpertlead } from 'hooks/clients';
 
 import { URL } from './constants';
+import { format } from './helpers';
 import messages from './messages';
 
 export default () => {
@@ -13,7 +14,9 @@ export default () => {
   const translate = useCallback(translateFrom({ errors }), [errors]);
   const login = useCallback(
     ({ credentials: { email, password } }) =>
-      post(URL, { email, password }).catch(translate),
+      post(URL, { email, password })
+        .then(format)
+        .catch(translate),
     [post, translate]
   );
   const forgotPassword = useCallback(

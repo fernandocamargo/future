@@ -4,8 +4,8 @@ import { usePromise } from 'hooks';
 import { useFAQ } from 'hooks/services/fs';
 
 export default () => {
-  const promise = useFAQ();
-  const { data: faq, status, start, error } = usePromise({ promise });
+  const load = useFAQ();
+  const { data: faq, status, start, error } = usePromise({ promise: load });
 
   useEffect(() => {
     start();

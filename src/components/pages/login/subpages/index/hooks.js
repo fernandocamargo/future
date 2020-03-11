@@ -14,7 +14,7 @@ import { useAuth } from 'hooks/services/expertlead';
 import { Password, Switch, Text } from 'components/widgets/fields';
 
 import { UNKNOWN } from './constants';
-import { getFieldNameBasedOn, setProfile } from './helpers';
+import { getFieldNameBasedOn } from './helpers';
 import Form from './form';
 import messages from './messages';
 
@@ -31,13 +31,10 @@ export const useIndex = () => {
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const { start: enter } = usePromise({
-    promise: (_, { profile }) => identify(profile),
-  });
-  const { start: check, pending } = usePromise({
-    promise: (_, { credentials }) => login({ credentials }),
-    then: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
-    catch: ({ error: { code, message } }) =>
+  const { start: enter } = usePromise({ promise: identify });
+  const { start: onSubmit, pending } = usePromise({
+    promise: credentials => login({ credentials }),
+    catch: ({ code, message }) =>
       notify(message).then(() => {
         const name = getFieldNameBasedOn(code);
         const {
@@ -49,6 +46,7 @@ export const useIndex = () => {
 
         return field.error(reason).focus();
       }),
+    then: enter,
   });
   const fields = useMemo(
     () => [
@@ -76,7 +74,6 @@ export const useIndex = () => {
     ],
     [i18n, user, validation]
   );
-  const onSubmit = useCallback(credentials => check({ credentials }), [check]);
   const form = useForm({ render: Form, fields, onSubmit });
   const goToRecoverPage = useCallback(
     () => push({ pathname: recoverPassword }),

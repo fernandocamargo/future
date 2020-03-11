@@ -7,9 +7,9 @@ import Valid from './valid';
 import Invalid from './invalid';
 
 const Registration = () => {
-  const { condition, valid, invalid } = useRegistration();
+  const { status, valid, invalid } = useRegistration();
 
-  switch (condition) {
+  switch (status) {
     case 'success':
       return <Valid {...valid} />;
     case 'failure':

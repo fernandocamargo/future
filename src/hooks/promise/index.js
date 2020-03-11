@@ -10,9 +10,13 @@ export default ({
   finally: stop = noop,
   catch: fail = noop,
   then: succeed = noop,
-  promise: src,
+  promise,
   id,
 }) => {
+  const src = useCallback(
+    (_, { type, ...first }, ...rest) => promise(first, ...rest),
+    [promise]
+  );
   const onDone = useCallback(({ data }) => succeed(data), [succeed]);
   const onError = useCallback(({ error }) => fail(error), [fail]);
   const machine = useMemo(
