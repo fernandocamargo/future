@@ -6,7 +6,7 @@ import { useI18n } from 'hooks';
 import Menu from '../../menu';
 import messages from './messages';
 
-const Failure = ({ reason: description, profile }) => {
+const Rejected = ({ reason: description, profile }) => {
   const { title } = useI18n(messages);
 
   return (
@@ -18,13 +18,13 @@ const Failure = ({ reason: description, profile }) => {
   );
 };
 
-Failure.propTypes = {
+Rejected.propTypes = {
   reason: node.isRequired,
   profile: shape({
     email: string.isRequired,
   }).isRequired,
 };
 
-Failure.defaultProps = {};
+Rejected.defaultProps = {};
 
-export default Failure;
+export default Rejected;

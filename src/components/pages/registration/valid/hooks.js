@@ -34,7 +34,7 @@ export const useValid = ({ token, profile }) => {
     idle,
     pending,
     success,
-    failure,
+    rejected,
     error,
   } = usePromise({
     promise: user => create({ token, user }),
@@ -105,6 +105,6 @@ export const useValid = ({ token, profile }) => {
   return {
     ...((idle || pending) && { form: { ...form, pending } }),
     ...(success && { success: { redirect: { to: redirect, when } } }),
-    ...(failure && { failure: { reason: error, profile } }),
+    ...(rejected && { rejected: { reason: error, profile } }),
   };
 };

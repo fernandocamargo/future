@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { PENDING, REJECTED, SUCCESS } from 'hooks/promise/constants';
 import { Loader } from 'components/widgets';
 
 import { useRegistration } from './hooks';
@@ -10,11 +11,11 @@ const Registration = () => {
   const { status, valid, invalid } = useRegistration();
 
   switch (status) {
-    case 'success':
+    case SUCCESS:
       return <Valid {...valid} />;
-    case 'failure':
+    case REJECTED:
       return <Invalid {...invalid} />;
-    case 'pending':
+    case PENDING:
     default:
       return <Loader />;
   }
