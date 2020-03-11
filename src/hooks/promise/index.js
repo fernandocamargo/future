@@ -3,13 +3,13 @@ import { Machine } from 'xstate';
 import { useCallback, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 
-import { FULFILLED, IDLE, PENDING, REJECTED } from './constants';
+import { FULFILLED, IDLE, PENDING, REJECTED, RESOLVE } from './constants';
 import { setData, setError } from './helpers';
 
 export default ({
-  finally: stop = noop,
-  catch: fail = noop,
   then: succeed = noop,
+  catch: fail = noop,
+  finally: onFinally = noop,
   promise,
   id,
 }) => {
@@ -24,28 +24,29 @@ export default ({
       new Machine({
         initial: IDLE,
         states: {
-          [IDLE]: { on: { RESOLVE: PENDING } },
+          [IDLE]: { on: { [RESOLVE]: PENDING } },
           [PENDING]: {
             invoke: {
-              onDone: { target: FULFILLED, actions: [setData, onDone] },
-              onError: { target: REJECTED, actions: [setError, onError] },
+              onDone: {
+                target: FULFILLED,
+                actions: [setData, onDone, onFinally],
+              },
+              onError: {
+                target: REJECTED,
+                actions: [setError, onError, onFinally],
+              },
               src,
             },
           },
-          [FULFILLED]: { entry: 'stop', on: { RESOLVE: PENDING } },
-          [REJECTED]: { entry: 'stop', on: { RESOLVE: PENDING } },
+          [FULFILLED]: { on: { [RESOLVE]: PENDING } },
+          [REJECTED]: { on: { [RESOLVE]: PENDING } },
         },
         id,
       }),
-    [id, src, onDone, onError]
+    [id, src, onDone, onError, onFinally]
   );
-  const [{ value: status, context, matches, done }, send] = useMachine(
-    machine,
-    { actions: { stop } }
-  );
-  const resolve = useCallback((...params) => send('RESOLVE', ...params), [
-    send,
-  ]);
+  const [{ value: status, context, matches, done }, send] = useMachine(machine);
+  const resolve = useCallback((...params) => send(RESOLVE, ...params), [send]);
   const idle = useMemo(() => matches(IDLE), [matches]);
   const pending = useMemo(() => matches(PENDING), [matches]);
   const fulfilled = useMemo(() => matches(FULFILLED), [matches]);

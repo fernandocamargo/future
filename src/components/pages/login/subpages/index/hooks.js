@@ -33,6 +33,7 @@ export const useIndex = () => {
   const i18n = useI18n(messages);
   const { resolve: onSubmit, pending } = usePromise({
     promise: credentials => login({ credentials }),
+    then: profile => notify(i18n.succeed).then(() => identify(profile)),
     catch: ({ code, message }) =>
       notify(message).then(() => {
         const name = getFieldNameBasedOn(code);
@@ -45,7 +46,6 @@ export const useIndex = () => {
 
         return field.error(reason).focus();
       }),
-    then: profile => notify(i18n.succeed).then(() => identify(profile)),
   });
   const fields = useMemo(
     () => [
