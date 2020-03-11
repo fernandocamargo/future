@@ -3,7 +3,7 @@ import { Machine } from 'xstate';
 import { useCallback, useMemo } from 'react';
 import { useMachine } from '@xstate/react';
 
-import { IDLE, PENDING, REJECTED, SUCCESS } from './constants';
+import { FULFILLED, IDLE, PENDING, REJECTED } from './constants';
 import { setData, setError } from './helpers';
 
 export default ({
@@ -27,12 +27,12 @@ export default ({
           [IDLE]: { on: { START: PENDING } },
           [PENDING]: {
             invoke: {
-              onDone: { target: SUCCESS, actions: [setData, onDone] },
+              onDone: { target: FULFILLED, actions: [setData, onDone] },
               onError: { target: REJECTED, actions: [setError, onError] },
               src,
             },
           },
-          [SUCCESS]: { entry: 'stop', on: { START: PENDING } },
+          [FULFILLED]: { entry: 'stop', on: { START: PENDING } },
           [REJECTED]: { entry: 'stop', on: { START: PENDING } },
         },
         id,
@@ -46,7 +46,7 @@ export default ({
   const start = useCallback((...params) => send('START', ...params), [send]);
   const idle = useMemo(() => matches(IDLE), [matches]);
   const pending = useMemo(() => matches(PENDING), [matches]);
-  const success = useMemo(() => matches(SUCCESS), [matches]);
+  const fulfilled = useMemo(() => matches(FULFILLED), [matches]);
   const rejected = useMemo(() => matches(REJECTED), [matches]);
 
   return {
@@ -54,7 +54,7 @@ export default ({
     start,
     idle,
     pending,
-    success,
+    fulfilled,
     rejected,
     status,
     done,

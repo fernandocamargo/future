@@ -33,7 +33,7 @@ export const useValid = ({ token, profile }) => {
     start: onSubmit,
     idle,
     pending,
-    success,
+    fulfilled,
     rejected,
     error,
   } = usePromise({
@@ -100,11 +100,11 @@ export const useValid = ({ token, profile }) => {
     return () => window.clearTimeout(timeout);
   }, [when, redirect]);
 
-  useEffect(success ? schedule : noop, [success]);
+  useEffect(fulfilled ? schedule : noop, [fulfilled]);
 
   return {
     ...((idle || pending) && { form: { ...form, pending } }),
-    ...(success && { success: { redirect: { to: redirect, when } } }),
+    ...(fulfilled && { fulfilled: { redirect: { to: redirect, when } } }),
     ...(rejected && { rejected: { reason: error, profile } }),
   };
 };

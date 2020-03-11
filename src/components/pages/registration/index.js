@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PENDING, REJECTED, SUCCESS } from 'hooks/promise/constants';
+import { FULFILLED, PENDING, REJECTED } from 'hooks/promise/constants';
 import { Loader } from 'components/widgets';
 
 import { useRegistration } from './hooks';
@@ -11,7 +11,7 @@ const Registration = () => {
   const { status, valid, invalid } = useRegistration();
 
   switch (status) {
-    case SUCCESS:
+    case FULFILLED:
       return <Valid {...valid} />;
     case REJECTED:
       return <Invalid {...invalid} />;
