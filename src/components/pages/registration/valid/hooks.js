@@ -16,11 +16,8 @@ import { Checkbox, Password, Text } from 'components/widgets/fields';
 
 import Form from './form';
 import Agreement from './agreement';
+import { DELAY_UNIT, TIMER_UNIT, TIMER_VALUE } from './constants';
 import messages from './messages';
-
-const [TIMER_VALUE, TIMER_UNIT] = [60, 'seconds'];
-
-const DELAY_UNIT = 'milliseconds';
 
 export const useValid = ({ token, profile }) => {
   const history = useHistory();
