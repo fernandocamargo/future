@@ -5,7 +5,7 @@ import { useI18n } from 'hooks';
 import { Form } from 'components/widgets';
 
 import { useValid } from './hooks';
-import Fullfiled from './fulfilled';
+import Fulfilled from './fulfilled';
 import Rejected from './rejected';
 import messages from './messages';
 import withStyle from './style';
@@ -22,7 +22,7 @@ const Valid = ({ useStyle, token, profile }) => {
         <p>{description}</p>
       </article>
       {form && <Form {...form} />}
-      {fulfilled && <Fullfiled {...fulfilled} />}
+      {fulfilled && <Fulfilled {...fulfilled} />}
       {rejected && <Rejected {...rejected} />}
     </section>
   );
