@@ -29,7 +29,6 @@ export const useRecoverPassword = () => {
   const { notify } = useNotification();
   const i18n = useI18n(messages);
   const { start: onSubmit, pending } = usePromise({
-    promise: ({ email }) => forgotPassword({ email }),
     then: () => notify(i18n.succeed),
     catch: ({ code, message }) =>
       notify(message).then(() => {
@@ -42,6 +41,7 @@ export const useRecoverPassword = () => {
 
         return field.error(reason).focus();
       }),
+    promise: forgotPassword,
   });
   const fields = useMemo(
     () => [

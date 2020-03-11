@@ -30,14 +30,14 @@ export const useValid = ({ token, profile }) => {
   const scrollToTop = useScrollToTop();
   const i18n = useI18n(messages);
   const {
-    start: register,
+    start: onSubmit,
     idle,
     pending,
     success,
     failure,
     error,
   } = usePromise({
-    promise: (_, { user }) => create({ token, user }),
+    promise: user => create({ token, user }),
     then: () => notify(i18n.succeed),
     catch: () => notify(i18n.fail),
     finally: scrollToTop,
@@ -87,7 +87,6 @@ export const useValid = ({ token, profile }) => {
     ],
     [i18n, profile, validation]
   );
-  const onSubmit = useCallback(user => register({ user }), [register]);
   const form = useForm({ render: Form, fields, onSubmit });
   const when = useMemo(() => moment().add(TIMER_VALUE, TIMER_UNIT), []);
   const redirect = useCallback(

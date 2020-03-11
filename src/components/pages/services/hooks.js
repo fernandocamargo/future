@@ -4,9 +4,9 @@ import { usePromise } from 'hooks';
 import { useServices } from 'hooks/services/fs';
 
 export default () => {
-  const promise = useServices();
+  const load = useServices();
   const { data: services, status, start, error } = usePromise({
-    promise,
+    promise: load,
   });
 
   useEffect(() => {
