@@ -30,7 +30,7 @@ export const useValid = ({ token, profile }) => {
   const scrollToTop = useScrollToTop();
   const i18n = useI18n(messages);
   const {
-    start: onSubmit,
+    resolve: onSubmit,
     idle,
     pending,
     fulfilled,

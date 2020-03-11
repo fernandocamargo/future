@@ -28,7 +28,7 @@ export const useRecoverPassword = () => {
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const { start: onSubmit, pending } = usePromise({
+  const { resolve: onSubmit, pending } = usePromise({
     then: () => notify(i18n.succeed),
     catch: ({ code, message }) =>
       notify(message).then(() => {

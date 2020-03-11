@@ -3,7 +3,11 @@ import { useCallback } from 'react';
 import { useFileSystem } from 'hooks/clients';
 
 export default () => {
-  const { load } = useFileSystem();
+  const filesystem = useFileSystem();
+  const load = useCallback(
+    () => filesystem.load(import('data/services.json')),
+    [filesystem]
+  );
 
-  return useCallback(() => load(import('data/services.json')), [load]);
+  return { load };
 };

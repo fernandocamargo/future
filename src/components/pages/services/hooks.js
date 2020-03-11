@@ -4,17 +4,17 @@ import { usePromise } from 'hooks';
 import { useServices } from 'hooks/services/fs';
 
 export default () => {
-  const load = useServices();
-  const { data: services, status, start, error } = usePromise({
-    promise: load,
+  const services = useServices();
+  const { resolve: load, status, data, error } = usePromise({
+    promise: services.load,
   });
 
   useEffect(() => {
-    start();
-  }, [start]);
+    load();
+  }, [load]);
 
   return {
-    ...(!!services && { valid: { services } }),
+    ...(!!services && { valid: { services: data } }),
     ...(!!error && { invalid: { error } }),
     status,
   };

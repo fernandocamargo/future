@@ -24,7 +24,7 @@ export default ({
       new Machine({
         initial: IDLE,
         states: {
-          [IDLE]: { on: { START: PENDING } },
+          [IDLE]: { on: { RESOLVE: PENDING } },
           [PENDING]: {
             invoke: {
               onDone: { target: FULFILLED, actions: [setData, onDone] },
@@ -32,8 +32,8 @@ export default ({
               src,
             },
           },
-          [FULFILLED]: { entry: 'stop', on: { START: PENDING } },
-          [REJECTED]: { entry: 'stop', on: { START: PENDING } },
+          [FULFILLED]: { entry: 'stop', on: { RESOLVE: PENDING } },
+          [REJECTED]: { entry: 'stop', on: { RESOLVE: PENDING } },
         },
         id,
       }),
@@ -43,7 +43,9 @@ export default ({
     machine,
     { actions: { stop } }
   );
-  const start = useCallback((...params) => send('START', ...params), [send]);
+  const resolve = useCallback((...params) => send('RESOLVE', ...params), [
+    send,
+  ]);
   const idle = useMemo(() => matches(IDLE), [matches]);
   const pending = useMemo(() => matches(PENDING), [matches]);
   const fulfilled = useMemo(() => matches(FULFILLED), [matches]);
@@ -51,7 +53,7 @@ export default ({
 
   return {
     ...context,
-    start,
+    resolve,
     idle,
     pending,
     fulfilled,

@@ -27,10 +27,10 @@ export const useRoot = () => {
   const validation = useValidation();
   const { notify } = useNotification();
   const i18n = useI18n(messages);
-  const { start: enter } = usePromise({
+  const { resolve: enter } = usePromise({
     promise: (_, { profile }) => identify(profile),
   });
-  const { start: check, pending } = usePromise({
+  const { resolve: check, pending } = usePromise({
     promise: (_, { credentials }) => login({ credentials }),
     then: [{ profile: setProfile }, ({ profile }) => enter({ profile })],
     catch: ({ error }) => notify(error),
