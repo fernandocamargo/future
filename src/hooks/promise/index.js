@@ -1,14 +1,15 @@
 import noop from 'lodash/noop';
 import { Machine } from 'xstate';
 import { useCallback, useMemo } from 'react';
+// fix cache
 import { useMachine } from '@xstate/react';
 
-import { apply, setError } from './helpers';
+import { apply, setData, setError } from './helpers';
 
 export default ({
   finally: stop = noop,
   catch: fail = [],
-  then: arrive,
+  then: succeed = [],
   id,
   promise,
 }) => {
@@ -21,7 +22,10 @@ export default ({
           pending: {
             invoke: {
               src: promise,
-              onDone: { target: 'success', actions: apply(arrive) },
+              onDone: {
+                target: 'success',
+                actions: [setData].concat(apply(succeed)),
+              },
               onError: {
                 target: 'failure',
                 actions: [setError].concat(apply(fail)),
@@ -33,13 +37,13 @@ export default ({
         },
         id,
       }),
-    [id, promise, arrive, fail]
+    [id, promise, succeed, fail]
   );
   const [
     {
-      context: { error, ...context },
+      context: { data, error },
+      value: status,
       matches,
-      value,
       done,
     },
     send,
@@ -56,9 +60,9 @@ export default ({
     pending,
     success,
     failure,
-    context,
-    value,
-    done,
+    status,
+    data,
     error,
+    done,
   };
 };

@@ -7,4 +7,6 @@ export const apply = actions =>
     isFunction(action) ? action : assign(action)
   );
 
+export const setData = assign({ data: (_, { data }) => data });
+
 export const setError = assign({ error: (_, { data: error }) => error });

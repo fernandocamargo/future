@@ -5,13 +5,14 @@ import useFAQ from './hooks';
 import withStyle from './style';
 
 const FAQ = ({ useStyle }) => {
-  const { valid } = useFAQ();
+  const { valid, status } = useFAQ();
   const style = useStyle();
 
   return (
     <div {...style}>
       <h1>FAQ</h1>
-      <pre>{JSON.stringify(valid, null, 2)}</pre>
+      {!!valid && <pre>{JSON.stringify(valid.faq, null, 2)}</pre>}
+      <h2>Status: {status}</h2>
     </div>
   );
 };

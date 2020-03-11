@@ -5,13 +5,14 @@ import useServices from './hooks';
 import withStyle from './style';
 
 const Services = ({ useStyle }) => {
-  const { valid } = useServices();
+  const { valid, status } = useServices();
   const style = useStyle();
 
   return (
     <div {...style}>
       <h1>Services</h1>
-      <pre>{JSON.stringify(valid, null, 2)}</pre>
+      {!!valid && <pre>{JSON.stringify(valid.services, null, 2)}</pre>}
+      <h2>Status: {status}</h2>
     </div>
   );
 };
