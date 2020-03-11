@@ -13,8 +13,8 @@ export default () => {
   const errors = useI18n(messages);
   const translate = useCallback(translateFrom({ errors }), [errors]);
   const login = useCallback(
-    ({ credentials: { email, password } }) =>
-      post(URL, { email, password })
+    credentials =>
+      post(URL, credentials)
         .then(format)
         .catch(translate),
     [post, translate]

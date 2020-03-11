@@ -3,6 +3,7 @@ import moment from 'moment';
 import React, { useCallback, useEffect, useMemo } from 'react';
 
 import {
+  useAuthentication,
   useForm,
   useHistory,
   useI18n,
@@ -11,7 +12,7 @@ import {
   useScrollToTop,
   useValidation,
 } from 'hooks';
-import { useUsers } from 'hooks/services/expertlead';
+import { useAuth, useUsers } from 'hooks/services/expertlead';
 import { Checkbox, Password, Text } from 'components/widgets/fields';
 
 import Form from './form';
@@ -21,6 +22,8 @@ import messages from './messages';
 
 export const useValid = ({ token, profile }) => {
   const history = useHistory();
+  const { identify } = useAuthentication();
+  const { login } = useAuth();
   const { create } = useUsers();
   const validation = useValidation();
   const { notify } = useNotification();
@@ -34,8 +37,11 @@ export const useValid = ({ token, profile }) => {
     rejected,
     error,
   } = usePromise({
-    promise: user => create({ token, user }),
-    then: () => notify(i18n.succeed),
+    promise: user =>
+      create({ token, user }).then(created =>
+        login({ email: created.email, password: user.password })
+      ),
+    then: created => notify(i18n.succeed).then(() => identify(created)),
     catch: () => notify(i18n.fail),
     finally: scrollToTop,
   });
@@ -102,6 +108,6 @@ export const useValid = ({ token, profile }) => {
   return {
     ...((idle || pending) && { form: { ...form, pending } }),
     ...(fulfilled && { fulfilled: { redirect: { to: redirect, when } } }),
-    ...(rejected && { rejected: { reason: error, profile } }),
+    ...(rejected && { rejected: { reason: error.message, profile } }),
   };
 };
