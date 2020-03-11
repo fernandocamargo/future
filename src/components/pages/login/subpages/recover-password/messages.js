@@ -3,6 +3,6 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   email: 'E-mail',
   succeed:
-    'The link to your password recovery page has been successfully sent to you by email.',
+    'The instructions for recovering your password have been sent to your email.',
   'users.email-invalid': 'E-mail not found.',
 });

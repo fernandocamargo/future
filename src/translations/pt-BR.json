@@ -21,7 +21,7 @@
   "components/pages/login/subpages/recover-password/form/loading": "Procurando seu e-mail...",
   "components/pages/login/subpages/recover-password/form/submit": "Enviar",
   "components/pages/login/subpages/recover-password/form/title": "Recuperar senha",
-  "components/pages/login/subpages/recover-password/succeed": "O link da página para recuperar a sua senha foi enviada com sucesso para o seu e-mail.",
+  "components/pages/login/subpages/recover-password/succeed": "As instruções para recuperar a sua senha foram enviadas para o seu e-mail.",
   "components/pages/login/subpages/recover-password/users.email-invalid": "E-mail não encontrado.",
   "components/pages/login/subpages/set-new-password/email": "",
   "components/pages/login/subpages/set-new-password/form/action": "",
