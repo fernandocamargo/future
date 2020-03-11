@@ -1,68 +1,58 @@
 import noop from 'lodash/noop';
 import { Machine } from 'xstate';
 import { useCallback, useMemo } from 'react';
-// fix cache
 import { useMachine } from '@xstate/react';
 
-import { apply, setData, setError } from './helpers';
+import { FAILURE, IDLE, PENDING, SUCCESS } from './constants';
+import { setData, setError } from './helpers';
 
 export default ({
   finally: stop = noop,
-  catch: fail = [],
-  then: succeed = [],
+  catch: fail = noop,
+  then: succeed = noop,
+  promise: src,
   id,
-  promise,
 }) => {
+  const onDone = useCallback(({ data }) => succeed(data), [succeed]);
+  const onError = useCallback(({ error }) => fail(error), [fail]);
   const machine = useMemo(
     () =>
       new Machine({
-        initial: 'idle',
+        initial: IDLE,
         states: {
-          idle: { on: { START: 'pending' } },
-          pending: {
+          [IDLE]: { on: { START: PENDING } },
+          [PENDING]: {
             invoke: {
-              src: promise,
-              onDone: {
-                target: 'success',
-                actions: [setData].concat(apply(succeed)),
-              },
-              onError: {
-                target: 'failure',
-                actions: [setError].concat(apply(fail)),
-              },
+              onDone: { target: SUCCESS, actions: [setData, onDone] },
+              onError: { target: FAILURE, actions: [setError, onError] },
+              src,
             },
           },
-          success: { entry: 'stop', on: { START: 'pending' } },
-          failure: { entry: 'stop', on: { START: 'pending' } },
+          [SUCCESS]: { entry: 'stop', on: { START: PENDING } },
+          [FAILURE]: { entry: 'stop', on: { START: PENDING } },
         },
         id,
       }),
-    [id, promise, succeed, fail]
+    [id, src, onDone, onError]
   );
-  const [
-    {
-      context: { data, error },
-      value: status,
-      matches,
-      done,
-    },
-    send,
-  ] = useMachine(machine, { actions: { stop } });
+  const [{ value: status, context, matches, done }, send] = useMachine(
+    machine,
+    { actions: { stop } }
+  );
   const start = useCallback((...params) => send('START', ...params), [send]);
-  const idle = useMemo(() => matches('idle'), [matches]);
-  const pending = useMemo(() => matches('pending'), [matches]);
-  const success = useMemo(() => matches('success'), [matches]);
-  const failure = useMemo(() => matches('failure'), [matches]);
+  const idle = useMemo(() => matches(IDLE), [matches]);
+  const pending = useMemo(() => matches(PENDING), [matches]);
+  const success = useMemo(() => matches(SUCCESS), [matches]);
+  const failure = useMemo(() => matches(FAILURE), [matches]);
 
   return {
+    ...context,
     start,
     idle,
     pending,
     success,
     failure,
     status,
-    data,
-    error,
     done,
   };
 };
