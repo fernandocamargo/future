@@ -43,7 +43,7 @@ const App = ({ useStyle }) => {
             <Public path={`${registration}/:token`} component={Registration} />
             <Skippable path={login} component={Login} />
             <Restricted path={dashboard} component={Dashboard} exact />
-            <Restricted path={profile} component={Profile} exact />
+            <Restricted path={profile} component={Profile} />
             <Restricted path={referrals} component={Referrals} exact />
             <Restricted path={services} component={Services} exact />
             <Restricted path={faq} component={FAQ} />
