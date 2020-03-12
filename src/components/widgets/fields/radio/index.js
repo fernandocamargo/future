@@ -1,3 +1,4 @@
+import isEqual from 'lodash/isEqual';
 import {
   any,
   arrayOf,
@@ -8,39 +9,47 @@ import {
   shape,
   string,
 } from 'prop-types';
-import React, { useCallback, useMemo } from 'react';
-import { FormLabel, RadioGroup } from '@material-ui/core';
+import React, { useCallback } from 'react';
+import { useId } from '@reach/auto-id';
+import { FormLabel } from '@material-ui/core';
 
 import Option from './option';
 import withStyle from './style';
 
 const Radio = ({
   useStyle,
-  fieldRef,
   name,
   label,
   options,
   value,
   onChange,
+  fieldRef,
 }) => {
+  const id = useId(name);
   const renderOption = useCallback(
-    option => <Option key={option.value} {...option} fieldRef={fieldRef} />,
-    [fieldRef]
+    (option, index) => {
+      const checked = isEqual(option.value, value);
+      const extra = { ...(checked && { fieldRef }) };
+
+      return (
+        <Option
+          {...option}
+          key={index}
+          name={id}
+          checked={checked}
+          onChange={onChange}
+          {...extra}
+        />
+      );
+    },
+    [id, value, onChange, fieldRef]
   );
-  const id = useMemo(() => JSON.stringify({ name, value }), [name, value]);
   const style = useStyle();
 
   return (
     <div {...style}>
       <FormLabel>{label}</FormLabel>
-      <RadioGroup
-        aria-label={label}
-        name={id}
-        value={value}
-        onChange={something => console.log({ something, onChange })}
-      >
-        {options.map(renderOption)}
-      </RadioGroup>
+      {options.map(renderOption)}
     </div>
   );
 };

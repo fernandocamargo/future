@@ -33,7 +33,7 @@ export const connectTo = ({
   refs: { fields: refs },
   status = {},
   values: data,
-  handleChange: onChange,
+  setFieldValue,
   setFieldError,
   errors,
 }) => (stack, field) => {
@@ -42,6 +42,7 @@ export const connectTo = ({
   const { [name]: value } = data;
   const { [name]: error } = errors;
   const { [name]: fieldRef } = refs;
+  const onChange = setFieldValue.bind(null, name);
   const props = {
     ...(debugging && { error }),
     ...field,

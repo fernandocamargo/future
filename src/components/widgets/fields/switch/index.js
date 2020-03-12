@@ -7,7 +7,7 @@ import {
   shape,
   string,
 } from 'prop-types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   Switch as Input,
   FormControl,
@@ -18,15 +18,19 @@ import {
 import withStyle from './style';
 
 const Switch = ({
+  onChange: change,
   fieldRef: inputRef,
   useStyle,
   name,
   label,
   value,
-  onChange,
   disabled,
   error,
 }) => {
+  const onChange = useCallback(
+    ({ target: { checked: next } }) => change(next),
+    [change]
+  );
   const style = useStyle();
 
   return (

@@ -7,6 +7,6 @@ export const getURL = () => {
     case isStaging():
       return 'https://api-staging.expertlead.io/';
     default:
-      return '/';
+      return 'https://api-staging.expertlead.io/';
   }
 };

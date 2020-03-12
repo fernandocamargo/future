@@ -9,22 +9,25 @@ import {
   shape,
   string,
 } from 'prop-types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { TextField } from '@material-ui/core';
 
 import withStyle from './style';
 
 const Text = ({
+  onChange: change,
   fieldRef: inputRef,
   useStyle,
   type,
   name,
   label,
   value,
-  onChange,
   disabled,
   error,
 }) => {
+  const onChange = useCallback(({ target: { value: next } }) => change(next), [
+    change,
+  ]);
   const style = useStyle();
 
   return (

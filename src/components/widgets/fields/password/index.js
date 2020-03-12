@@ -24,12 +24,12 @@ import Toggler from './toggler';
 import withStyle from './style';
 
 const Password = ({
+  onChange: change,
   fieldRef: inputRef,
   useStyle,
   name,
   label,
   value,
-  onChange,
   disabled,
   error,
 }) => {
@@ -40,6 +40,9 @@ const Password = ({
     focus(inputRef.current);
   }, [inputRef]);
   const labelWidth = useMemo(() => measure(label), [label]);
+  const onChange = useCallback(({ target: { value: next } }) => change(next), [
+    change,
+  ]);
   const style = useStyle();
 
   return (
