@@ -1,7 +1,12 @@
 {
   "components/pages/404/title": "404 - Página não encontrada",
   "components/pages/account/title": "Minha conta",
-  "components/pages/dashboard/title": "Painel",
+  "components/pages/dashboard/on/availability": "Disponibilidade",
+  "components/pages/dashboard/on/description": "Que ótimo vê-lo novo! Você escolheu um excelente momento para juntar-se a nós, já que estamos apenas começando a construir nosso Portal e estamos ansiosos em incorporar suas sugestões. Basta contactar o seu gerente de freelancer sempre que tiver algo a nos dizer!",
+  "components/pages/dashboard/on/full-time": "Tempo integral",
+  "components/pages/dashboard/on/part-time": "Meio período",
+  "components/pages/dashboard/on/title": "Painel",
+  "components/pages/dashboard/on/unavailable": "Indisponível",
   "components/pages/login/subpages/index/email": "E-mail",
   "components/pages/login/subpages/index/form/action": "Deixe-me entrar",
   "components/pages/login/subpages/index/form/actions": "Ações sugeridas:",

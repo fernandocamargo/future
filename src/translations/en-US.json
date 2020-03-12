@@ -1,7 +1,12 @@
 {
   "components/pages/404/title": "404 - Not found",
   "components/pages/account/title": "Account",
-  "components/pages/dashboard/title": "Dashboard",
+  "components/pages/dashboard/on/availability": "Availability",
+  "components/pages/dashboard/on/description": "Great to see you again! You have chosen an excellent moment to join us as we just started building our Portal and look forward to incorporating your feedback. Just turn to your freelancer manager whenever you have feedback!",
+  "components/pages/dashboard/on/full-time": "Full-Time",
+  "components/pages/dashboard/on/part-time": "Part-Time",
+  "components/pages/dashboard/on/title": "Welcome to Expertlead Portal",
+  "components/pages/dashboard/on/unavailable": "Unavailable",
   "components/pages/login/subpages/index/email": "E-mail",
   "components/pages/login/subpages/index/form/action": "Let me in",
   "components/pages/login/subpages/index/form/actions": "Suggested actions:",

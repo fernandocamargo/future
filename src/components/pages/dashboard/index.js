@@ -1,29 +1,26 @@
-import { func } from 'prop-types';
 import React from 'react';
 
-import { useI18n } from 'hooks';
+import { Loader } from 'components/widgets';
 
 import { useDashboard } from './hooks';
-import messages from './messages';
-import withStyle from './style';
+import On from './on';
+import Off from './off';
 
-const Dashboard = ({ useStyle }) => {
-  const dashboard = useDashboard();
-  const { title } = useI18n(messages);
-  const style = useStyle();
+const Dashboard = () => {
+  const { on, off } = useDashboard();
 
-  return (
-    <section {...style}>
-      <h1>{title}</h1>
-      <pre>{JSON.stringify(dashboard, null, 2)}</pre>
-    </section>
-  );
+  switch (true) {
+    case !!on:
+      return <On {...on} />;
+    case !!off:
+      return <Off {...off} />;
+    default:
+      return <Loader />;
+  }
 };
 
-Dashboard.propTypes = {
-  useStyle: func.isRequired,
-};
+Dashboard.propTypes = {};
 
 Dashboard.defaultProps = {};
 
-export default withStyle(Dashboard);
+export default Dashboard;

@@ -1,7 +1,12 @@
 {
   "components/pages/404/title": "",
   "components/pages/account/title": "",
-  "components/pages/dashboard/title": "",
+  "components/pages/dashboard/on/availability": "",
+  "components/pages/dashboard/on/description": "",
+  "components/pages/dashboard/on/full-time": "",
+  "components/pages/dashboard/on/part-time": "",
+  "components/pages/dashboard/on/title": "",
+  "components/pages/dashboard/on/unavailable": "",
   "components/pages/login/subpages/index/email": "",
   "components/pages/login/subpages/index/form/action": "",
   "components/pages/login/subpages/index/form/actions": "",
