@@ -8,12 +8,7 @@ import {
   string,
 } from 'prop-types';
 import React, { useCallback } from 'react';
-import {
-  Radio as Input,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-} from '@material-ui/core';
+import { Radio as Input, FormControlLabel } from '@material-ui/core';
 
 import withStyle from './style';
 
@@ -25,28 +20,24 @@ const Option = ({
   value,
   checked,
   disabled,
-  error,
 }) => {
   const onChange = useCallback(() => change(value), [change, value]);
   const style = useStyle();
 
   return (
     <div {...style}>
-      <FormControl error={!!error}>
-        <FormControlLabel
-          label={label}
-          control={
-            <Input
-              checked={checked}
-              onChange={onChange}
-              disabled={disabled}
-              inputRef={inputRef}
-              value
-            />
-          }
-        />
-        {!!error && <FormHelperText>{error}</FormHelperText>}
-      </FormControl>
+      <FormControlLabel
+        label={label}
+        control={
+          <Input
+            checked={checked}
+            onChange={onChange}
+            disabled={disabled}
+            inputRef={inputRef}
+            value
+          />
+        }
+      />
     </div>
   );
 };

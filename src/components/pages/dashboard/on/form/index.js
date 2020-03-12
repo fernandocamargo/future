@@ -13,10 +13,10 @@ const Form = ({
   <Container>
     <Fieldset>
       <legend>Some legend</legend>
-      <div>
-        <h3>Your availability</h3>
-        <div>{availability}</div>
-      </div>
+      <dl>
+        <dt>Your availability</dt>
+        <dd>{availability}</dd>
+      </dl>
       <div>
         <h3>Your work preference</h3>
       </div>
