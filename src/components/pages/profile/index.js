@@ -7,6 +7,7 @@ import { Public } from 'components/routes';
 import { Loader } from 'components/widgets';
 
 import { AboutMe, Education, Experience, Skills } from './subpages';
+import Menu from './menu';
 import withStyle from './style';
 
 const Profile = ({ useStyle }) => {
@@ -15,6 +16,7 @@ const Profile = ({ useStyle }) => {
 
   return (
     <section {...style}>
+      <Menu />
       <OnDemand fallback={<Loader />}>
         <Routes>
           <Public path={education} component={Education} exact />
