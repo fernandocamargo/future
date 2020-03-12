@@ -1,11 +1,11 @@
 import {
+  any,
   bool,
   func,
   instanceOf,
   node,
   oneOfType,
   shape,
-  string,
 } from 'prop-types';
 import React, { useCallback } from 'react';
 import { Radio as Input, FormControlLabel } from '@material-ui/core';
@@ -45,7 +45,7 @@ const Option = ({
 Option.propTypes = {
   useStyle: func.isRequired,
   label: node.isRequired,
-  value: string.isRequired,
+  value: oneOfType([any]).isRequired,
   checked: bool,
   onChange: func.isRequired,
   disabled: bool,

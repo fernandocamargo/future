@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 
-import { FULL_TIME, PART_TIME, UNAVAILABLE } from 'enums/availability';
+import * as AVAILABILITY from 'enums/availability';
 import { useForm, useI18n, useValidation } from 'hooks';
 import { Radio } from 'components/widgets/fields';
 
@@ -9,14 +9,6 @@ import messages from './messages';
 export default ({ profile, render }) => {
   const validation = useValidation();
   const i18n = useI18n(messages);
-  const availability = useMemo(
-    () => [
-      { label: i18n['full-time'], value: FULL_TIME },
-      { label: i18n['part-time'], value: PART_TIME },
-      { label: i18n.unavailable, value: UNAVAILABLE },
-    ],
-    [i18n]
-  );
   const fields = useMemo(
     () => [
       {
@@ -26,11 +18,37 @@ export default ({ profile, render }) => {
         value: profile.availability,
         validation: validation.fullName.required(),
         settings: {
-          options: availability,
+          options: [
+            {
+              label: i18n['availability.full-time'],
+              value: AVAILABILITY.FULL_TIME,
+            },
+            {
+              label: i18n['availability.part-time'],
+              value: AVAILABILITY.PART_TIME,
+            },
+            {
+              label: i18n['availability.unavailable'],
+              value: AVAILABILITY.UNAVAILABLE,
+            },
+          ],
+        },
+      },
+      {
+        field: Radio,
+        name: 'remote-only',
+        label: i18n['remote-only'],
+        value: profile.isRemoteOnly,
+        validation: validation.fullName.required(),
+        settings: {
+          options: [
+            { label: i18n['remote-only.yes'], value: true },
+            { label: i18n['remote-only.no'], value: false },
+          ],
         },
       },
     ],
-    [i18n, profile, validation, availability]
+    [i18n, profile, validation]
   );
   const onSubmit = useCallback(
     data => console.log('onSubmit();', { data }),

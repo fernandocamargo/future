@@ -5,7 +5,7 @@ import * as form from 'prop-types/definitions/form';
 const Form = ({
   elements: {
     fields: {
-      unordered: { availability },
+      unordered: { 'remote-only': remoteOnly, availability },
     },
   },
   components: { Form: Container, Fieldset, Submit, Loader },
@@ -17,9 +17,10 @@ const Form = ({
         <dt>Your availability</dt>
         <dd>{availability}</dd>
       </dl>
-      <div>
-        <h3>Your work preference</h3>
-      </div>
+      <dl>
+        <dt>Your work preference</dt>
+        <dd>{remoteOnly}</dd>
+      </dl>
       <div>
         <h3>Your location</h3>
       </div>

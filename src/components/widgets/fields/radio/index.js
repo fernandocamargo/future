@@ -66,7 +66,7 @@ Radio.propTypes = {
       value: any.isRequired,
     }).isRequired
   ),
-  value: string,
+  value: oneOfType([any]),
   onChange: func.isRequired,
   error: node,
 };
