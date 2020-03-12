@@ -1,7 +1,17 @@
-import { useMemo } from 'react';
+import { useEffect } from 'react';
+
+import { usePromise } from 'hooks';
+import { useProfile } from 'hooks/services/expertlead';
 
 export const useDashboard = () => {
-  const fields = useMemo(() => [], []);
+  const { me } = useProfile();
+  const { resolve: load, data, status, error } = usePromise({
+    promise: me,
+  });
 
-  return { fields };
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  return { data, status, error };
 };

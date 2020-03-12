@@ -9,16 +9,15 @@ export default () => {
   const { get } = useExpertlead();
   const me = useCallback(
     () =>
-      get(`${URL}/me`)
-        .then(
-          response =>
-            console.log('me.then();', { response }) || Promise.resolve(response)
-        )
-        .catch(response => {
-          console.log('me.catch();', { response });
-
-          throw new Error({ message: 'LOL' });
-        }),
+      get(`${URL}/me`).catch(
+        ({
+          response: {
+            data: { error },
+          },
+        }) => {
+          throw new Error(error);
+        }
+      ),
     [get]
   );
 

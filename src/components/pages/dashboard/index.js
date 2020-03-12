@@ -8,14 +8,14 @@ import messages from './messages';
 import withStyle from './style';
 
 const Dashboard = ({ useStyle }) => {
-  const form = useDashboard();
+  const dashboard = useDashboard();
   const { title } = useI18n(messages);
   const style = useStyle();
 
   return (
     <section {...style}>
       <h1>{title}</h1>
-      <pre>{JSON.stringify(form, null, 2)}</pre>
+      <pre>{JSON.stringify(dashboard, null, 2)}</pre>
     </section>
   );
 };
