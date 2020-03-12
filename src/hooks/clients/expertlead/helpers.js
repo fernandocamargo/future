@@ -7,6 +7,6 @@ export const getURL = () => {
     case isStaging():
       return 'https://api-staging.expertlead.io/';
     default:
-      return 'http://localhost:8080/';
+      return '/';
   }
 };
