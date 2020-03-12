@@ -3,7 +3,7 @@ import React, { Suspense as OnDemand } from 'react';
 import { Switch as Routes } from 'react-router-dom';
 
 import { useRoutes } from 'hooks';
-import { Public } from 'components/routes';
+import { Restricted } from 'components/routes';
 import { Loader } from 'components/widgets';
 
 import { AboutMe, Education, Experience, Skills } from './subpages';
@@ -19,10 +19,10 @@ const Profile = ({ useStyle }) => {
       <Menu />
       <OnDemand fallback={<Loader />}>
         <Routes>
-          <Public path={education} component={Education} exact />
-          <Public path={experience} component={Experience} exact />
-          <Public path={skills} component={Skills} exact />
-          <Public path="*" component={AboutMe} />
+          <Restricted path={education} component={Education} exact />
+          <Restricted path={experience} component={Experience} exact />
+          <Restricted path={skills} component={Skills} exact />
+          <Restricted path="*" component={AboutMe} />
         </Routes>
       </OnDemand>
     </section>

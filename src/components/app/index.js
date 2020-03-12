@@ -40,7 +40,10 @@ const App = ({ useStyle }) => {
         <OnDemand fallback={<Loader />}>
           <Routes>
             <Public path="/" component={Home} exact />
-            <Public path={`${registration}/:token`} component={Registration} />
+            <Skippable
+              path={`${registration}/:token`}
+              component={Registration}
+            />
             <Skippable path={login} component={Login} />
             <Restricted path={dashboard} component={Dashboard} exact />
             <Restricted path={profile} component={Profile} />
