@@ -1,3 +1,8 @@
-import property from 'lodash/property';
+import { decode } from 'helpers/jwt';
 
-export const format = property('data');
+export const format = ({ data: profile }) => {
+  const { accessToken: token } = profile;
+  const decoded = decode(token);
+
+  return { ...profile, ...decoded };
+};
