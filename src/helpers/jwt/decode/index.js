@@ -1,12 +1,14 @@
-export default token => {
-  const [, base64Url] = token.split('.');
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split('')
-      .map(c => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
-      .join('')
-  );
+import { HYPHENS, UNDERSCORES } from './constants';
+import { decode } from './helpers';
 
-  return JSON.parse(jsonPayload);
+export default token => {
+  const [, base64URL] = token.split('.');
+  const base64 = base64URL.replace(HYPHENS, '+').replace(UNDERSCORES, '/');
+  const URI = atob(base64)
+    .split('')
+    .map(decode)
+    .join('');
+  const json = decodeURIComponent(URI);
+
+  return JSON.parse(json);
 };
