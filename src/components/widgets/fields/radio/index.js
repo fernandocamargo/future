@@ -10,22 +10,12 @@ import {
   string,
 } from 'prop-types';
 import React, { useCallback } from 'react';
-import { useId } from '@reach/auto-id';
 import { FormLabel } from '@material-ui/core';
 
 import Option from './option';
 import withStyle from './style';
 
-const Radio = ({
-  useStyle,
-  name,
-  label,
-  options,
-  value,
-  onChange,
-  fieldRef,
-}) => {
-  const id = useId(name);
+const Radio = ({ useStyle, label, options, value, onChange, fieldRef }) => {
   const renderOption = useCallback(
     (option, index) => {
       const checked = isEqual(option.value, value);
@@ -35,14 +25,13 @@ const Radio = ({
         <Option
           {...option}
           key={index}
-          name={id}
           checked={checked}
           onChange={onChange}
           {...extra}
         />
       );
     },
-    [id, value, onChange, fieldRef]
+    [value, onChange, fieldRef]
   );
   const style = useStyle();
 

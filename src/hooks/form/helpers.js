@@ -42,7 +42,7 @@ export const connectTo = ({
   const { [name]: value } = data;
   const { [name]: error } = errors;
   const { [name]: fieldRef } = refs;
-  const onChange = setFieldValue.bind(null, name);
+  const onChange = next => setFieldValue(name, next);
   const props = {
     ...(debugging && { error }),
     ...field,

@@ -53,7 +53,6 @@ const Option = ({
 
 Option.propTypes = {
   useStyle: func.isRequired,
-  name: string.isRequired,
   label: node.isRequired,
   value: string.isRequired,
   checked: bool,
