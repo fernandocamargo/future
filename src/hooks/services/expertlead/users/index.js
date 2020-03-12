@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
 
+import Error from 'error';
 import { useI18n } from 'hooks';
 import { useExpertlead } from 'hooks/clients';
 
+import { URL } from './constants';
 import { format, getErrorByCode } from './helpers';
 import messages from './messages';
-
-const URL = '/users';
 
 export default () => {
   const expertlead = useExpertlead();
@@ -17,7 +17,9 @@ export default () => {
         .post(URL, { invitationToken, password })
         .then(format)
         .catch(getErrorByCode)
-        .catch(error => Promise.reject(errors[error])),
+        .catch(code => {
+          throw new Error({ message: errors[code] });
+        }),
     [expertlead, errors]
   );
 
