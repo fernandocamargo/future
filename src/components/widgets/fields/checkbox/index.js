@@ -21,7 +21,6 @@ const Checkbox = ({
   onChange: change,
   fieldRef: inputRef,
   useStyle,
-  name,
   label,
   value,
   disabled,
@@ -40,7 +39,6 @@ const Checkbox = ({
           label={label}
           control={
             <Input
-              name={name}
               onChange={onChange}
               checked={value}
               inputRef={inputRef}

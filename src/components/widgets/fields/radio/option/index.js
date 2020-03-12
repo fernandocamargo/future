@@ -8,8 +8,12 @@ import {
   string,
 } from 'prop-types';
 import React, { useCallback } from 'react';
-import { useId } from '@reach/auto-id';
-import { Radio } from '@material-ui/core';
+import {
+  Radio as Input,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+} from '@material-ui/core';
 
 import withStyle from './style';
 
@@ -17,25 +21,32 @@ const Option = ({
   onChange: change,
   fieldRef: inputRef,
   useStyle,
-  name,
   label,
   value,
   checked,
+  disabled,
+  error,
 }) => {
-  const id = useId(name);
   const onChange = useCallback(() => change(value), [change, value]);
   const style = useStyle();
 
   return (
     <div {...style}>
-      <Radio
-        id={id}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-        inputRef={inputRef}
-      />
-      <label htmlFor={id}>{label}</label>
+      <FormControl error={!!error}>
+        <FormControlLabel
+          label={label}
+          control={
+            <Input
+              checked={checked}
+              onChange={onChange}
+              disabled={disabled}
+              inputRef={inputRef}
+              value
+            />
+          }
+        />
+        {!!error && <FormHelperText>{error}</FormHelperText>}
+      </FormControl>
     </div>
   );
 };
@@ -47,11 +58,15 @@ Option.propTypes = {
   value: string.isRequired,
   checked: bool,
   onChange: func.isRequired,
+  disabled: bool,
+  error: node,
   fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })]),
 };
 
 Option.defaultProps = {
   checked: false,
+  disabled: false,
+  error: null,
   fieldRef: null,
 };
 
