@@ -1,10 +1,12 @@
-import { isProduction } from 'helpers/environment';
+import { isProduction, isStaging } from 'helpers/environment';
 
 export const getURL = () => {
   switch (true) {
     case isProduction():
       return 'https://api.expertlead.io/';
-    default:
+    case isStaging():
       return 'https://api-staging.expertlead.io/';
+    default:
+      return 'http://localhost:8080/';
   }
 };
