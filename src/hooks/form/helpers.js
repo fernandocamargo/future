@@ -31,8 +31,8 @@ export const getFormikSettingsFrom = fields => {
 
 export const connectTo = ({
   refs: { fields: refs },
-  status = {},
   values: data,
+  status = {},
   setFieldValue,
   setFieldError,
   errors,
