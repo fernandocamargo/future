@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
 import * as AVAILABILITY from 'enums/availability';
+import * as BOOLEAN from 'enums/boolean';
 import { useForm, useI18n, useValidation } from 'hooks';
 import { Radio } from 'components/widgets/fields';
 
@@ -15,8 +16,8 @@ export default ({ profile, render }) => {
         field: Radio,
         name: 'availability',
         label: i18n.availability,
-        value: profile.availability,
-        validation: validation.fullName.required(),
+        value: 'profile.availability',
+        validation: validation.oneOf(Object.values(AVAILABILITY)).required(),
         settings: {
           options: [
             {
@@ -39,7 +40,7 @@ export default ({ profile, render }) => {
         name: 'remote-only',
         label: i18n['remote-only'],
         value: profile.isRemoteOnly,
-        validation: validation.fullName.required(),
+        validation: validation.oneOf(Object.values(BOOLEAN)).required(),
         settings: {
           options: [
             { label: i18n['remote-only.yes'], value: true },
