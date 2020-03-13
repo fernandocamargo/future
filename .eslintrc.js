@@ -1,14 +1,14 @@
 const path = require('path');
-const src = path.resolve(__dirname, 'src');
-const pckg = 'pckg';
+
 const storybook = ['./storybook/**', './src/stories/**'];
+const src = path.resolve(__dirname, 'src');
 
 module.exports = {
   env: { browser: true, es6: true },
   extends: ['react-app', 'airbnb'],
   settings: {
     'import/resolver': { node: { paths: [src] } },
-    'import/ignore': [pckg],
+    'import/ignore': ['pckg'],
   },
   rules: {
     'import/no-cycle': ['off'],
@@ -39,6 +39,7 @@ module.exports = {
         prop: 'ignore',
       },
     ],
+    'react/prop-types': ['warn'],
     'arrow-parens': ['error', 'as-needed'],
     'comma-dangle': [
       'error',
@@ -54,6 +55,7 @@ module.exports = {
     'implicit-arrow-linebreak': ['off'],
     'linebreak-style': ['off'],
     'no-confusing-arrow': ['off'],
+    'no-unused-vars': ['warn'],
     'no-use-before-define': ['error', { variables: false }],
     'object-curly-newline': ['error', { consistent: true }],
     'operator-linebreak': [
@@ -61,5 +63,6 @@ module.exports = {
       'before',
       { overrides: { '&&': 'after', '||': 'after' } },
     ],
+    'prefer-const': ['warn'],
   },
 };

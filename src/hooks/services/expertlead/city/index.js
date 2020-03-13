@@ -8,17 +8,18 @@ import { URL } from './constants';
 export default () => {
   const { get } = useExpertlead();
   const getBy = useCallback(
-    data =>
-      get(URL, data)
-        .then(
-          response =>
-            console.log('city.getBy.then();', response) ||
-            Promise.resolve(response)
-        )
-        .catch(response => {
-          console.log('city.getBy.catch();', response);
-
-          throw new Error({ message: 'No cities for you' });
+    ({ keywords: name }) =>
+      get(URL, { params: { name } })
+        .catch(() => {
+          throw new Error({ message: 'No cities for you (backend)' });
+        })
+        .then(({ data: { data } }) => {
+          switch (true) {
+            case !data:
+              throw new Error({ message: 'No cities for you (frontend)' });
+            default:
+              return Promise.resolve(data);
+          }
         }),
     [get]
   );

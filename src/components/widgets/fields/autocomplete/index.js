@@ -1,15 +1,18 @@
 import { any, func, node, oneOfType } from 'prop-types';
 import React from 'react';
+import { Autocomplete as Container } from '@material-ui/lab';
 
+import useAutocomplete from './hooks';
+import Input from './input';
 import withStyle from './style';
 
-const Autocomplete = ({ useStyle, label, value }) => {
+const Autocomplete = ({ useStyle, ...props }) => {
+  const autocomplete = useAutocomplete({ render: Input, ...props });
   const style = useStyle();
 
   return (
     <div {...style}>
-      <h1>{label}</h1>
-      <pre>{JSON.stringify(value, null, 2)}</pre>
+      <Container {...autocomplete} />
     </div>
   );
 };

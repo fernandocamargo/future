@@ -3,11 +3,14 @@ import { useCallback, useMemo } from 'react';
 import * as AVAILABILITY from 'enums/availability';
 import * as BOOLEAN from 'enums/boolean';
 import { useForm, useI18n, useValidation } from 'hooks';
+import { useCity } from 'hooks/services/expertlead';
 import { Autocomplete, Radio } from 'components/widgets/fields';
 
+import { getOptionLabel, getOptionSelected } from './helpers';
 import messages from './messages';
 
 export default ({ profile, render }) => {
+  const city = useCity();
   const validation = useValidation();
   const i18n = useI18n(messages);
   const fields = useMemo(
@@ -53,6 +56,11 @@ export default ({ profile, render }) => {
         name: 'location',
         label: i18n.location,
         value: profile.location,
+        settings: {
+          getOptions: city.getBy,
+          getOptionSelected,
+          getOptionLabel,
+        },
       },
       {
         field: Autocomplete,
@@ -61,7 +69,7 @@ export default ({ profile, render }) => {
         value: profile.focusRole,
       },
     ],
-    [i18n, profile, validation]
+    [city.getBy, i18n, profile, validation]
   );
   const onSubmit = useCallback(
     data => console.log('onSubmit(!);', { data }),
