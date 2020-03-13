@@ -58,7 +58,7 @@ export default ({ profile, render }) => {
     [i18n, profile, validation]
   );
   const onSubmit = useCallback(
-    data => console.log('onSubmit();', { data }),
+    data => console.log('onSubmit(!);', { data }),
     []
   );
 
