@@ -1,4 +1,8 @@
-export const getOptionLabel = ({ country: { name: country }, accent }) =>
-  `${accent}, ${country}`;
+import property from 'lodash/property';
 
-export const getOptionSelected = (option, value) => option.name === value.name;
+export const getLocationOptionKeywords = property('name');
+
+export const getLocationOptionLabel = ({
+  country: { name: country },
+  accent,
+}) => `${accent}, ${country}`;

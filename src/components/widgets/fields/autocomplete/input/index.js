@@ -9,6 +9,7 @@ const Input = ({
   fieldRef: inputRef,
   useStyle,
   loading,
+  error,
   ...props
 }) => {
   const endAdornment = useMemo(() => loading && <Loader />, [loading]);
@@ -23,6 +24,7 @@ const Input = ({
       {...props}
       {...style}
       InputProps={InputProps}
+      error={!!error}
       inputRef={inputRef}
       variant="outlined"
     />
@@ -34,6 +36,7 @@ Input.propTypes = {
   InputProps: shape({}).isRequired,
   label: node,
   loading: bool,
+  error: node,
   fieldRef: oneOfType([func, shape({ current: instanceOf(Element) })])
     .isRequired,
 };
@@ -41,6 +44,7 @@ Input.propTypes = {
 Input.defaultProps = {
   label: null,
   loading: false,
+  error: null,
 };
 
 export default withStyle(Input);

@@ -1,3 +1,4 @@
+// fix cache
 import { useCallback, useMemo } from 'react';
 
 import * as AVAILABILITY from 'enums/availability';
@@ -6,7 +7,7 @@ import { useForm, useI18n, useValidation } from 'hooks';
 import { useCity } from 'hooks/services/expertlead';
 import { Autocomplete, Radio } from 'components/widgets/fields';
 
-import { getOptionLabel, getOptionSelected } from './helpers';
+import { getLocationOptionKeywords, getLocationOptionLabel } from './helpers';
 import messages from './messages';
 
 export default ({ profile, render }) => {
@@ -59,8 +60,8 @@ export default ({ profile, render }) => {
         validation: validation.fullName.required(),
         settings: {
           getOptions: city.getBy,
-          getOptionSelected,
-          getOptionLabel,
+          getOptionKeywords: getLocationOptionKeywords,
+          getOptionLabel: getLocationOptionLabel,
         },
       },
       {

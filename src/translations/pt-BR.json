@@ -76,6 +76,8 @@
   "components/pages/registration/valid/rejected/title": "Não foi possível finalizar o seu cadastro.",
   "components/pages/registration/valid/succeed": "Cadastro realizado com sucesso!",
   "components/pages/registration/valid/title": "Bem-vindo(a)!",
+  "components/widgets/fields/autocomplete/loading": "Procurando...",
+  "components/widgets/fields/autocomplete/no-options": "Nenhum resultado encontrado.",
   "components/widgets/form/confirmation": "Você tem certeza que quer sair? Você tem alterações que não foram salvas.",
   "components/widgets/header/action": "orgulhosamente apresenta:",
   "components/widgets/header/menu/public/about-us": "Sobre nós",

@@ -76,6 +76,8 @@
   "components/pages/registration/valid/rejected/title": "We were unable to finalize your registration.",
   "components/pages/registration/valid/succeed": "Registration successful!",
   "components/pages/registration/valid/title": "Welcome!",
+  "components/widgets/fields/autocomplete/loading": "Searching...",
+  "components/widgets/fields/autocomplete/no-options": "No results found.",
   "components/widgets/form/confirmation": "Are you sure you want to leave? You have unsaved changes.",
   "components/widgets/header/action": "proudly presents",
   "components/widgets/header/menu/public/about-us": "About us",

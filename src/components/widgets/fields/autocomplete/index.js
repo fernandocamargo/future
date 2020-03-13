@@ -3,18 +3,26 @@ import React from 'react';
 import { FormControl, FormHelperText } from '@material-ui/core';
 import { Autocomplete as Container } from '@material-ui/lab';
 
+import { useI18n } from 'hooks';
+
 import useAutocomplete from './hooks';
 import Input from './input';
+import messages from './messages';
 import withStyle from './style';
 
 const Autocomplete = ({ useStyle, error, ...props }) => {
-  const autocomplete = useAutocomplete({ render: Input, ...props });
+  const autocomplete = useAutocomplete({ render: Input, error, ...props });
+  const { 'no-options': noOptions, loading } = useI18n(messages);
   const style = useStyle();
 
   return (
     <div {...style}>
       <FormControl error={!!error}>
-        <Container {...autocomplete} />
+        <Container
+          {...autocomplete}
+          loadingText={loading}
+          noOptionsText={noOptions}
+        />
         {!!error && <FormHelperText>{error}</FormHelperText>}
       </FormControl>
     </div>

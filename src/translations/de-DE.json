@@ -76,6 +76,8 @@
   "components/pages/registration/valid/rejected/title": "",
   "components/pages/registration/valid/succeed": "",
   "components/pages/registration/valid/title": "",
+  "components/widgets/fields/autocomplete/loading": "",
+  "components/widgets/fields/autocomplete/no-options": "",
   "components/widgets/form/confirmation": "",
   "components/widgets/header/action": "",
   "components/widgets/header/menu/public/about-us": "",
