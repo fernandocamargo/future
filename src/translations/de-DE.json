@@ -117,6 +117,7 @@
   "hooks/services/expertlead/auth/user.not-found": "",
   "hooks/services/expertlead/auth/users.email-invalid": "",
   "hooks/services/expertlead/auth/users.password-invalid": "",
+  "hooks/services/expertlead/city/error": "",
   "hooks/services/expertlead/invitation/active": "",
   "hooks/services/expertlead/invitation/invalid": "",
   "hooks/services/expertlead/invitation/not-found": "",

@@ -1,14 +1,31 @@
 import { bool, func, instanceOf, oneOfType, node, shape } from 'prop-types';
-import React from 'react';
-import { TextField } from '@material-ui/core';
+import React, { useMemo } from 'react';
+import { CircularProgress as Loader, TextField } from '@material-ui/core';
 
 import withStyle from './style';
 
-const Input = ({ fieldRef: inputRef, useStyle, loading, ...props }) => {
+const Input = ({
+  InputProps: inputProps,
+  fieldRef: inputRef,
+  useStyle,
+  loading,
+  ...props
+}) => {
+  const endAdornment = useMemo(() => loading && <Loader />, [loading]);
+  const InputProps = useMemo(() => ({ ...inputProps, endAdornment }), [
+    inputProps,
+    endAdornment,
+  ]);
   const style = useStyle();
 
   return (
-    <TextField {...props} {...style} inputRef={inputRef} variant="outlined" />
+    <TextField
+      {...props}
+      {...style}
+      InputProps={InputProps}
+      inputRef={inputRef}
+      variant="outlined"
+    />
   );
 };
 

@@ -56,6 +56,7 @@ export default ({ profile, render }) => {
         name: 'location',
         label: i18n.location,
         value: profile.location,
+        validation: validation.fullName.required(),
         settings: {
           getOptions: city.getBy,
           getOptionSelected,

@@ -117,6 +117,7 @@
   "hooks/services/expertlead/auth/user.not-found": "Conta inexistente ou não encontrada.",
   "hooks/services/expertlead/auth/users.email-invalid": "Infelizmente não conseguimos encontrar o seu e-mail! Por favor, confirme os seus dados.",
   "hooks/services/expertlead/auth/users.password-invalid": "A senha não corresponde ao e-mail fornecido.",
+  "hooks/services/expertlead/city/error": "Não funcionou 😔",
   "hooks/services/expertlead/invitation/active": "Essa conta já está ativa.",
   "hooks/services/expertlead/invitation/invalid": "Token inválido ou expirado.",
   "hooks/services/expertlead/invitation/not-found": "Token não encontrado.",
