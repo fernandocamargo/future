@@ -1,3 +1,4 @@
+import find from 'lodash/find';
 import isEqual from 'lodash/isEqual';
 import {
   any,
@@ -9,7 +10,7 @@ import {
   shape,
   string,
 } from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { FormControl, FormHelperText, FormLabel } from '@material-ui/core';
 
 import Option from './option';
@@ -24,10 +25,12 @@ const Radio = ({
   error,
   fieldRef,
 }) => {
+  const empty = useMemo(() => !find(options, { value }), [options, value]);
   const renderOption = useCallback(
     (option, index) => {
+      const first = !index;
       const checked = isEqual(option.value, value);
-      const extra = { ...(checked && { fieldRef }) };
+      const extra = { ...((checked || (empty && first)) && { fieldRef }) };
 
       return (
         <Option
@@ -39,7 +42,7 @@ const Radio = ({
         />
       );
     },
-    [value, onChange, fieldRef]
+    [empty, value, onChange, fieldRef]
   );
   const style = useStyle();
 

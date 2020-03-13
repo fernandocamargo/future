@@ -16,7 +16,7 @@ export default ({ profile, render }) => {
         field: Radio,
         name: 'availability',
         label: i18n.availability,
-        value: 'profile.availability',
+        value: profile.availability,
         validation: validation.oneOf(Object.values(AVAILABILITY)).required(),
         settings: {
           options: [
