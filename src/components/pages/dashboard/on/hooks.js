@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import * as AVAILABILITY from 'enums/availability';
 import * as BOOLEAN from 'enums/boolean';
 import { useForm, useI18n, useValidation } from 'hooks';
-import { Radio } from 'components/widgets/fields';
+import { Autocomplete, Radio } from 'components/widgets/fields';
 
 import messages from './messages';
 
@@ -47,6 +47,12 @@ export default ({ profile, render }) => {
             { label: i18n['remote-only.no'], value: false },
           ],
         },
+      },
+      {
+        field: Autocomplete,
+        name: 'location',
+        label: i18n.location,
+        value: profile.location,
       },
     ],
     [i18n, profile, validation]

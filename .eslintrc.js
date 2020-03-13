@@ -21,6 +21,7 @@ module.exports = {
       'error',
       { devDependencies: storybook },
     ],
+    'import/no-named-as-default': ['off'],
     'import/prefer-default-export': ['off'],
     'react/jsx-filename-extension': ['off'],
     'react/jsx-fragments': ['error', 'element'],
