@@ -1,41 +1,50 @@
 import React from 'react';
 
 import * as form from 'prop-types/definitions/form';
+import { useI18n } from 'hooks';
+
+import messages from './messages';
 
 const Form = ({
   elements: {
     fields: {
-      unordered: { 'remote-only': remoteOnly, availability },
+      unordered: { 'remote-only': remoteOnly, availability, location, role },
     },
   },
   components: { Form: Container, Fieldset, Submit, Loader },
-}) => (
-  <Container>
-    <Fieldset>
-      <legend>Some legend</legend>
-      <dl>
-        <dt>Your availability</dt>
-        <dd>{availability}</dd>
-      </dl>
-      <dl>
-        <dt>Your work preference</dt>
-        <dd>{remoteOnly}</dd>
-      </dl>
-      <div>
-        <h3>Your location</h3>
-      </div>
-      <div>
-        <h3>Your career focus</h3>
-      </div>
-      <div>
-        <Submit>Save</Submit>
-      </div>
-      <Loader>
-        <p>Loading...</p>
-      </Loader>
-    </Fieldset>
-  </Container>
-);
+}) => {
+  const i18n = useI18n(messages);
+
+  return (
+    <Container>
+      <Fieldset>
+        <legend>{i18n.title}</legend>
+        <dl>
+          <dt>{i18n.availability}</dt>
+          <dd>{availability}</dd>
+        </dl>
+        <dl>
+          <dt>{i18n['remote-only']}</dt>
+          <dd>{remoteOnly}</dd>
+        </dl>
+        <dl>
+          <dt>{i18n.location}</dt>
+          <dd>{location}</dd>
+        </dl>
+        <dl>
+          <dt>{i18n.role}</dt>
+          <dd>{role}</dd>
+        </dl>
+        <div>
+          <Submit>{i18n.save}</Submit>
+        </div>
+        <Loader>
+          <p>{i18n.loading}</p>
+        </Loader>
+      </Fieldset>
+    </Container>
+  );
+};
 
 Form.propTypes = {
   ...form,

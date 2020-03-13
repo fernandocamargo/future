@@ -11,4 +11,6 @@ export default defineMessages({
   'remote-only': 'Willingness to travel',
   'remote-only.yes': 'Remote only',
   'remote-only.no': 'Willing to travel',
+  location: 'Location',
+  role: 'Career focus',
 });

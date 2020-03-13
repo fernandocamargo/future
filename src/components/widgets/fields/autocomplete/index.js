@@ -1,16 +1,22 @@
-import { any, func, oneOfType } from 'prop-types';
+import { any, func, node, oneOfType } from 'prop-types';
 import React from 'react';
 
 import withStyle from './style';
 
-const Autocomplete = ({ useStyle, value }) => {
+const Autocomplete = ({ useStyle, label, value }) => {
   const style = useStyle();
 
-  return <pre {...style}>{JSON.stringify(value, null, 2)}</pre>;
+  return (
+    <div {...style}>
+      <h1>{label}</h1>
+      <pre>{JSON.stringify(value, null, 2)}</pre>
+    </div>
+  );
 };
 
 Autocomplete.propTypes = {
   useStyle: func.isRequired,
+  label: node.isRequired,
   value: oneOfType([any]),
 };
 

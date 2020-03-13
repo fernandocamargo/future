@@ -54,6 +54,12 @@ export default ({ profile, render }) => {
         label: i18n.location,
         value: profile.location,
       },
+      {
+        field: Autocomplete,
+        name: 'role',
+        label: i18n.role,
+        value: profile.focusRole,
+      },
     ],
     [i18n, profile, validation]
   );
