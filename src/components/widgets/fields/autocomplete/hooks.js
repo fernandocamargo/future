@@ -1,16 +1,17 @@
-import constant from 'lodash/constant';
+import identity from 'lodash/identity';
 import noop from 'lodash/noop';
 import { createElement, useCallback, useEffect, useRef, useState } from 'react';
 
 import { usePromise } from 'hooks';
 
-import { DELAY, EMPTY } from './constants';
+import { DELAY } from './constants';
 
 export default ({
-  getOptionKeywords = constant(''),
+  options: initialOptions,
+  getOptions = () => Promise.resolve(initialOptions),
+  getOptionKeywords = identity,
+  getOptionLabel = identity,
   onChange: change,
-  getOptions,
-  getOptionLabel,
   render,
   label,
   value,
@@ -20,7 +21,7 @@ export default ({
 }) => {
   const timer = useRef(null);
   const [keywords, setKeywords] = useState(getOptionKeywords(value));
-  const [options, setOptions] = useState(EMPTY);
+  const [options, setOptions] = useState([]);
   const { resolve: fetch, pending: loading } = usePromise({
     promise: getOptions,
     then: setOptions,
@@ -42,7 +43,10 @@ export default ({
       }),
     [render, loading, label, onInputChange, error, fieldRef]
   );
-  const intercept = useCallback(() => {
+  const clear = useCallback(() => {
+    change();
+  }, [change]);
+  const schedule = useCallback(() => {
     timer.current = window.setTimeout(() => fetch({ keywords }), DELAY);
 
     return () => {
@@ -50,10 +54,12 @@ export default ({
     };
   }, [fetch, keywords]);
 
-  useEffect(keywords ? intercept : noop, [keywords]);
+  useEffect(!keywords.trim() ? clear : noop, [keywords]);
+  useEffect(keywords ? schedule : noop, [keywords]);
 
   return {
     autoComplete: true,
+    blurOnSelect: true,
     clearOnEscape: true,
     getOptionLabel,
     options,

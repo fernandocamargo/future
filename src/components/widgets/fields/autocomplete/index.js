@@ -19,9 +19,9 @@ const Autocomplete = ({ useStyle, error, ...props }) => {
     <div {...style}>
       <FormControl error={!!error}>
         <Container
-          {...autocomplete}
           loadingText={loading}
           noOptionsText={noOptions}
+          {...autocomplete}
         />
         {!!error && <FormHelperText>{error}</FormHelperText>}
       </FormControl>

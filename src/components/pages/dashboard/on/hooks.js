@@ -1,4 +1,3 @@
-// fix cache
 import { useCallback, useMemo } from 'react';
 
 import * as AVAILABILITY from 'enums/availability';
@@ -69,6 +68,7 @@ export default ({ profile, render }) => {
         name: 'role',
         label: i18n.role,
         value: profile.focusRole,
+        settings: { options: profile.focusRoleList },
       },
     ],
     [city.getBy, i18n, profile, validation]

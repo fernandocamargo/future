@@ -1,19 +1,34 @@
 import { useCallback } from 'react';
 
+import Error from 'error';
 import { useExpertlead } from 'hooks/clients';
 
 import { URL } from './constants';
-import { fail, format } from './helpers';
+
+const fail = ({
+  response: {
+    data: { error },
+  },
+}) => {
+  throw new Error(error);
+};
 
 export default () => {
   const { get } = useExpertlead();
-  const me = useCallback(
+  const getFocusRoleList = useCallback(
+    () =>
+      get(`${URL}/focus-role-list`)
+        .then(({ data: { data } }) => data)
+        .catch(fail),
+    [get]
+  );
+  const getProfile = useCallback(
     () =>
       get(`${URL}/me`)
-        .then(format)
+        .then(({ data }) => data)
         .catch(fail),
     [get]
   );
 
-  return { me };
+  return { getFocusRoleList, getProfile };
 };
