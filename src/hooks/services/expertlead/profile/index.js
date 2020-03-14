@@ -1,3 +1,4 @@
+import property from 'lodash/property';
 import { useCallback } from 'react';
 
 import Error from 'error';
@@ -18,14 +19,14 @@ export default () => {
   const getFocusRoleList = useCallback(
     () =>
       get(`${URL}/focus-role-list`)
-        .then(({ data: { data } }) => data)
+        .then(property('data.data'))
         .catch(fail),
     [get]
   );
   const getProfile = useCallback(
     () =>
       get(`${URL}/me`)
-        .then(({ data }) => data)
+        .then(property('data'))
         .catch(fail),
     [get]
   );

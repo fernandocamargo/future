@@ -56,7 +56,7 @@ export default ({ profile, render }) => {
         name: 'location',
         label: i18n.location,
         value: profile.location,
-        validation: validation.fullName.required(),
+        validation: validation.notEmpty.required(),
         settings: {
           getOptions: city.getBy,
           getOptionKeywords: getLocationOptionKeywords,
@@ -68,6 +68,7 @@ export default ({ profile, render }) => {
         name: 'role',
         label: i18n.role,
         value: profile.focusRole,
+        validation: validation.notEmpty.required(),
         settings: { options: profile.focusRoleList },
       },
     ],
