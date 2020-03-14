@@ -1,5 +1,5 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  message: 'Nope, this should be something else.',
+  message: 'You need to select one of the available options.',
 });

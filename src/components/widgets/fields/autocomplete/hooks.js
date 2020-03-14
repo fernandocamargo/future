@@ -44,7 +44,7 @@ export default ({
     [render, loading, label, onInputChange, error, fieldRef]
   );
   const clear = useCallback(() => {
-    change();
+    change(null);
   }, [change]);
   const schedule = useCallback(() => {
     timer.current = window.setTimeout(() => fetch({ keywords }), DELAY);

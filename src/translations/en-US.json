@@ -126,7 +126,7 @@
   "hooks/services/expertlead/users/already-activated": "Your account had already been activated.",
   "hooks/validation/aliases/agreement/message": "You must read and agree to these terms.",
   "hooks/validation/aliases/full-name/message": "This field must be a valid name.",
-  "hooks/validation/aliases/one-of/message": "Nope, this should be something else.",
+  "hooks/validation/aliases/one-of/message": "You need to select one of the available options.",
   "hooks/validation/aliases/password/message": "This field must be a strong password, have between 6 and 50 characters long and contain at least one lowercase letter, one capital letter, one number and one special character (!@#$%^&*).",
   "hooks/yup/locales/mixed/required": "This field is required.",
   "hooks/yup/locales/string/email": "This field must be a valid e-mail address.",
