@@ -1,10 +1,10 @@
-import property from 'lodash/property';
 import { useCallback } from 'react';
 
 import Error from 'error';
 import { useExpertlead } from 'hooks/clients';
 
 import { URL } from './constants';
+import { formatFocusRoleList, formatProfile } from './helpers';
 
 export default () => {
   const expertlead = useExpertlead();
@@ -15,10 +15,7 @@ export default () => {
     () =>
       expertlead
         .get(`${URL}/me`)
-        .then(({ data: { isRemoteOnly = false, ...profile } }) => ({
-          ...profile,
-          isRemoteOnly,
-        }))
+        .then(formatProfile)
         .catch(fail),
     [expertlead, fail]
   );
@@ -26,7 +23,7 @@ export default () => {
     () =>
       expertlead
         .get(`${URL}/focus-role-list`)
-        .then(property('data.data'))
+        .then(formatFocusRoleList)
         .catch(fail),
     [expertlead, fail]
   );
