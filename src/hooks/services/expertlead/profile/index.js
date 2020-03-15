@@ -6,23 +6,21 @@ import { useExpertlead } from 'hooks/clients';
 
 import { URL } from './constants';
 
-const fail = ({
-  response: {
-    data: { error },
-  },
-}) => {
-  throw new Error(error);
-};
-
 export default () => {
   const expertlead = useExpertlead();
+  const fail = useCallback(({ response: { data: { error } } }) => {
+    throw new Error(error);
+  }, []);
   const get = useCallback(
     () =>
       expertlead
         .get(`${URL}/me`)
-        .then(property('data'))
+        .then(({ data: { isRemoteOnly = false, ...profile } }) => ({
+          ...profile,
+          isRemoteOnly,
+        }))
         .catch(fail),
-    [expertlead]
+    [expertlead, fail]
   );
   const getFocusRoleList = useCallback(
     () =>
@@ -30,9 +28,12 @@ export default () => {
         .get(`${URL}/focus-role-list`)
         .then(property('data.data'))
         .catch(fail),
+    [expertlead, fail]
+  );
+  const update = useCallback(
+    ({ id, data }) => expertlead.patch(`${URL}/${id}`, data),
     [expertlead]
   );
-  const update = useCallback(() => expertlead.patch(), [expertlead]);
 
   return { get, getFocusRoleList, update };
 };

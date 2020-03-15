@@ -8,7 +8,7 @@ import messages from './messages';
 const Form = ({
   elements: {
     fields: {
-      unordered: { 'remote-only': remoteOnly, availability, location, role },
+      unordered: { availability, isRemoteOnly, location, focusRole },
     },
   },
   components: { Form: Container, Fieldset, Submit, Loader },
@@ -25,7 +25,7 @@ const Form = ({
         </dl>
         <dl>
           <dt>{i18n['remote-only']}</dt>
-          <dd>{remoteOnly}</dd>
+          <dd>{isRemoteOnly}</dd>
         </dl>
         <dl>
           <dt>{i18n.location}</dt>
@@ -33,7 +33,7 @@ const Form = ({
         </dl>
         <dl>
           <dt>{i18n.role}</dt>
-          <dd>{role}</dd>
+          <dd>{focusRole}</dd>
         </dl>
         <div>
           <Submit>{i18n.save}</Submit>

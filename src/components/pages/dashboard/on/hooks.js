@@ -3,13 +3,14 @@ import { useCallback, useMemo } from 'react';
 import * as AVAILABILITY from 'enums/availability';
 import * as BOOLEAN from 'enums/boolean';
 import { useForm, useI18n, useValidation } from 'hooks';
-import { useCity } from 'hooks/services/expertlead';
+import { useCity, useProfile } from 'hooks/services/expertlead';
 import { Autocomplete, Radio } from 'components/widgets/fields';
 
 import { getLocationOptionKeywords, getLocationOptionLabel } from './helpers';
 import messages from './messages';
 
 export default ({ profile, render }) => {
+  const { update } = useProfile();
   const city = useCity();
   const validation = useValidation();
   const i18n = useI18n(messages);
@@ -40,7 +41,7 @@ export default ({ profile, render }) => {
       },
       {
         field: Radio,
-        name: 'remote-only',
+        name: 'isRemoteOnly',
         label: i18n['remote-only'],
         value: profile.isRemoteOnly,
         validation: validation.oneOf(Object.values(BOOLEAN)).required(),
@@ -65,7 +66,7 @@ export default ({ profile, render }) => {
       },
       {
         field: Autocomplete,
-        name: 'role',
+        name: 'focusRole',
         label: i18n.role,
         value: profile.focusRole,
         validation: validation.notEmpty.required(),
@@ -75,8 +76,8 @@ export default ({ profile, render }) => {
     [city.getBy, i18n, profile, validation]
   );
   const onSubmit = useCallback(
-    data => console.log('onSubmit(!);', { data }),
-    []
+    data => update({ id: profile.id, data: { ...profile, ...data } }),
+    [update, profile]
   );
 
   return useForm({ render, fields, onSubmit });
