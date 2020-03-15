@@ -6,32 +6,21 @@ import { useProfile } from 'hooks/services/expertlead';
 import { format } from './helpers';
 
 export const useDashboard = () => {
-  const { getFocusRoleList, getProfile } = useProfile();
-  const fail = useCallback(() => {
-    throw new Error({ message: 'nope' });
-  }, []);
+  const profile = useProfile();
   const promise = useCallback(
-    () =>
-      Promise.all([
-        getFocusRoleList().catch(fail),
-        getProfile().catch(fail),
-      ]).then(format),
-    [getFocusRoleList, getProfile, fail]
+    () => Promise.all([profile.get(), profile.getFocusRoleList()]).then(format),
+    [profile]
   );
-  const {
-    resolve: load,
-    data: profile,
-    fulfilled,
-    rejected,
-    error,
-  } = usePromise({ promise });
+  const { resolve: load, data, fulfilled, rejected, error } = usePromise({
+    promise,
+  });
 
   useEffect(() => {
     load();
   }, [load]);
 
   return {
-    ...(fulfilled && { on: { profile } }),
+    ...(fulfilled && { on: { profile: data } }),
     ...(rejected && { off: { error } }),
   };
 };

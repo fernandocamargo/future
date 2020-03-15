@@ -1,8 +1,8 @@
-export const format = ([roles, details]) => {
-  const { focusCategory } = details;
+export const format = ([profile, roles]) => {
+  const { focusCategory } = profile;
   const {
     [focusCategory]: { list: focusRoleList },
   } = roles;
 
-  return { ...details, focusRoleList };
+  return { ...profile, focusRoleList };
 };

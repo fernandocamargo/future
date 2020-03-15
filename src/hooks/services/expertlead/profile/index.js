@@ -15,21 +15,24 @@ const fail = ({
 };
 
 export default () => {
-  const { get } = useExpertlead();
-  const getFocusRoleList = useCallback(
+  const expertlead = useExpertlead();
+  const get = useCallback(
     () =>
-      get(`${URL}/focus-role-list`)
-        .then(property('data.data'))
-        .catch(fail),
-    [get]
-  );
-  const getProfile = useCallback(
-    () =>
-      get(`${URL}/me`)
+      expertlead
+        .get(`${URL}/me`)
         .then(property('data'))
         .catch(fail),
-    [get]
+    [expertlead]
   );
+  const getFocusRoleList = useCallback(
+    () =>
+      expertlead
+        .get(`${URL}/focus-role-list`)
+        .then(property('data.data'))
+        .catch(fail),
+    [expertlead]
+  );
+  const update = useCallback(() => expertlead.patch(), [expertlead]);
 
-  return { getFocusRoleList, getProfile };
+  return { get, getFocusRoleList, update };
 };

@@ -126,6 +126,7 @@
   "hooks/services/expertlead/users/already-activated": "",
   "hooks/validation/aliases/agreement/message": "",
   "hooks/validation/aliases/full-name/message": "",
+  "hooks/validation/aliases/not-empty/message": "",
   "hooks/validation/aliases/one-of/message": "",
   "hooks/validation/aliases/password/message": "",
   "hooks/yup/locales/mixed/required": "",
