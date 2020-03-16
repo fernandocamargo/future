@@ -2,7 +2,13 @@ import { useCallback, useMemo } from 'react';
 
 import * as AVAILABILITY from 'enums/availability';
 import * as BOOLEAN from 'enums/boolean';
-import { useForm, useI18n, useValidation } from 'hooks';
+import {
+  useForm,
+  useI18n,
+  useNotification,
+  usePromise,
+  useValidation,
+} from 'hooks';
 import { useCity, useProfile } from 'hooks/services/expertlead';
 import { Autocomplete, Radio } from 'components/widgets/fields';
 
@@ -13,7 +19,17 @@ export default ({ profile, render }) => {
   const { update } = useProfile();
   const city = useCity();
   const validation = useValidation();
+  const { notify } = useNotification();
   const i18n = useI18n(messages);
+  const save = useCallback(
+    data => update({ id: profile.id, data: { ...profile, ...data } }),
+    [update, profile]
+  );
+  const { resolve: onSubmit, pending } = usePromise({
+    then: () => notify(i18n.succeed),
+    catch: () => notify(i18n.fail),
+    promise: save,
+  });
   const fields = useMemo(
     () => [
       {
@@ -75,10 +91,7 @@ export default ({ profile, render }) => {
     ],
     [city.getBy, i18n, profile, validation]
   );
-  const onSubmit = useCallback(
-    data => update({ id: profile.id, data: { ...profile, ...data } }),
-    [update, profile]
-  );
+  const form = useForm({ render, fields, onSubmit });
 
-  return useForm({ render, fields, onSubmit });
+  return { ...form, pending };
 };

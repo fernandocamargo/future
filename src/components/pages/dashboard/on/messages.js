@@ -13,4 +13,6 @@ export default defineMessages({
   'remote-only.no': 'Willing to travel',
   location: 'Location',
   role: 'Career focus',
+  succeed: 'Settings saved successfully!',
+  fail: 'We were unable to save your settings at the moment. Please try again.',
 });
