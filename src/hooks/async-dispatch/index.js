@@ -5,19 +5,14 @@ export default (...params) => {
   const dispatch = useDispatch(...params);
 
   return useCallback(
-    (...actions) => {
-      const promise = new Promise((resolve, reject) => {
+    action =>
+      new Promise((resolve, reject) => {
         try {
-          dispatch(...actions);
-
-          return resolve(...actions);
+          return resolve(dispatch(action));
         } catch (error) {
           return reject(error);
         }
-      });
-
-      return promise;
-    },
+      }),
     [dispatch]
   );
 };
