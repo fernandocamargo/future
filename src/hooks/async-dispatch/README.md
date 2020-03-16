@@ -5,6 +5,8 @@ This hook returns a reference to the `dispatch` function from the `Redux` store.
 ## Usage
 
 ```javascript
+import React, { useCallback } from 'react';
+
 import { useAsyncDispatch } from 'hooks';
 import someAction from 'actions/some/action';
 
