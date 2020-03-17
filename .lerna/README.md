@@ -61,7 +61,7 @@ expertlead-ui/
 # Imports
 
 **Hypothetical file for illustration purposes:**
-`expertlead-ui/packages/apps/portal/components/page/sample`
+`expertlead-ui/packages/apps/portal/components/pages/sample`
 
 ```javascript
 // absolute paths: external/3rd-party & EL's core modules
