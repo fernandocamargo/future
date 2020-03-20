@@ -34,6 +34,7 @@
     "yup": "^0.28.1"
   },
   "devDependencies": {
+    "@babel/node": "^7.8.7",
     "@storybook/addon-actions": "^5.3.13",
     "@storybook/addon-links": "^5.3.13",
     "@storybook/addons": "^5.3.13",
@@ -45,8 +46,11 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "extract-react-intl-messages": "^2.3.5",
+    "fast-glob": "^3.2.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
+    "node-plantuml": "^0.9.0",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "react-app-rewired": "^2.1.5"
   },
@@ -57,6 +61,7 @@
     "storybook": "start-storybook -p 9009 -s public",
     "storybook:build": "build-storybook -s public",
     "i18n:extract": "node ./scripts/i18n/extract",
+    "docs:start": "nodemon --exec babel-node ./scripts/docs/generate",
     "test:e2e": "yarn run cypress open"
   },
   "husky": {
