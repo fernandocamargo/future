@@ -1,6 +1,14 @@
-# useAsyncDispatch
+# useAsyncDispatch()
 
 This hook returns a reference to the `dispatch` function from the `Redux` store. You may use it to dispatch `actions` as needed.
+
+## Options
+
+This hooks has no options.
+
+## Return
+
+Redux store's `dispatch` function.
 
 ## Usage
 
