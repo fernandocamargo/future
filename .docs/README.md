@@ -1,3 +1,5 @@
 # Diagrams ideas
 
-Test
+## Test
+
+![Test](./1.png)
