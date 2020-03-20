@@ -6,25 +6,20 @@ This hook returns a reference to the `dispatch` function from the `Redux` store.
 
 This hooks has no options.
 
-## Return
-
-Redux store's `dispatch` function.
-
 ## Usage
 
 ```javascript
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import { useAsyncDispatch } from 'hooks';
-import someAction from 'actions/some/action';
+import { someAction } from 'actions/some/action';
 
 const Sample = () => {
   const dispatch = useAsyncDispatch();
-  const onClick = useCallback(() => {
+  const onClick = () =>
     dispatch(someAction())
       .then(() => console.log('success!'))
       .catch(() => console.log('fail!'));
-  }, [dispatch]);
 
   return (
     <div>
