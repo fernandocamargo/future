@@ -40,6 +40,7 @@
     "@storybook/addons": "^5.3.13",
     "@storybook/react": "^5.3.13",
     "babel-plugin-react-intl-auto": "^3.1.0",
+    "babel-preset-react-app": "^9.1.1",
     "chalk": "^3.0.0",
     "customize-cra": "^0.9.1",
     "cypress": "^4.1.0",
@@ -61,7 +62,7 @@
     "storybook": "start-storybook -p 9009 -s public",
     "storybook:build": "build-storybook -s public",
     "i18n:extract": "node ./scripts/i18n/extract",
-    "docs:start": "nodemon --exec babel-node ./scripts/docs/generate",
+    "docs:generate": "env NODE_ENV=development nodemon --exec babel-node ./scripts/docs/generate",
     "test:e2e": "yarn run cypress open"
   },
   "husky": {

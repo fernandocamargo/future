@@ -1,20 +1,50 @@
+import filter from 'lodash/filter';
+import { normalize, parse } from 'path';
 import { createWriteStream, readFileSync } from 'fs';
 import find from 'fast-glob';
-import { parse } from '@babel/parser';
-import plantuml from 'node-plantuml';
+import { parse as interpret } from '@babel/parser';
+import { generate as draw } from 'node-plantuml';
 
-const PARSER_OPTIONS = { sourceType: 'module', plugins: ['jsx'] };
+import * as diagrams from './diagrams';
 
-export default find('./scripts/**/*.uml')
-  .then(files =>
-    Promise.all(
-      files.map(source => {
-        const content = readFileSync(source).toString();
-        const uml = plantuml.generate(content);
-        const target = source.replace(/.uml$/, '.png');
+const MODE = { sourceType: 'module', plugins: ['jsx'] };
 
-        return uml.out.pipe(createWriteStream(target));
-      })
-    )
-  )
-  .catch(({ message }) => console.log('nope();', { message }));
+class Queue {
+  constructor() {
+    this.items = [];
+  }
+
+  generate = ({ file, tree }) => ([name, { check, generate }]) => {
+    const { base, dir } = parse(file);
+    const report = check(tree);
+
+    return (
+      !!report &&
+      draw(generate(report)).out.pipe(createWriteStream('./lol.png'))
+    );
+  };
+
+  scan = item => {
+    const { generate } = this;
+    const file = normalize(item);
+    const source = readFileSync(file).toString();
+    const tree = interpret(source, MODE);
+
+    return Object.entries(diagrams).forEach(generate({ file, tree }));
+  };
+
+  organize = items => {
+    const { scan } = this;
+    const [first] = items;
+
+    this.items = items;
+
+    return scan(first);
+  };
+}
+
+const { organize } = new Queue();
+
+export default find('./src/components/**/index.js')
+  .then(organize)
+  .catch(console.warn);
