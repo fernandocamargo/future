@@ -1,5 +1,5 @@
 # Diagrams ideas
 
-## Test
+## Dependencies
 
-![Test](./1.png)
+![Dependencies](./dependencies.png)
