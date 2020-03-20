@@ -9,17 +9,20 @@ This hooks has no options.
 ## Usage
 
 ```javascript
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { useAsyncDispatch } from 'hooks';
 import { someAction } from 'actions/some/action';
 
 const Sample = () => {
   const dispatch = useAsyncDispatch();
-  const onClick = () =>
-    dispatch(someAction())
-      .then(() => console.log('success!'))
-      .catch(() => console.log('fail!'));
+  const onClick = useCallback(
+    () =>
+      dispatch(someAction())
+        .then(() => console.log('success!'))
+        .catch(() => console.log('fail!')),
+    [dispatch]
+  );
 
   return (
     <div>
