@@ -1,12 +1,18 @@
-const format = ({ exported: { name } }) => `** ${name}`;
+import { print } from './helpers';
 
-const iterate = (stack, { specifiers }) => stack.concat(specifiers.map(format));
+export default settings => {
+  const { imported, exported } = print(settings);
 
-const print = content => content.reduce(iterate, []).join('\n');
+  return `
+    @startuml
+      package "Imported" #ddd {
+        ${imported}
+      }
 
-export default exports => `
-  @startwbs
-  * Exports
-  ${print(exports)}
-  @endwbs
-`;
+      package "Exported" #ddd {
+        ${exported}
+      }
+
+    @enduml
+  `;
+};

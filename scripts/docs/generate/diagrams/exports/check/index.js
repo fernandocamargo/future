@@ -1,7 +1,3 @@
-import filter from 'lodash/filter';
+import { filter, notEmpty } from './helpers';
 
-export default ({ program: { body: tree } }) => {
-  const exports = filter(tree, { type: 'ExportNamedDeclaration' });
-
-  return !!exports.length && exports;
-};
+export default ({ program: { body } }) => notEmpty(body.filter(filter));

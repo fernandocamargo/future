@@ -1,0 +1,1 @@
+export const ALLOWED_TYPES = ['ExportNamedDeclaration', 'ExportAllDeclaration'];

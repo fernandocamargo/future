@@ -15,12 +15,16 @@ class Queue {
   }
 
   generate = ({ file, tree }) => ([name, { check, generate }]) => {
-    const { base, dir } = parse(file);
+    const path = parse(file);
     const report = check(tree);
 
     return (
       !!report &&
-      draw(generate(report)).out.pipe(createWriteStream('./lol.png'))
+      new Promise(resolve =>
+        draw(generate({ path, report }), resolve).out.pipe(
+          createWriteStream(`./${name}.png`)
+        )
+      )
     );
   };
 
@@ -29,8 +33,9 @@ class Queue {
     const file = normalize(item);
     const source = readFileSync(file).toString();
     const tree = interpret(source, MODE);
+    const promises = Object.entries(diagrams).map(generate({ file, tree }));
 
-    return Object.entries(diagrams).forEach(generate({ file, tree }));
+    return Promise.all(promises);
   };
 
   organize = items => {
@@ -47,4 +52,5 @@ const { organize } = new Queue();
 
 export default find('./src/components/**/index.js')
   .then(organize)
+  .then(() => console.log('success();'))
   .catch(console.warn);
