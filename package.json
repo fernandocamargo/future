@@ -61,7 +61,7 @@
     "test": "react-app-rewired test",
     "storybook": "start-storybook -p 9009 -s public",
     "storybook:build": "build-storybook -s public",
-    "i18n:extract": "node ./scripts/i18n/extract",
+    "i18n:extract": "env NODE_ENV=development node ./scripts/i18n/extract",
     "docs:generate": "env NODE_ENV=development nodemon --exec babel-node ./scripts/docs/generate",
     "test:e2e": "yarn run cypress open"
   },

@@ -103,6 +103,7 @@
   "hooks/routes/about-us": "/about-us",
   "hooks/routes/account": "/account",
   "hooks/routes/dashboard": "/dashboard",
+  "hooks/routes/edit": "edit",
   "hooks/routes/education": "/profile/education",
   "hooks/routes/experience": "/profile/experience",
   "hooks/routes/faq": "/faq",

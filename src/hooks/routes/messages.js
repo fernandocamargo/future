@@ -18,4 +18,5 @@ export default defineMessages({
   account: '/account',
   settings: '/settings',
   phone: 'tel:+4930209663144',
+  edit: 'edit',
 });

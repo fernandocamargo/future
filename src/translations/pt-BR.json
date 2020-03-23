@@ -103,6 +103,7 @@
   "hooks/routes/about-us": "/sobre-nos",
   "hooks/routes/account": "/minha-conta",
   "hooks/routes/dashboard": "/painel",
+  "hooks/routes/edit": "editar",
   "hooks/routes/education": "/meu-perfil/educacao",
   "hooks/routes/experience": "/meu-perfil/experiencia",
   "hooks/routes/faq": "/perguntas-frequentes",
