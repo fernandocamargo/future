@@ -1,6 +1,6 @@
 import filter from 'lodash/filter';
-import { normalize, parse } from 'path';
-import { createWriteStream, readFileSync } from 'fs';
+import { join, normalize, parse, resolve } from 'path';
+import { createWriteStream, mkdirSync, readFileSync } from 'fs';
 import find from 'fast-glob';
 import { parse as interpret } from '@babel/parser';
 import { generate as draw } from 'node-plantuml';
@@ -17,12 +17,16 @@ class Queue {
   generate = ({ file, tree }) => ([name, { check, generate }]) => {
     const path = parse(file);
     const report = check(tree);
+    const dir = resolve('docs', `${path.dir}/docs`);
+    const destination = join(dir, `${name}.png`);
+
+    mkdirSync(dir, { recursive: true });
 
     return (
       !!report &&
-      new Promise(resolve =>
-        draw(generate({ path, report }), resolve).out.pipe(
-          createWriteStream(`./${name}.png`)
+      new Promise(callback =>
+        draw(generate({ path, report }), callback).out.pipe(
+          createWriteStream(destination)
         )
       )
     );
