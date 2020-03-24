@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
 import { usePromise } from 'hooks';
-import { useProfile } from 'hooks/services/expertlead';
+import { useProfile as useCurrentProfile } from 'hooks/services/expertlead';
 
-export const useAboutMe = () => {
-  const profile = useProfile();
+export const useProfile = () => {
+  const profile = useCurrentProfile();
   const { resolve: load, data, fulfilled, rejected, error } = usePromise({
     promise: profile.get,
   });
