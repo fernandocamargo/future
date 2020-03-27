@@ -12,8 +12,10 @@ const Read = ({
     firstName,
     headline,
     lastName,
+    photo,
   },
 }) => {
+  const name = useMemo(() => `${firstName} ${lastName}`, [firstName, lastName]);
   const locations = useMemo(() => (mainLocation ? [mainLocation] : []), [
     mainLocation,
   ]);
@@ -37,13 +39,12 @@ const Read = ({
   return (
     <div>
       <h1>My CV / About me</h1>
-      {!!firstName && (
-        <dl>
-          <dt>Name</dt>
-          <dd>
-            {firstName} {lastName}
-          </dd>
-        </dl>
+      {!!name && <h2>{name}</h2>}
+      {!!photo && (
+        <figure>
+          <img src={photo} alt={name} title={name} />
+          <figcaption>{name}</figcaption>
+        </figure>
       )}
       {!!headline && (
         <dl>
