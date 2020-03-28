@@ -1,6 +1,6 @@
 import { isProduction, isStaging } from 'helpers/environment';
 
-export const getURL = () => {
+export const getBaseURL = () => {
   switch (true) {
     case isProduction():
       return 'https://api.expertlead.io/';

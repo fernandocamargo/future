@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { fail } from 'helpers/response';
 import { useAuthentication } from 'hooks';
 
-import { getURL } from './helpers';
+import { getBaseURL } from './helpers';
 
 export default () => {
   const {
@@ -14,7 +14,7 @@ export default () => {
     () =>
       create({
         ...(authorization && { headers: { authorization } }),
-        baseURL: getURL(),
+        baseURL: getBaseURL(),
       }),
     [authorization]
   );
