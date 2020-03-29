@@ -2,11 +2,25 @@ import property from 'lodash/property';
 import result from 'lodash/result';
 
 import style from 'style';
-import { Link } from 'components/widgets';
+// import { Link } from 'components/widgets';
 
 const gap = property('theme.grid.gap');
 
 const call = path => props => result(props, path);
+
+/*
+section {
+  & > * {
+    &:not(:first-child) {
+      margin-left: ${gap};
+    }
+  }
+
+  ${Link} {
+    color: #4130db;
+  }
+}
+*/
 
 export default style`
   margin: 0 auto;
@@ -18,17 +32,5 @@ export default style`
     padding: 0 ${gap} var(--margin-top) ${gap};
 
     ${call('theme.grid.show')}
-  }
-
-  section {
-    & > * {
-      &:not(:first-child) {
-        margin-left: ${gap};
-      }
-    }
-
-    ${Link} {
-      color: #4130db;
-    }
   }
 `;

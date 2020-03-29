@@ -1,17 +1,26 @@
+import { func } from 'prop-types';
 import React from 'react';
 
 import { Form } from 'components/widgets';
 
 import { useIndex } from './hooks';
+import withStyle from './style';
 
-const Index = () => {
+const Index = ({ useStyle }) => {
   const form = useIndex();
+  const style = useStyle();
 
-  return <Form {...form} />;
+  return (
+    <section {...style}>
+      <Form {...form} />
+    </section>
+  );
 };
 
-Index.propTypes = {};
+Index.propTypes = {
+  useStyle: func.isRequired,
+};
 
 Index.defaultProps = {};
 
-export default Index;
+export default withStyle(Index);

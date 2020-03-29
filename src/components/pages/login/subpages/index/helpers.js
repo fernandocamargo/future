@@ -2,8 +2,6 @@ import isEqual from 'lodash/isEqual';
 
 import { findMatchingKey } from 'helpers/object';
 
-export const setProfile = (_, { data: { data: profile } }) => profile;
-
 export const getFieldNameBasedOn = code =>
   findMatchingKey({
     email: [

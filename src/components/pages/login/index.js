@@ -1,4 +1,3 @@
-import { func } from 'prop-types';
 import React, { Suspense as OnDemand } from 'react';
 import { Switch as Routes } from 'react-router-dom';
 
@@ -7,35 +6,30 @@ import { Public } from 'components/routes';
 import { Loader } from 'components/widgets';
 
 import { Index, RecoverPassword, SetNewPassword } from './subpages';
-import withStyle from './style';
 
-const Login = ({ useStyle }) => {
-  const {
-    'recover-password': recoverPassword,
-    'set-new-password': setNewPassword,
-  } = useRoutes();
-  const style = useStyle();
+const Login = () => {
+  const routes = useRoutes();
 
   return (
-    <section {...style}>
-      <OnDemand fallback={<Loader />}>
-        <Routes>
-          <Public path={recoverPassword} component={RecoverPassword} exact />
-          <Public
-            path={`${setNewPassword}/:token`}
-            component={SetNewPassword}
-          />
-          <Public path="*" component={Index} />
-        </Routes>
-      </OnDemand>
-    </section>
+    <OnDemand fallback={<Loader />}>
+      <Routes>
+        <Public
+          path={routes['recover-password']}
+          component={RecoverPassword}
+          exact
+        />
+        <Public
+          path={`${routes['set-new-password']}/:token`}
+          component={SetNewPassword}
+        />
+        <Public path="*" component={Index} />
+      </Routes>
+    </OnDemand>
   );
 };
 
-Login.propTypes = {
-  useStyle: func.isRequired,
-};
+Login.propTypes = {};
 
 Login.defaultProps = {};
 
-export default withStyle(Login);
+export default Login;

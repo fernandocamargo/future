@@ -1,17 +1,26 @@
+import { func } from 'prop-types';
 import React from 'react';
 
 import { Form } from 'components/widgets';
 
 import { useRoot } from './hooks';
+import withStyle from './style';
 
-const Root = () => {
+const Root = ({ useStyle }) => {
   const form = useRoot();
+  const style = useStyle();
 
-  return <Form {...form} />;
+  return (
+    <section {...style}>
+      <Form {...form} />
+    </section>
+  );
 };
 
-Root.propTypes = {};
+Root.propTypes = {
+  useStyle: func.isRequired,
+};
 
 Root.defaultProps = {};
 
-export default Root;
+export default withStyle(Root);
