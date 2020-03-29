@@ -1,4 +1,4 @@
-import { func } from 'prop-types';
+import { func, shape } from 'prop-types';
 import React, { Suspense as OnDemand, useMemo } from 'react';
 import { Switch as Routes } from 'react-router-dom';
 
@@ -20,19 +20,9 @@ const Profile = ({ useStyle, profile }) => {
       <Menu />
       <OnDemand fallback={<Loader />}>
         <Routes>
-          <Restricted
-            path={education}
-            component={Education}
-            props={props}
-            exact
-          />
-          <Restricted
-            path={experience}
-            component={Experience}
-            props={props}
-            exact
-          />
-          <Restricted path={skills} component={Skills} props={props} exact />
+          <Restricted path={education} component={Education} props={props} />
+          <Restricted path={experience} component={Experience} props={props} />
+          <Restricted path={skills} component={Skills} props={props} />
           <Restricted path="*" component={AboutMe} props={props} />
         </Routes>
       </OnDemand>
@@ -42,6 +32,7 @@ const Profile = ({ useStyle, profile }) => {
 
 Profile.propTypes = {
   useStyle: func.isRequired,
+  profile: shape({}).isRequired,
 };
 
 Profile.defaultProps = {};
