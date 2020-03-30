@@ -89,7 +89,7 @@ export default ({ profile, render }) => {
         settings: { options: profile.focusRoleList },
       },
     ],
-    [city.getBy, i18n, profile, validation]
+    [city, i18n, profile, validation]
   );
   const form = useForm({ render, fields, onSubmit });
 

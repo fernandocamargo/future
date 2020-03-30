@@ -1,4 +1,3 @@
-// fix cache
 import { func, shape, string } from 'prop-types';
 import React from 'react';
 
