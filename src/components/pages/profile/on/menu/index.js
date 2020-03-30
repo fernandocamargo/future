@@ -1,18 +1,17 @@
 import { func } from 'prop-types';
-import React, { useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 
 import { useI18n, useRoutes } from 'hooks';
 import { Menu as Container, Link } from 'components/widgets';
 import Option from 'components/widgets/menu/option';
 
-import withStyle from './style';
+import { useMenu } from './hooks';
 import messages from './messages';
+import withStyle from './style';
 
 const Menu = ({ useStyle }) => {
-  const { pathname: location } = useLocation();
+  const { editing, edit } = useMenu();
   const routes = useRoutes();
-  const edit = useMemo(() => `${location}/${routes.edit}`, [location, routes]);
   const i18n = useI18n(messages);
   const style = useStyle();
 
@@ -30,9 +29,11 @@ const Menu = ({ useStyle }) => {
       <Option id="education">
         <Link to={routes.education}>{i18n.education}</Link>
       </Option>
-      <Option id="education">
-        <Link to={edit}>{i18n.edit}</Link>
-      </Option>
+      {!editing && (
+        <Option id="edit">
+          <Link to={edit}>{i18n.edit}</Link>
+        </Option>
+      )}
     </Container>
   );
 };
