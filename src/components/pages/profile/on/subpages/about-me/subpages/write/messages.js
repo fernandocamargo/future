@@ -5,4 +5,5 @@ export default defineMessages({
   'last-name': 'Last name',
   biograpphy: 'Biograpphy',
   location: 'Location',
+  languages: 'Languages',
 });

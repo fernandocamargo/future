@@ -1,13 +1,21 @@
+import property from 'lodash/property';
 import { useCallback, useMemo } from 'react';
 
 import { useForm, useI18n, useValidation } from 'hooks';
 import { useCity } from 'hooks/services/expertlead';
-import { Autocomplete, Editor, Text } from 'components/widgets/fields';
+import {
+  Autocomplete,
+  Collection,
+  Editor,
+  Text,
+} from 'components/widgets/fields';
 
 import { getLocationOptionKeywords, getLocationOptionLabel } from './helpers';
+import Form from './form';
+import Language from './language';
 import messages from './messages';
 
-export const useWrite = ({ render, profile }) => {
+export const useWrite = ({ profile }) => {
   const city = useCity();
   const validation = useValidation();
   const i18n = useI18n(messages);
@@ -43,6 +51,16 @@ export const useWrite = ({ render, profile }) => {
           getOptionLabel: getLocationOptionLabel,
         },
       },
+      {
+        field: Collection,
+        name: 'languages',
+        label: i18n.languages,
+        value: profile.spokenLanguages,
+        settings: {
+          getKey: property('id'),
+          render: Language,
+        },
+      },
     ],
     [city, i18n, profile, validation]
   );
@@ -51,5 +69,5 @@ export const useWrite = ({ render, profile }) => {
     []
   );
 
-  return useForm({ render, fields, onSubmit });
+  return useForm({ render: Form, fields, onSubmit });
 };

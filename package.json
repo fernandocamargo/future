@@ -26,6 +26,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
     "reselect": "^4.0.0",
+    "slate": "^0.57.1",
+    "slate-react": "^0.57.1",
     "styled-components": "^5.0.1",
     "url-parse": "^1.4.7",
     "uuid": "^3.4.0",

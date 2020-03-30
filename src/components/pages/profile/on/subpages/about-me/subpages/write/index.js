@@ -4,11 +4,10 @@ import React from 'react';
 import { Form } from 'components/widgets';
 
 import { useWrite } from './hooks';
-import render from './form';
 import withStyle from './style';
 
 const Write = ({ useStyle, profile }) => {
-  const form = useWrite({ render, profile });
+  const form = useWrite({ profile });
   const style = useStyle();
 
   return (

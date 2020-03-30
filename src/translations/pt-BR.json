@@ -60,6 +60,7 @@
   "components/pages/profile/on/menu/skills": "Habilidades",
   "components/pages/profile/on/subpages/about-me/subpages/write/biograpphy": "Biografia",
   "components/pages/profile/on/subpages/about-me/subpages/write/first-name": "Nome",
+  "components/pages/profile/on/subpages/about-me/subpages/write/languages": "Idiomas",
   "components/pages/profile/on/subpages/about-me/subpages/write/last-name": "Sobrenome",
   "components/pages/profile/on/subpages/about-me/subpages/write/location": "Localização",
   "components/pages/referrals/title": "Indicações",
