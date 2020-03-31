@@ -3,20 +3,21 @@ import React from 'react';
 
 import withStyle from './style';
 
-const Language = ({ useStyle, ...props }) => {
+const Photo = ({ useStyle, label, value }) => {
   const style = useStyle();
 
   return (
     <div {...style}>
-      <pre>{JSON.stringify(props, null, 2)}</pre>
+      <h3>{label}</h3>
+      <pre>{JSON.stringify(value, null, 2)}</pre>
     </div>
   );
 };
 
-Language.propTypes = {
+Photo.propTypes = {
   useStyle: func.isRequired,
 };
 
-Language.defaultProps = {};
+Photo.defaultProps = {};
 
-export default withStyle(Language);
+export default withStyle(Photo);

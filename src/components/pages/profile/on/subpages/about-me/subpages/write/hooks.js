@@ -6,7 +6,8 @@ import { useCity } from 'hooks/services/expertlead';
 import {
   Autocomplete,
   Collection,
-  Editor,
+  Photo,
+  RichText,
   Text,
 } from 'components/widgets/fields';
 
@@ -22,6 +23,12 @@ export const useWrite = ({ profile }) => {
   const fields = useMemo(
     () => [
       {
+        field: Photo,
+        name: 'avatar',
+        label: i18n.avatar,
+        value: 'C:/lol/photo.jpg',
+      },
+      {
         field: Text,
         name: 'first-name',
         label: i18n['first-name'],
@@ -34,7 +41,7 @@ export const useWrite = ({ profile }) => {
         value: profile.lastName,
       },
       {
-        field: Editor,
+        field: RichText,
         name: 'biograpphy',
         label: i18n.biograpphy,
         value: profile.bio,
